@@ -1,0 +1,9 @@
+
+* add the cocoon checkout
+
+git submodule add git://github.com/apache/cocoon.git externals/cocoon_2_1_x
+git submodule init
+git submodule update
+cd externals/cocoon_2_1_x/
+git checkout origin/BRANCH_2_1_X
+

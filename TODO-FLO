@@ -1,0 +1,28 @@
+== Goal : passage sous maven ==
+
+* commencer par faire migrer le code sous /src/java
+
+* mais va nécessiter de pouvoir appliquer les patch cocoon qui se trouvent dans src/confpatch
+
+* après de nombreux test l'appel de ant par amven estt abandonné car ne fonctionne pas
+
+=== Etape intermédiaire ===
+
+* voir comment utiliser via ant les classes créées via maven...
+* ou
+* tenter de tout créer via maven directement.
+
+== Xweb and Xconf : ==
+
+* pour le patching sous maven : 
+** http://cocoon.apache.org/2.2/maven-plugins/maven-plugin/1.0/1360_1_1.html
+** https://issues.apache.org/jira/browse/COCOON-1898
+*** mais ne fonctionne que pour les xweb apparement... (voir le bugtrack, peut être une solution pour tous les types)
+
+** voir aussi pour utiliser le antTask qui existe déjà... (puis voir comment faire pour le faire passer en maven plug)
+*** lenya/externals/cocoon_2_1_x/tools/src/anttasks/XConfToolTask.java
+
+
+** regarder aussi ces modules (mais nécessite une modification des fichiers de patch, et apparement ne permettent pas de réaliser des patch aussi avancés)
+*** http://code.google.com/p/maven-replacer-plugin/wiki/UsageGuide
+*** http://mojo.codehaus.org/xml-maven-plugin/
