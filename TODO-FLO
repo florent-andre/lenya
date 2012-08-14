@@ -26,3 +26,46 @@
 ** regarder aussi ces modules (mais nécessite une modification des fichiers de patch, et apparement ne permettent pas de réaliser des patch aussi avancés)
 *** http://code.google.com/p/maven-replacer-plugin/wiki/UsageGuide
 *** http://mojo.codehaus.org/xml-maven-plugin/
+
+
+== Patch des sitemap et cocoon.xconf ==
+
+* dans le fichier : src/targets/webapp-build.xml
+* regroupe l'ensemble des fichiers de patch dans le dossier de build puis fait tourner xpatch
+** <!-- Patch sitemap.xmap -->
+    <xpatch file="${build.webapp}/sitemap.xmap"
+      srcdir="${build.patch}/sitemap" 
+      includes="**/*.xmap"
+      addComments="false"/>
+    
+    <!-- Patch cocoon.xconf -->
+    <property name="patch.webapp" value="true"/>
+    <xpatch file="${build.webapp}/WEB-INF/cocoon.xconf"
+      srcdir="${build.patch}/cocoon-xconf" 
+      includes="prepare/*.xconf"
+      addComments="true"/>
+    <xpatch file="${build.webapp}/WEB-INF/cocoon.xconf"
+      srcdir="${build.patch}/cocoon-xconf" 
+      includes="**/*.xconf"
+      excludes="prepare/*.xconf"
+      addComments="false"/>
+
+==> voir pour faire un truc dans la phase de "process-resources"
+cf : http://stackoverflow.com/a/2247645
+
+==> voir aussi le "patch plugin" : https://maven.apache.org/plugins/maven-patch-plugin/
+
+
+* pour le dev d'un plug maven : http://maven.apache.org/guides/plugin/guide-java-plugin-development.html
+
+* une méthode consistant à exploser les jar des dépendences et à faire un filtre : 
+** http://stackoverflow.com/a/6448530
+
+=======================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+==> idée finale : 
+* les patchs dans un dossier resources/patches/(xconf|xweb|...) qui sont compilés avec le module par défault
+* lors de la construction de la webapp : 
+** dans la phase "generate-resources" 
+** 1) faire le explode (à la mode http://stackoverflow.com/a/6448530)
+** 2) appliquer le module perso maven qui se base sur le xpatch
+
