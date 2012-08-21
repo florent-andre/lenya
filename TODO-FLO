@@ -5,6 +5,24 @@
 * mais va nécessiter de pouvoir appliquer les patch cocoon qui se trouvent dans src/confpatch
 
 * après de nombreux test l'appel de ant par amven estt abandonné car ne fonctionne pas
+* test d'implementation d'un plug maven a partir du xPatch ant
+** ./properties-build.xml:    <taskdef name="xpatch"          classpath="${cocoon.src.dir}/tools/anttasks" classname="XConfToolTask" />
+*** lenya/externals/cocoon_2_1_x/tools/src/anttasks/XConfToolTask.java
+
+* maven-archetype for creating a plugin/mojo (see the diff between)
+** 211: remote -> org.apache.maven.archetypes:maven-archetype-mojo (An archetype which contains a sample a sample Maven plugin.)
+**212: remote -> org.apache.maven.archetypes:maven-archetype-plugin (An archetype which contains a sample Maven plugin.)
+
+==> actuellement teste le 212
+
+documentation:
+* gide java : http://maven.apache.org/guides/plugin/guide-java-plugin-development.html
+** l'api : http://maven.apache.org/developers/mojo-api-specification.html
+* pour les tests : http://maven.apache.org/plugin-testing/maven-plugin-testing-harness/
+* les problèmes communs : http://maven.apache.org/plugin-developers/common-bugs.html
+
+==> nom du module créé :: maven-xpatch
+
 
 === Etape intermédiaire ===
 
