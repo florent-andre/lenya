@@ -4,55 +4,26 @@
 
 * mais va nécessiter de pouvoir appliquer les patch cocoon qui se trouvent dans src/confpatch
 
-* après de nombreux test l'appel de ant par amven estt abandonné car ne fonctionne pas
+* Création d'un plug maven spécifique
+
 * test d'implementation d'un plug maven a partir du xPatch ant
-** ./properties-build.xml:    <taskdef name="xpatch"          classpath="${cocoon.src.dir}/tools/anttasks" classname="XConfToolTask" />
-*** lenya/externals/cocoon_2_1_x/tools/src/anttasks/XConfToolTask.java
+** lenya/externals/cocoon_2_1_x/tools/src/anttasks/XConfToolTask.java
 
-* maven-archetype for creating a plugin/mojo (see the diff between)
-** 211: remote -> org.apache.maven.archetypes:maven-archetype-mojo (An archetype which contains a sample a sample Maven plugin.)
-**212: remote -> org.apache.maven.archetypes:maven-archetype-plugin (An archetype which contains a sample Maven plugin.)
+* Status de l'implementation ==> nom du module créé :: maven-xpatch
+** plugin maven ok
+** permet de faire la liste des dépendencies 
+*** voir pour configurer les restrictions aux seuls lib lenya
+** permet de lister le contenu des jar
 
-==> actuellement teste le 212
+* A FAIRE : 
+** ajouter le patching via le code ant xpatch
+** voir pour un moyen de configuration des "Xweb and Xconf"
+*** idée de structure de dossier : META-INF/xml-patch/{fileCode}/fileName.{fileCode} ???
+** mettre en place un "false project" :
+*** un module qui compile des xpatch (ie prendre le contenu de src/confpatch et le mettre dans un module maven)
+*** un module qui contient le web-inf par défault et sur lequel on fait les patchs.
 
-* 1) comment récupérer les infos de patch ?
-* A) unpack
-* voir pour utiliser le unpack 
-** http://svn.apache.org/viewvc/maven/plugins/tags/maven-dependency-plugin-2.5/src/main/java/org/apache/maven/plugin/dependency/UnpackDependenciesMojo.java?view=markup
-* B) get information directly from jar
-
-documentation:
-* gide java : http://maven.apache.org/guides/plugin/guide-java-plugin-development.html
-** l'api : http://maven.apache.org/developers/mojo-api-specification.html
-* pour les tests : http://maven.apache.org/plugin-testing/maven-plugin-testing-harness/
-* les problèmes communs : http://maven.apache.org/plugin-developers/common-bugs.html
-
-* les librairies partagés de maven : http://maven.apache.org/shared/index.html
-
-==> nom du module créé :: maven-xpatch
-
-
-=== Etape intermédiaire ===
-
-* voir comment utiliser via ant les classes créées via maven...
-* ou
-* tenter de tout créer via maven directement.
-
-== Xweb and Xconf : ==
-
-* pour le patching sous maven : 
-** http://cocoon.apache.org/2.2/maven-plugins/maven-plugin/1.0/1360_1_1.html
-** https://issues.apache.org/jira/browse/COCOON-1898
-*** mais ne fonctionne que pour les xweb apparement... (voir le bugtrack, peut être une solution pour tous les types)
-
-** voir aussi pour utiliser le antTask qui existe déjà... (puis voir comment faire pour le faire passer en maven plug)
-*** lenya/externals/cocoon_2_1_x/tools/src/anttasks/XConfToolTask.java
-
-
-** regarder aussi ces modules (mais nécessite une modification des fichiers de patch, et apparement ne permettent pas de réaliser des patch aussi avancés)
-*** http://code.google.com/p/maven-replacer-plugin/wiki/UsageGuide
-*** http://mojo.codehaus.org/xml-maven-plugin/
-
+= a classer =
 
 == Patch des sitemap et cocoon.xconf ==
 
@@ -94,4 +65,38 @@ cf : http://stackoverflow.com/a/2247645
 ** dans la phase "generate-resources" 
 ** 1) faire le explode (à la mode http://stackoverflow.com/a/6448530)
 ** 2) appliquer le module perso maven qui se base sur le xpatch
+
+= fin a classer =
+
+
+== History ==
+
+* après de nombreux test l'appel de ant par amven estt abandonné car ne fonctionne pas
+
+
+* maven-archetype for creating a plugin/mojo (see the diff between)
+** 211: remote -> org.apache.maven.archetypes:maven-archetype-mojo (An archetype which contains a sample a sample Maven plugin.)
+**212: remote -> org.apache.maven.archetypes:maven-archetype-plugin (An archetype which contains a sample Maven plugin.)
+
+==> actuellement teste le 212
+
+* 1) comment récupérer les infos de patch ?
+* A) unpack
+* voir pour utiliser le unpack 
+** http://svn.apache.org/viewvc/maven/plugins/tags/maven-dependency-plugin-2.5/src/main/java/org/apache/maven/plugin/dependency/UnpackDependenciesMojo.java?view=markup
+* B) get information directly from jar
+
+== documentation: ==
+
+* guide java : http://maven.apache.org/guides/plugin/guide-java-plugin-development.html
+** l'api : http://maven.apache.org/developers/mojo-api-specification.html
+* pour les tests : http://maven.apache.org/plugin-testing/maven-plugin-testing-harness/
+* les problèmes communs : http://maven.apache.org/plugin-developers/common-bugs.html
+
+* les librairies partagés de maven : http://maven.apache.org/shared/index.html
+
+
+
+
+
 
