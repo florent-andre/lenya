@@ -15,11 +15,19 @@
 
 ==> actuellement teste le 212
 
+* 1) comment récupérer les infos de patch ?
+* A) unpack
+* voir pour utiliser le unpack 
+** http://svn.apache.org/viewvc/maven/plugins/tags/maven-dependency-plugin-2.5/src/main/java/org/apache/maven/plugin/dependency/UnpackDependenciesMojo.java?view=markup
+* B) get information directly from jar
+
 documentation:
 * gide java : http://maven.apache.org/guides/plugin/guide-java-plugin-development.html
 ** l'api : http://maven.apache.org/developers/mojo-api-specification.html
 * pour les tests : http://maven.apache.org/plugin-testing/maven-plugin-testing-harness/
 * les problèmes communs : http://maven.apache.org/plugin-developers/common-bugs.html
+
+* les librairies partagés de maven : http://maven.apache.org/shared/index.html
 
 ==> nom du module créé :: maven-xpatch
 
