@@ -66,8 +66,7 @@ import java.util.jar.Manifest;
  */
 @Mojo( name = "unpack-dependencies", requiresDependencyResolution = ResolutionScope.TEST,
 defaultPhase = LifecyclePhase.PROCESS_SOURCES )
-public class Xpatch extends AbstractFromDependenciesMojo
-{
+public class Xpatch extends AbstractFromDependenciesMojo {
     /**
      * Location of the file.
      * @parameter expression="${project.build.directory}"
@@ -81,8 +80,7 @@ public class Xpatch extends AbstractFromDependenciesMojo
         //This code and related classe's dependencies are copied from maven-dependency-plugin as this classes are not published as jar (as of today 2012 aug 21)
     	DependencyStatusSets dss = getDependencySets( this.failOnMissingClassifierArtifact );
 
-        for ( Artifact artifact : dss.getResolvedDependencies() )
-        {
+        for ( Artifact artifact : dss.getResolvedDependencies() ) {
             File destDir;
             
             File f = artifact.getFile();

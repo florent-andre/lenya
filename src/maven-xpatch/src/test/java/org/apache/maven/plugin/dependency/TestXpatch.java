@@ -33,13 +33,15 @@ import org.apache.maven.plugin.dependency.testUtils.DependencyArtifactStubFactor
 import org.apache.maven.plugin.dependency.testUtils.DependencyTestUtils;
 import org.apache.maven.plugin.dependency.utils.DependencyUtil;
 import org.apache.maven.plugin.dependency.utils.markers.DefaultFileMarkerHandler;
+import org.apache.maven.plugin.testing.AbstractMojoTestCase;
 import org.apache.maven.plugin.testing.stubs.StubArtifactRepository;
 import org.apache.maven.plugin.testing.stubs.StubArtifactResolver;
 import org.apache.maven.project.MavenProject;
 import org.codehaus.plexus.util.StringUtils;
 
 public class TestXpatch
-    extends AbstractDependencyMojoTestCase
+    //extends AbstractDependencyMojoTestCase
+	extends AbstractMojoTestCase
 {
 
     private final String UNPACKABLE_FILE = "test.txt";
@@ -49,43 +51,48 @@ public class TestXpatch
     //UnpackDependenciesMojo mojo;
     Xpatch mojo;
 
-    protected void setUp()
-        throws Exception
+    protected void setUp() throws Exception
     {
-        // required for mojo lookups to work
-        super.setUp( "unpack-dependencies", true );
-
-        File testPom = new File( getBasedir(), "target/test-classes/unit/unpack-dependencies-test/plugin-config.xml" );
-        mojo = (Xpatch) lookupMojo( "unpack-dependencies", testPom );
-        //mojo.outputDirectory = new File( this.testDir, "outputDirectory" );
-        // mojo.silent = true;
-
-        // it needs to get the archivermanager
-        stubFactory.setUnpackableFile( mojo.getArchiverManager() );
-        // i'm using one file repeatedly to archive so I can test the name
-        // programmatically.
-        stubFactory.setSrcFile( new File( getBasedir() + File.separatorChar + UNPACKABLE_FILE_PATH ) );
-
-        assertNotNull( mojo );
-        assertNotNull( mojo.getProject() );
-        MavenProject project = mojo.getProject();
-
-        Set<Artifact> artifacts = this.stubFactory.getScopedArtifacts();
-        Set<Artifact> directArtifacts = this.stubFactory.getReleaseAndSnapshotArtifacts();
-        artifacts.addAll( directArtifacts );
-
-        project.setArtifacts( artifacts );
-        project.setDependencyArtifacts( directArtifacts );
-        mojo.markersDirectory = new File( this.testDir, "markers" );
+    	System.out.println("TO THE INITTTTT");
+    	super.setUp();
+    	System.out.println("set up ok");
+//    	//imported dependency unpack project import
+//        // required for mojo lookups to work
+//        //super.setUp( "unpack-dependencies", true );
+//
+//        //File testPom = new File( getBasedir(), "target/test-classes/unit/unpack-dependencies-test/plugin-config.xml" );
+//    	//mojo = (Xpatch) lookupMojo( "maven-xpatch", testPom );
+//        
+//        //mojo.outputDirectory = new File( this.testDir, "outputDirectory" );
+//        // mojo.silent = true;
+//
+//        // it needs to get the archivermanager
+//        stubFactory.setUnpackableFile( mojo.getArchiverManager() );
+//        // i'm using one file repeatedly to archive so I can test the name
+//        // programmatically.
+//        stubFactory.setSrcFile( new File( getBasedir() + File.separatorChar + UNPACKABLE_FILE_PATH ) );
+//
+//        assertNotNull( mojo );
+//        assertNotNull( mojo.getProject() );
+//        MavenProject project = mojo.getProject();
+//
+//        Set<Artifact> artifacts = this.stubFactory.getScopedArtifacts();
+//        Set<Artifact> directArtifacts = this.stubFactory.getReleaseAndSnapshotArtifacts();
+//        artifacts.addAll( directArtifacts );
+//
+//        project.setArtifacts( artifacts );
+//        project.setDependencyArtifacts( directArtifacts );
+//        mojo.markersDirectory = new File( this.testDir, "markers" );
 
     }
     
-    protected void tearDown()
+    protected void tearDown() throws Exception
     {
-        super.tearDown();
-        
-        mojo = null;
-        System.gc();
+    	super.tearDown();
+//        super.tearDown();
+//        
+//        mojo = null;
+//        System.gc();
     }
 
     public void assertUnpacked( Artifact artifact )
@@ -120,10 +127,30 @@ public class TestXpatch
 //        }
 //    }
 //
-    public void testMojo()
-        throws Exception
+    public void testMojo() throws Exception
     {
+    	System.out.println("begin test mojo");
+    	File testPom = getTestFile("src/test/resources/unit/xpatch/pom.xml");// new File( getBasedir(), "target/test-classes/unit/unpack-dependencies-test/plugin-config.xml" );
+        assertNotNull( testPom );
+        assertTrue( testPom.exists() );
+        
+        System.out.println("before look up");
+        
+        
+        mojo = (Xpatch) lookupMojo( "patch", testPom );
+        
+        //Not looking up the mojo from the container seems to have a drawback: Injection of components into mojo fields annotated with "@component" is disabled and needs to be manually performed (e.g. using setVariableValueToObject() or similar). 
+        //mojo = new Xpatch();
+        //configureMojo(mojo, "maven-xpatch",testPom);
+        
+        assertNotNull( mojo );
+        
+        System.out.println("before execute");
         mojo.execute();
+        
+        System.out.println("here it ok");
+        
+        //mojo.execute();
         Iterator<Artifact> iter = mojo.project.getArtifacts().iterator();
         while ( iter.hasNext() )
         {

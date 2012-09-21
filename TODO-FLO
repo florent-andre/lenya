@@ -23,6 +23,9 @@
 *** un module qui compile des xpatch (ie prendre le contenu de src/confpatch et le mettre dans un module maven)
 *** un module qui contient le web-inf par défault et sur lequel on fait les patchs.
 
+* erreur lors du test : org.apache.maven.plugin.Mojoorg.apache.lenya:
+** repartir de l'archetype par défaut, voir si il y a des erreur et reconstruire petit a petit autour de ce truc de test.
+
 = a classer =
 
 == Patch des sitemap et cocoon.xconf ==
