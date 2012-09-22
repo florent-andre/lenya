@@ -22,7 +22,7 @@
   <build>
     <plugins>
       <plugin>
-        <artifactId>maven-xpatch-testdev</artifactId>
+        <artifactId>maven-xpatch</artifactId>
         <configuration>
           <!-- Specify the MyMojo parameter -->
           <outputDirectory>target/test-harness/project-to-test</outputDirectory>
