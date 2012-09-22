@@ -7,12 +7,13 @@
     <groupId>lenya.xpatch.test</groupId>
     <version>22</version>
   </parent>-->
-    <artifactId>xpatch-test-project</artifactId>
-    <groupId>lenya.xpatch.test</groupId>
+    
+    <groupId>org.apache.lenya</groupId>
+<artifactId>xpatch-test-webapp</artifactId>
   <version>0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>maven-xpatch Maven Plugin</name>
+  <name>test project to apply the patches</name>
   <url>http://maven.apache.org</url>
 
   <properties>
