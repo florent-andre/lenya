@@ -23,13 +23,17 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
-import org.apache.tools.ant.BuildException;
-import org.apache.tools.ant.DirectoryScanner;
-import org.apache.tools.ant.Project;
-import org.apache.tools.ant.taskdefs.MatchingTask;
-import org.apache.tools.ant.types.XMLCatalog;
+import org.apache.commons.lang.NotImplementedException;
+//import org.apache.tools.ant.BuildException;
+//import org.apache.tools.ant.DirectoryScanner;
+//import org.apache.tools.ant.Project;
+//import org.apache.tools.ant.taskdefs.MatchingTask;
+//import org.apache.tools.ant.types.XMLCatalog;
 import org.apache.xpath.XPathAPI;
 import org.w3c.dom.Attr;
 import org.w3c.dom.DOMException;
@@ -74,7 +78,7 @@ public final class Xpatch {//extends MatchingTask {
     private File srcdir;
     private boolean addComments;
     /** for resolving entities such as dtds */
-    private XMLCatalog xmlCatalog = new XMLCatalog();
+//    private XMLCatalog xmlCatalog = new XMLCatalog();
 
     /**
      * Set file, which should be patched.
@@ -99,9 +103,9 @@ public final class Xpatch {//extends MatchingTask {
      *
      * @param xmlCatalog the XMLCatalog instance to use to look up DTDs
      */
-    public void addConfiguredXMLCatalog(XMLCatalog newXMLCatalog) {
-        this.xmlCatalog.addConfiguredXMLCatalog(newXMLCatalog);
-    }
+//    public void addConfiguredXMLCatalog(XMLCatalog newXMLCatalog) {
+//        this.xmlCatalog.addConfiguredXMLCatalog(newXMLCatalog);
+//    }
 
     /**
      * Whether to add a comment indicating where this block of code comes
@@ -114,99 +118,99 @@ public final class Xpatch {//extends MatchingTask {
     /**
      * Initialize internal instance of XMLCatalog
      */
-    public void init() throws BuildException {
-        super.init();
-        xmlCatalog.setProject(this.getProject());
-    }
+//    public void init() throws BuildException {
+//        super.init();
+//        xmlCatalog.setProject(this.getProject());
+//    }
 
     /**
      * Execute task.
      */
-    public void execute() throws BuildException {
-        if (this.file == null) {
-            throw new BuildException("file attribute is required", this.getLocation());
-        }
-        try {
-            Document document = DocumentCache.getDocument(this.file, this);
-            
-            if (this.srcdir == null) {
-                this.srcdir = this.getProject().resolveFile(".");
-            }
-
-            DirectoryScanner scanner = getDirectoryScanner(this.srcdir);
-            String[] list = scanner.getIncludedFiles();
-            boolean modified = false;
-            // process recursive
-            File patchfile;
-            ArrayList suspended = new ArrayList();
-            boolean hasChanged = false;
-            for (int i = 0; i < list.length; i++) {
-                patchfile = new File(this.srcdir, list[i]);
-                try {
-                    // Adds configuration snippet from the file to the configuration
-                    boolean changed = patch(document, patchfile);
-                    hasChanged |= changed;
-                    if (!changed) {
-                        suspended.add(patchfile);
-                    }
-                } catch (SAXException e) {
-                    log("Ignoring: "+patchfile+"\n(not a valid XML)");
-                }
-            }
-            modified = hasChanged;
-
-            if (hasChanged && !suspended.isEmpty()) {
-                log("Try to apply suspended patch files", Project.MSG_DEBUG);
-            }
-
-            ArrayList newSuspended = new ArrayList();
-            while (hasChanged && !suspended.isEmpty()) {
-                hasChanged = false;
-                for(Iterator i=suspended.iterator(); i.hasNext();) {
-                    patchfile = (File)i.next();
-                    try {
-                         // Adds configuration snippet from the file to the configuration
-                        boolean changed = patch(document, patchfile);
-                        hasChanged |= changed;
-                        if (!changed) {
-                            newSuspended.add(patchfile);
-                        }
-                    } catch (SAXException e) {
-                        log("Ignoring: "+patchfile+"\n(not a valid XML)");
-                    }
-                }
-                suspended = newSuspended;
-                newSuspended = new ArrayList();
-            }
-
-            if (!suspended.isEmpty()) {
-                for(Iterator i=suspended.iterator(); i.hasNext();) {
-                    patchfile = (File)i.next();
-                    log("Dismiss: "+patchfile.toString(), Project.MSG_DEBUG);
-                }
-            }
-
-            if (modified) {
-                DocumentCache.writeDocument(this.file, document, this);
-            } else {
-                log("No Changes: " + this.file, Project.MSG_DEBUG);
-            }
-            DocumentCache.storeDocument(this.file, document, this);
-        } catch (TransformerException e) {
-            throw new BuildException("TransformerException: "+e);
-        } catch (SAXException e) {
-            throw new BuildException("SAXException:" +e);           
-        } catch (DOMException e) {
-            throw new BuildException("DOMException:" +e);           
-        } catch (UnknownHostException e) {
-            throw new BuildException("UnknownHostException.  Probable cause: The parser is " +
-                "trying to resolve a dtd from the internet and no connection exists.\n" +
-                "You can either connect to the internet during the build, or patch \n" +
-                "XConfToolTask.java to ignore DTD declarations when your parser is in use.");
-        } catch (IOException ioe) {
-            throw new BuildException("IOException: "+ioe);
-        }
-    }
+//    public void execute() throws BuildException {
+//        if (this.file == null) {
+//            throw new BuildException("file attribute is required", this.getLocation());
+//        }
+//        try {
+//            Document document = DocumentCache.getDocument(this.file, this);
+//            
+//            if (this.srcdir == null) {
+//                this.srcdir = this.getProject().resolveFile(".");
+//            }
+//
+//            DirectoryScanner scanner = getDirectoryScanner(this.srcdir);
+//            String[] list = scanner.getIncludedFiles();
+//            boolean modified = false;
+//            // process recursive
+//            File patchfile;
+//            ArrayList suspended = new ArrayList();
+//            boolean hasChanged = false;
+//            for (int i = 0; i < list.length; i++) {
+//                patchfile = new File(this.srcdir, list[i]);
+//                try {
+//                    // Adds configuration snippet from the file to the configuration
+//                    boolean changed = patch(document, patchfile);
+//                    hasChanged |= changed;
+//                    if (!changed) {
+//                        suspended.add(patchfile);
+//                    }
+//                } catch (SAXException e) {
+//                    log("Ignoring: "+patchfile+"\n(not a valid XML)");
+//                }
+//            }
+//            modified = hasChanged;
+//
+//            if (hasChanged && !suspended.isEmpty()) {
+//                log("Try to apply suspended patch files", Project.MSG_DEBUG);
+//            }
+//
+//            ArrayList newSuspended = new ArrayList();
+//            while (hasChanged && !suspended.isEmpty()) {
+//                hasChanged = false;
+//                for(Iterator i=suspended.iterator(); i.hasNext();) {
+//                    patchfile = (File)i.next();
+//                    try {
+//                         // Adds configuration snippet from the file to the configuration
+//                        boolean changed = patch(document, patchfile);
+//                        hasChanged |= changed;
+//                        if (!changed) {
+//                            newSuspended.add(patchfile);
+//                        }
+//                    } catch (SAXException e) {
+//                        log("Ignoring: "+patchfile+"\n(not a valid XML)");
+//                    }
+//                }
+//                suspended = newSuspended;
+//                newSuspended = new ArrayList();
+//            }
+//
+//            if (!suspended.isEmpty()) {
+//                for(Iterator i=suspended.iterator(); i.hasNext();) {
+//                    patchfile = (File)i.next();
+//                    log("Dismiss: "+patchfile.toString(), Project.MSG_DEBUG);
+//                }
+//            }
+//
+//            if (modified) {
+//                DocumentCache.writeDocument(this.file, document, this);
+//            } else {
+//                log("No Changes: " + this.file, Project.MSG_DEBUG);
+//            }
+//            DocumentCache.storeDocument(this.file, document, this);
+//        } catch (TransformerException e) {
+//            throw new BuildException("TransformerException: "+e);
+//        } catch (SAXException e) {
+//            throw new BuildException("SAXException:" +e);           
+//        } catch (DOMException e) {
+//            throw new BuildException("DOMException:" +e);           
+//        } catch (UnknownHostException e) {
+//            throw new BuildException("UnknownHostException.  Probable cause: The parser is " +
+//                "trying to resolve a dtd from the internet and no connection exists.\n" +
+//                "You can either connect to the internet during the build, or patch \n" +
+//                "XConfToolTask.java to ignore DTD declarations when your parser is in use.");
+//        } catch (IOException ioe) {
+//            throw new BuildException("IOException: "+ioe);
+//        }
+//    }
 
     /**
      * Patch XML document with a given patch file.
@@ -216,22 +220,27 @@ public final class Xpatch {//extends MatchingTask {
      * @param patchFile Patch file
      *
      * @return True, if the document was successfully patched
+     * @throws ParserConfigurationException 
      */
-    private boolean patch(final Document configuration,
-                           final File patchFile)
-                           throws TransformerException, IOException, DOMException, SAXException {
-
-        Document component = DocumentCache.getDocument(patchFile, this);
+    public boolean patch(final Document configuration, final File patchFile)
+                           throws TransformerException, IOException, DOMException, SAXException, ParserConfigurationException {
+    	DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+    	DocumentBuilder db = dbf.newDocumentBuilder();
+    	Document patchDoc = db.parse(patchFile);
+    	
+//        Document component = DocumentCache.getDocument(patchFile, this);
         String filename = patchFile.toString();
                             
         // Check to see if Document is an xconf-tool document
-        Element elem = component.getDocumentElement();
+//        Element elem = component.getDocumentElement();
+        Element elem = patchDoc.getDocumentElement();
 
         String extension = filename.lastIndexOf(".")>0?filename.substring(filename.lastIndexOf(".")+1):"";
         String basename = basename(filename);
 
         if (!elem.getTagName().equals(extension)) {
-        	throw new BuildException("Not a valid xpatch file: "+filename);
+//        	throw new BuildException("Not a valid xpatch file: "+filename);
+        	throw new NotImplementedException("Implement a valid exception. Message : Not a valid xpatch file: "+filename);
         }
 
         String replacePropertiesStr = elem.getAttribute("replace-properties");
@@ -248,7 +257,7 @@ public final class Xpatch {//extends MatchingTask {
 
         // Suspend, because the xpath returned not one node
         if (nodes.getLength() !=1 ) {
-            log("Suspending: "+filename, Project.MSG_DEBUG);
+            //log("Suspending: "+filename, Project.MSG_DEBUG);
             return false;
         }
         Node root = nodes.item(0);
@@ -263,15 +272,16 @@ public final class Xpatch {//extends MatchingTask {
         String ifProp = getAttribute(elem, "if-prop", replaceProperties);
         boolean ifValue = false;
         if (ifProp != null && !ifProp.equals("")) {
-            ifValue = Boolean.valueOf(this.getProject().getProperty(ifProp)).booleanValue();
+        	throw new NotImplementedException("See to implement this case");
+            //ifValue = Boolean.valueOf(this.getProject().getProperty(ifProp)).booleanValue();
         }
 
         if (ifProp != null && ifProp.length() > 0 && !ifValue ) {
-            log("Skipping: " + filename, Project.MSG_DEBUG);
+            //log("Skipping: " + filename, Project.MSG_DEBUG);
             return false;
         } else if (testPath != null && testPath.length() > 0 &&
             XPathAPI.eval(root, testPath).bool()) {
-            log("Skipping: " + filename, Project.MSG_DEBUG);
+            //log("Skipping: " + filename, Project.MSG_DEBUG);
             return false;
         } else {
             // Test if component wants us to remove a list of nodes first
@@ -328,7 +338,7 @@ public final class Xpatch {//extends MatchingTask {
             if (xpath != null && xpath.length() > 0) {
                 nodes = XPathAPI.selectNodeList(root, xpath);
                 if (nodes.getLength() == 0) {
-                    log("Error in: "+filename);
+                    //log("Error in: "+filename);
                     throw new IOException("XPath ("+xpath+") returned zero nodes");
                 }
                 before = nodes.item(0);
@@ -337,7 +347,7 @@ public final class Xpatch {//extends MatchingTask {
                 if (xpath != null && xpath.length() > 0) {
                     nodes = XPathAPI.selectNodeList(root, xpath);
                     if (nodes.getLength() == 0) {
-                        log("Error in: "+filename);
+                        //log("Error in: "+filename);
                         throw new IOException("XPath ("+xpath+") zero nodes.");
                     }
                     before = nodes.item(nodes.getLength()-1).getNextSibling();
@@ -345,9 +355,10 @@ public final class Xpatch {//extends MatchingTask {
             }
 
             // Add 'component' data into 'root' node
-            log("Processing: "+filename);
-            NodeList componentNodes = component.getDocumentElement().getChildNodes();
-
+            //log("Processing: "+filename);
+            //NodeList componentNodes = component.getDocumentElement().getChildNodes();
+            NodeList componentNodes = patchDoc.getDocumentElement().getChildNodes();
+            
             if (this.addComments) {
                 root.appendChild(configuration.createComment("..... Start configuration from '"+basename+"' "));
                 root.appendChild(configuration.createTextNode(NL));
@@ -378,7 +389,8 @@ public final class Xpatch {//extends MatchingTask {
         if (attr == null) {
             return null;
         } else if (replaceProperties) {
-            return getProject().replaceProperties(attr);
+        	throw new NotImplementedException("Implement this case");
+            //return getProject().replaceProperties(attr);
         } else {
             return attr;
         }
@@ -389,15 +401,17 @@ public final class Xpatch {//extends MatchingTask {
         if (attrs != null) {
             for (int i = 0; i < attrs.getLength(); i++) {
                 Node attr = attrs.item(i);
-                attr.setNodeValue(getProject().replaceProperties(attr.getNodeValue()));     
+                throw new NotImplementedException("implement this case");
+                //attr.setNodeValue(getProject().replaceProperties(attr.getNodeValue()));     
             } 
         }
         switch (n.getNodeType()) {
             case Node.ATTRIBUTE_NODE:
             case Node.CDATA_SECTION_NODE:
             case Node.TEXT_NODE: {
-                n.setNodeValue(getProject().replaceProperties(n.getNodeValue()));
-                break;
+            	throw new NotImplementedException("implement this case");
+                //n.setNodeValue(getProject().replaceProperties(n.getNodeValue()));
+                //break;
             }
             case Node.DOCUMENT_NODE:
             case Node.DOCUMENT_FRAGMENT_NODE:
