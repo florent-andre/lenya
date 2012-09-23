@@ -11,7 +11,8 @@
     <groupId>org.apache.lenya</groupId>
 <artifactId>xpatch-test-webapp</artifactId>
   <version>0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
+<!--   <packaging>jar</packaging> -->
 
   <name>test project to apply the patches</name>
   <url>http://maven.apache.org</url>
@@ -29,35 +30,40 @@
   <artifactId>maven-xpatch</artifactId>
   <version>0.1-SNAPSHOT</version>
     </dependency>-->
+<!--     <dependency> -->
+<!--       <groupId>org.apache.maven</groupId> -->
+<!--       <artifactId>maven-artifact</artifactId> -->
+<!--       <version>${mavenVersion}</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.apache.maven</groupId> -->
+<!--       <artifactId>maven-plugin-api</artifactId> -->
+<!--       <version>${mavenVersion}</version> -->
+<!--     </dependency> -->
     <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-artifact</artifactId>
-      <version>${mavenVersion}</version>
+    	<groupId>org.apache.lenya</groupId>
+		<artifactId>xpatch-test-libwithpatches</artifactId>
+ 	 	<version>0.1-SNAPSHOT</version>
     </dependency>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-api</artifactId>
-      <version>${mavenVersion}</version>
-    </dependency>
-    
     
   </dependencies>
 
 	  <build>
+	   <finalName>xpatchtestwebapp</finalName>
     <pluginManagement>
       <plugins>
         <plugin>
             <groupId>org.apache.lenya</groupId>
-  <artifactId>maven-xpatch-testdev</artifactId>
-  <version>0.1-SNAPSHOT</version>
-          <executions>
-            <execution>
-			<id>default-resources</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>touch</goal>
-            </goals>
-            </execution>
+  			<artifactId>maven-xpatch-testdev</artifactId>
+  			<version>0.1-SNAPSHOT</version>
+          	<executions>
+            	<execution>
+					<id>default-resources</id>
+            		<phase>process-resources</phase>
+            		<goals>
+              			<goal>touch</goal>
+            		</goals>
+            	</execution>
             <!--<execution>
               <id>help-goal</id>
               <goals>
