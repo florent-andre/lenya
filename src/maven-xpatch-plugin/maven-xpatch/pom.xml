@@ -56,6 +56,13 @@
 <!--     </dependency> -->
     <!-- SEARCH BUG PART : TODO : REMOVE ALL when find the one needed -->
     
+    <!-- Xalan related dependency -->
+    <dependency>
+    	<groupId>xalan</groupId>
+    	<artifactId>xalan</artifactId>
+    	<version>2.7.1</version>
+    </dependency>
+    
         <!-- maven -->
     <dependency>
       <groupId>org.apache.maven</groupId>
