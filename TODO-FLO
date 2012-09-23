@@ -28,6 +28,26 @@
 ** ajouter un webinf/cocoon. dans le projet de webapp
 ** appliquer le patch trouver dans le projet de test à la webapp
 
+= Copy de la webapp cocoon =
+
+
+* actually files are directly copied from the cocoon/src/webapp to the lenya webapp.
+** This was done by the target :   <target name="prepare-cocoon" depends="check-cocoon" unless="gump.skipcocoonbuild"> in init-build.xml
+* also this patches were applied, see to do the same with xpatch maven module :
+ <!-- patch logkit.xconf -->
+    <xpatch file="${build.webapp}/WEB-INF/logkit.xconf"
+        includes="src/confpatch/logkit-*.xconf"/> 
+    
+    <!-- patch log4j.xconf -->
+    <xpatch file="${build.webapp}/WEB-INF/log4j.xconf"
+        includes="src/confpatch/log4j-*.xconf"/> 
+    
+    <!-- patch web.xml -->
+    <echo>PATCH web.xml</echo>
+    <xpatch file="${build.webapp}/WEB-INF/web.xml" 
+            includes="src/confpatch/*.xweb"/> 
+
+
 = a classer =
 
 == Patch des sitemap et cocoon.xconf ==
