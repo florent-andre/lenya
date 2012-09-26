@@ -41,8 +41,12 @@
 
 
 * TODAY status:
-** most of the code work : need to check why only one patch in the dependency jar (in the jar or listed by the code ?)
-** need some code cleaning.
+* maven-xpatch
+** xconf patch are not applyed because of missing <configuration> in cocoon.xconf. See if apply due to wait list in ant build
+* lenya maven : start migration
+** core-api : contains java/ (to remove)
+** core-impl : contains impl/ (to remove)
+
 
 
 = Copy de la webapp cocoon =
