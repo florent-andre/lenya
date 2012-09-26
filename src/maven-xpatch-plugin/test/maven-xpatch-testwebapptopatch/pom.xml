@@ -22,8 +22,11 @@
 	<!-- <mavenPluginPluginVersion>3.1</mavenPluginPluginVersion> -->
 	<!-- </properties> -->
 	<properties>
-		<!-- TODO : use compile dir maven property -->
+		<!-- property for patch web.xml and cocoon.xconf -->
 		<preassembly.dir>${project.build.outputDirectory}/webresources</preassembly.dir>
+		<!-- Configuration properties -->
+		<!-- remove this property for not enable upload -->
+		<enable.uploads>true</enable.uploads>
 	</properties>
 
 	<dependencies>
@@ -42,14 +45,14 @@
 		<dependency>
 			<groupId>org.apache.lenya</groupId>
 			<artifactId>xpatch-test-libwithpatches</artifactId>
-			<version>0.1-SNAPSHOT</version>
+  			<version>0.1-SNAPSHOT</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.lenya</groupId>
-			<artifactId>maven-xpatch</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.lenya</groupId> -->
+<!-- 			<artifactId>maven-xpatch</artifactId> -->
+<!-- 			<version>1.0-SNAPSHOT</version> -->
+<!-- 		</dependency> -->
 
 	</dependencies>
 

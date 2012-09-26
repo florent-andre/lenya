@@ -39,6 +39,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -87,59 +88,46 @@ public class MyMojo extends AbstractMojo {
     	
     	@SuppressWarnings("unchecked")
     	Set<Artifact> dal = mavenProject.getDependencyArtifacts();
-    	List<Dependency> dl = mavenProject.getDependencies();
     	
-    	System.out.println("*************************************");
     	for(Artifact da : dal){
     		//TODO : a filter procedure for artifact
-//    		System.out.println(da.getArtifactId());
-//    		System.out.println(da.getFile().getAbsoluteFile());
     		File f = da.getFile();
             //then use jar file for exploring
             try{
-            	//System.out.println(f.getCanonicalPath());
-            	
-//            	JarFile jf = new JarFile(f);
-//            	Enumeration<JarEntry> entries = jf.entries();
             	final InputStream is = new FileInputStream(f);
 				ArchiveInputStream in = new ArchiveStreamFactory().createArchiveInputStream("jar", is);
 				JarArchiveEntry entry = (JarArchiveEntry)in.getNextEntry();
 				
             	//get all files that are in the configured folder
-            	//while(entries.hasMoreElements()){
 				while(entry != null){
-					System.out.println("***** new entry "+entry.getName());
-            		//JarEntry ja = entries.nextElement();
-            		//if(ja.getName().startsWith(patchFolder)){
 					if(entry.getName().startsWith(patchFolder)){
-            			//if(ja.getName().endsWith(fileNameRegexOne)){
+            			
+						File fileToPatch = null;
 						if(entry.getName().endsWith(fileNameRegexOne)){
-            				//System.out.println(ja.getName());
-							System.out.println(entry.getName());
-							System.out.println(entry.toString());
-            				System.out.println("This match PATCH WEB !!");
-            				
-            				String fName = new File(entry.getName()).getName();
-            				System.out.println(fName);
+							fileToPatch = new File(fileToPatchOne);
+            			}
+						if(entry.getName().endsWith(fileNameRegexTwo)){
+							fileToPatch = new File(fileToPatchTwo);
+            			}
+						
+						
+						if(fileToPatch != null){
+							String fName = new File(entry.getName()).getName();
             				
             				//extract file from jar
-            				//File resultFile = new File(tempDir, fName);
             				File resultFile = File.createTempFile("jarpatch", fName);
-            				//resultFile.createNewFile();
             				OutputStream out = new FileOutputStream(resultFile);
             				IOUtils.copy(in, out);
             				out.close();
-            				in.close();
             				
             				//get dom representation of the document
-            				File fileToPatch = new File(fileToPatchOne);
             				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             		    	DocumentBuilder db = dbf.newDocumentBuilder();
             		    	Document docToPatch = db.parse(fileToPatch);
             				
             				//TODO : put patch create on the top level
             				Xpatch xp = new Xpatch();
-            				xp.patch(docToPatch, resultFile);
+            				xp.patch(docToPatch, resultFile,mavenProject.getProperties());
             				
             				//save the patched document
             				//TODO : extract this to do at the end
@@ -148,33 +136,15 @@ public class MyMojo extends AbstractMojo {
             			    DOMSource source = new DOMSource(docToPatch);
             			    StreamResult streamResult =  new StreamResult(fileToPatch);
             			    transformer.transform(source, streamResult);
-            			    
-            				//System.out.println(ja.getClass().getResource(ja.getName()).toString());
-            				
-            			}
-            			//if(ja.getName().endsWith(fileNameRegexTwo)){
-						if(entry.getName().endsWith(fileNameRegexTwo)){
-            				System.out.println("This match PATCH CONF!!");
-            			}
+						}
+						
             		}
             		
             		entry = (JarArchiveEntry)in.getNextEntry();
             	}
             	
-            	/*System.out.println("test if the jar contain the needed folder : ");
-            	System.out.println(jf.getEntry("/META-INF/patch/"));
-            	JarEntry e = jf.getJarEntry(patchFolder);
-            	e.isDirectory();
-            	
-            	System.out.println("Process the content of entry");
-            	*/
-//            	while(entries.hasMoreElements()){
-//            		JarEntry ja = entries.nextElement();
-//            		System.out.println(ja.getName());
-//            		System.out.println(ja.isDirectory());
-//            	}
-            	
-            	//TODO : write the result
+				//now close the archive input stream
+				in.close();
             	
             	
             }catch ( IOException e ){
@@ -191,38 +161,8 @@ public class MyMojo extends AbstractMojo {
 				throw new MojoExecutionException( "Error during reading the jar archive", e );
 			}
     	}
-    	System.out.println("*************************************");
-    	/*for(Dependency d : dl){
-    		System.out.println(d.getArtifactId());
-    	}*/
     	
-        File f = outputDirectory;
-
-        if ( !f.exists() ) {
-            f.mkdirs();
-        }
-
-        File touch = new File( f, "touch.txt" );
-
-        FileWriter w = null;
-        try {
-            w = new FileWriter( touch );
-
-            w.write( "touch.txt" );
-        }
-        catch ( IOException e ) {
-            throw new MojoExecutionException( "Error creating file " + touch, e );
-        }
-        finally {
-            if ( w != null ) {
-                try {
-                    w.close();
-                }
-                catch ( IOException e ) {
-                    // ignore
-                }
-            }
-        }
     }
+    
     
 }

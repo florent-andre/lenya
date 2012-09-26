@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Properties;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -222,7 +223,7 @@ public final class Xpatch {//extends MatchingTask {
      * @return True, if the document was successfully patched
      * @throws ParserConfigurationException 
      */
-    public boolean patch(final Document configuration, final File patchFile)
+    public boolean patch(final Document configuration, final File patchFile, Properties properties)
                            throws TransformerException, IOException, DOMException, SAXException, ParserConfigurationException {
     	DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
     	DocumentBuilder db = dbf.newDocumentBuilder();
@@ -274,7 +275,8 @@ public final class Xpatch {//extends MatchingTask {
         String ifProp = getAttribute(elem, "if-prop", replaceProperties);
         boolean ifValue = false;
         if (ifProp != null && !ifProp.equals("")) {
-        	throw new NotImplementedException("See to implement this case");
+        	if(properties != null) ifValue = properties.containsKey(ifProp);
+        	//throw new NotImplementedException("See to implement this case");
             //ifValue = Boolean.valueOf(this.getProject().getProperty(ifProp)).booleanValue();
         }
 

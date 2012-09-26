@@ -40,6 +40,10 @@
 </execution>
 
 
+* TODAY status:
+** most of the code work : need to check why only one patch in the dependency jar (in the jar or listed by the code ?)
+** need some code cleaning.
+
 
 = Copy de la webapp cocoon =
 
