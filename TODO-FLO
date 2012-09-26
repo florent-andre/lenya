@@ -28,6 +28,9 @@
 ** ajouter un webinf/cocoon. dans le projet de webapp
 ** appliquer le patch trouver dans le projet de test à la webapp
 
+* as the goal war-resource can't be hooked (check this on the ml though), file to patch have to be in resources/webresources
+** inspired by : http://edeustace.wordpress.com/2010/07/08/processing-resources-with-the-maven-war-plugin/
+
 = Copy de la webapp cocoon =
 
 
