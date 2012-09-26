@@ -30,6 +30,16 @@
 
 * as the goal war-resource can't be hooked (check this on the ml though), file to patch have to be in resources/webresources
 ** inspired by : http://edeustace.wordpress.com/2010/07/08/processing-resources-with-the-maven-war-plugin/
+** example of execution that don't work :
+<execution>
+	<id>Patch webapp</id>
+	<phase>war</phase>
+	<goals>
+		<goal>war-resources</goal>
+	</goals>
+</execution>
+
+
 
 = Copy de la webapp cocoon =
 

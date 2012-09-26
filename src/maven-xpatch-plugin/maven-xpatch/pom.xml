@@ -55,7 +55,11 @@
 <!--       <scope>provided</scope> -->
 <!--     </dependency> -->
     <!-- SEARCH BUG PART : TODO : REMOVE ALL when find the one needed -->
-    
+    <dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-compress</artifactId>
+			<version>1.4.1</version>
+		</dependency>
     <!-- Xalan related dependency -->
     <dependency>
     	<groupId>xalan</groupId>
