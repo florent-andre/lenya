@@ -243,11 +243,13 @@ public final class Xpatch {//extends MatchingTask {
         	throw new NotImplementedException("Implement a valid exception. Message : Not a valid xpatch file: "+filename);
         }
 
-        String replacePropertiesStr = elem.getAttribute("replace-properties");
-
-        boolean replaceProperties = !("no".equalsIgnoreCase(replacePropertiesStr) ||
-                                      "false".equalsIgnoreCase(replacePropertiesStr));
-
+        //TODO : see what is this replace-properties attr
+//        String replacePropertiesStr = elem.getAttribute("replace-properties");
+//        boolean replaceProperties = !("no".equalsIgnoreCase(replacePropertiesStr) ||
+//                                      "false".equalsIgnoreCase(replacePropertiesStr));
+        
+        boolean replaceProperties = false;
+        
         // Get 'root' node were 'component' will be inserted into
         String xpath = getAttribute(elem, "xpath", replaceProperties);
         if ( xpath == null ) {

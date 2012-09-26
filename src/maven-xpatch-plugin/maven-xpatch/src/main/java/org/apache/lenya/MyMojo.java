@@ -34,6 +34,7 @@ import java.util.jar.JarFile;
  * Goal which touches a timestamp file.
  *
  * @goal touch
+ * @goal war-resources
  * 
  * @phase process-sources
  */
@@ -49,6 +50,16 @@ public class MyMojo extends AbstractMojo {
     private org.apache.maven.project.MavenProject mavenProject;
     
     public void execute() throws MojoExecutionException {
+    	System.out.println("*************************************");
+    	//TODO : make this parameters configurable
+    	//folder that contains patches
+    	String patchFolder = "META-INF/patches";
+    	//TODO : create a map {patchRegex, fileToPatch }
+    	String fileNameRegexOne = "*.xweb";
+    	String fileToPatchOne = "webapp/WEB-INF/web.xml";
+    	String fileNameRegexTwo = "*.xconf";
+    	String fileToPatchTwo = "webapp/WEB-INF/cocoon.xconf";
+    	//end make this paramters configurable
     	
     	@SuppressWarnings("unchecked")
 		Set<Artifact> al = mavenProject.getArtifacts();
@@ -60,6 +71,7 @@ public class MyMojo extends AbstractMojo {
     	}
     	System.out.println("*************************************");
     	for(Artifact da : dal){
+    		//TODO : a filter procedure for artifact
     		System.out.println(da.getArtifactId());
     		System.out.println(da.getFile().getAbsoluteFile());
     		File f = da.getFile();
@@ -70,24 +82,39 @@ public class MyMojo extends AbstractMojo {
             	JarFile jf = new JarFile(f);
             	Enumeration<JarEntry> entries = jf.entries();
             	
-            	System.out.println("test if the jar contain the needed folder : ");
-            	System.out.println(jf.getEntry("/META-INF/patch/"));
-            	
-            	System.out.println("Process the content of entry");
+            	//get all files that are in the configured folder
             	while(entries.hasMoreElements()){
             		JarEntry ja = entries.nextElement();
             		System.out.println(ja.getName());
-            		System.out.println(ja.isDirectory());
+            		if(ja.getName().matches(patchFolder)){
+            			System.out.println("This match !!");
+            		}
             	}
+            	
+            	/*System.out.println("test if the jar contain the needed folder : ");
+            	System.out.println(jf.getEntry("/META-INF/patch/"));
+            	JarEntry e = jf.getJarEntry(patchFolder);
+            	e.isDirectory();
+            	
+            	System.out.println("Process the content of entry");
+            	*/
+//            	while(entries.hasMoreElements()){
+//            		JarEntry ja = entries.nextElement();
+//            		System.out.println(ja.getName());
+//            		System.out.println(ja.isDirectory());
+//            	}
+            	
+            	//TODO : write the result
+            	
             	
             }catch ( IOException e ){
                 throw new MojoExecutionException( "Error accessing file "+da.toString(), e );
             }
     	}
     	System.out.println("*************************************");
-    	for(Dependency d : dl){
+    	/*for(Dependency d : dl){
     		System.out.println(d.getArtifactId());
-    	}
+    	}*/
     	
         File f = outputDirectory;
 

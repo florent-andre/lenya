@@ -17,13 +17,13 @@
   <name>test project to apply the patches</name>
   <url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
- 	<mavenVersion>2.0.9</mavenVersion>
- 	<doxiaVersion>1.0</doxiaVersion>
- 	<pluginTestingVersion>1.2</pluginTestingVersion>
- 	<mavenPluginPluginVersion>3.1</mavenPluginPluginVersion>
-  </properties>
+<!--   <properties> -->
+<!--     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
+<!--  	<mavenVersion>2.0.9</mavenVersion> -->
+<!--  	<doxiaVersion>1.0</doxiaVersion> -->
+<!--  	<pluginTestingVersion>1.2</pluginTestingVersion> -->
+<!--  	<mavenPluginPluginVersion>3.1</mavenPluginPluginVersion> -->
+<!--   </properties> -->
 
   <dependencies>
     <!--  <groupId>org.apache.lenya</groupId>
@@ -46,6 +46,12 @@
  	 	<version>0.1-SNAPSHOT</version>
     </dependency>
     
+    <dependency>
+    <groupId>org.apache.lenya</groupId>
+  <artifactId>maven-xpatch</artifactId>
+  <version>1.0-SNAPSHOT</version>    
+    </dependency>
+    
   </dependencies>
 
 	  <build>
@@ -54,48 +60,43 @@
       <plugins>
         <plugin>
             <groupId>org.apache.lenya</groupId>
-  			<artifactId>maven-xpatch-testdev</artifactId>
-  			<version>0.1-SNAPSHOT</version>
+  			<artifactId>maven-xpatch</artifactId>
+  			<version>1.0-SNAPSHOT</version>
           	<executions>
-            	<execution>
+           	<execution>
 					<id>default-resources</id>
             		<phase>process-resources</phase>
             		<goals>
               			<goal>touch</goal>
             		</goals>
             	</execution>
-            <!--<execution>
-              <id>help-goal</id>
-              <goals>
-                <goal>helpmojo</goal>
-              </goals>
-            </execution>-->
+            	<execution>
+			<id>Patch webapp</id>
+            		<phase>war</phase>
+            		<goals>
+				<goal>war-resources</goal>
+            		</goals>
+            	</execution>
+		
           </executions> 
         </plugin>
       </plugins>
     </pluginManagement>
+    
     <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <configuration>
-          <!-- Need of more head space in order to run the unit tests !-->
-          <argLine>-Xmx256m</argLine>
-          <systemPropertyVariables>
-            <maven.home>${maven.home}</maven.home>
-          </systemPropertyVariables>
-        </configuration>
-      </plugin>
+<!--       <plugin> -->
+<!--         <groupId>org.apache.maven.plugins</groupId> -->
+<!--         <artifactId>maven-surefire-plugin</artifactId> -->
+<!--         <configuration> -->
+<!--           <argLine>-Xmx256m</argLine> -->
+<!--           <systemPropertyVariables> -->
+<!--             <maven.home>${maven.home}</maven.home> -->
+<!--           </systemPropertyVariables> -->
+<!--         </configuration> -->
+<!--       </plugin> -->
       <plugin>
         <groupId>org.apache.lenya</groupId>
-        <artifactId>maven-xpatch-testdev</artifactId>
-	<version>1.0-SNAPSHOT</version>
-<!--        <configuration>
-          <argLine>-Xmx256m</argLine>
-          <systemPropertyVariables>
-            <maven.home>${maven.home}</maven.home>
-          </systemPropertyVariables>
-        </configuration>-->
+        <artifactId>maven-xpatch</artifactId>
       </plugin>
     </plugins>
   </build>
