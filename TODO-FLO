@@ -44,10 +44,23 @@
 * maven-xpatch
 ** xconf patch are not applyed because of missing <configuration> in cocoon.xconf. See if apply due to wait list in ant build
 * lenya maven : start migration
-** core-api : contains java/ (to remove)
-** core-impl : contains impl/ (to remove)
+** core-api : OK : contains java/ (to remove)
+** core-impl : OK : contains impl/ (to remove)
 
+= module migration
 
+* !!!!! test file in core-impl are temporarilly in core-impl-TEST. They are intended to be move to specifics modules when needed, because actuals test in core-impl tests things from all modules and not from core-impl !!!
+** Solve the LenyaTestCase things (in core-impl-TEST) : as it seems to be an integration test with a complete lenya ready.
+
+* cache : OK
+* linking : OK : BUT : restore TEST-CASE in test folder : this tests depends on AbstractAccessControlTest (loop dependency), but may only depends on LenyaTestCase
+* ac : OK : BUT : need to restore test as they all depends on org/apache/lenya/ac/impl/AbstractAccessControlTest.java witch depends on LenyaTestCase
+
+= code cleanning :
+
+* remove deprecated axis : core-impl/src/main/java/org/apache/lenya/cms/repository/AxisUUIDGenerator.java
+
+* install the maven local-repository in svn in order to not have absolute path
 
 = Copy de la webapp cocoon =
 

@@ -9,9 +9,9 @@
 	<relativePath>../parent/pom.xml</relativePath>
 	</parent>
   
-  <artifactId>core-impl</artifactId>
+  <artifactId>core-impl-TEST</artifactId>
   <packaging>jar</packaging>
-  <name>Lenya core implementation</name>
+  <name>Lenya TEST file from core implementation</name>
   <url>http://lenya.apache.org</url>
 
   <dependencies>
@@ -46,20 +46,35 @@
     <version>2.1</version>
 </dependency>
 	
-	<!-- tests -->
 	<dependency>
-			<groupId>org.apache.cocoon</groupId>
-			<artifactId>cocoon-testcase</artifactId>
-			<version>${cocoon.version}</version>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
     <groupId>excalibur</groupId>
     <artifactId>excalibur-testcase</artifactId>
     <version>1.0</version>
     <scope>test</scope>
 </dependency>
+	
+		<dependency>
+			<groupId>org.apache.cocoon</groupId>
+			<artifactId>cocoon</artifactId>
+			<version>${cocoon.version}</version>
+		</dependency>
+		
+	<!-- tests -->
+	
+	<dependency>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>core.module.ac</artifactId>
+	<version>2.6-SNAPSHOT</version>
+	<scope>test</scope>
+	</dependency>
+	
+		<dependency>
+			<groupId>org.apache.cocoon</groupId>
+			<artifactId>cocoon</artifactId>
+			<version>${cocoon.version}</version>
+			<scope>test</scope>
+		</dependency>
+	
   </dependencies>
 
 	<build>

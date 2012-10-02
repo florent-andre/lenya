@@ -166,4 +166,9 @@ public class LenyaTestCase extends ContainerTestCase {
         return buildClassPath.toString();
     }
     
+    //test only to not get the "junit No tests found in ..."
+    public void testSilly(){
+    	assertEquals(true, true);
+    }
+    
 }
