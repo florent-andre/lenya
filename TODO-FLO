@@ -56,6 +56,27 @@
 * linking : OK : BUT : restore TEST-CASE in test folder : this tests depends on AbstractAccessControlTest (loop dependency), but may only depends on LenyaTestCase
 * ac : OK : BUT : need to restore test as they all depends on org/apache/lenya/ac/impl/AbstractAccessControlTest.java witch depends on LenyaTestCase
 
+* usecase : OK
+* acusecases : OK : BUT : need to restore lenyatestcase dependent tests
+
+* ldap : OK : BUT : TEST
+* monitoring : OK
+* administration : OK
+
+* gui : OK
+* i18n : OK
+* janitor : OK
+* properties : OK
+* templating : OK
+
+* notification : OK : BUT : TEST : !!Not dans module-core BUT required dependency for workflow !! ?? TODO : move this to module-core ?? 
+* workflow : OK : BUT : TEST
+
+* metadata : OK
+* observation : OK : BUT : TEST
+* sitemanagement : OK : BUT : TEST
+
+
 = code cleanning :
 
 * remove deprecated axis : core-impl/src/main/java/org/apache/lenya/cms/repository/AxisUUIDGenerator.java
