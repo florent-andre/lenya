@@ -47,6 +47,12 @@
 ** core-api : OK : contains java/ (to remove)
 ** core-impl : OK : contains impl/ (to remove)
 
+= RESTART HERE : 
+
+* test compilation and starting with just modules-core : from ant build and from maven
+** Then compare webapp files with diff.
+
+
 = module migration
 
 * !!!!! test file in core-impl are temporarilly in core-impl-TEST. They are intended to be move to specifics modules when needed, because actuals test in core-impl tests things from all modules and not from core-impl !!!
