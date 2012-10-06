@@ -49,8 +49,11 @@
 
 = RESTART HERE : 
 
-* test compilation and starting with just modules-core : from ant build and from maven
+* test compilation : from ant build and from maven
 ** Then compare webapp files with diff.
+
+* have to modify the  webresources folders of modules in order to use the webresouces goal and get all files in place
+** when done write a OK-2 in module migration list
 
 
 = module migration
