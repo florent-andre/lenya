@@ -30,106 +30,104 @@
 	</properties>
 
 	<dependencies>
-		<!--TODO see if transitive deps are fetched. If yes :
-			test if patch is apply
-			remove transitive deps from here
-		-->
+		<!--TODO see if transitive deps are fetched. If yes : test if patch is 
+			apply remove transitive deps from here -->
 		<!-- Lenya deps -->
 		<dependency>
 			<groupId>org.apache.lenya</groupId>
 			<artifactId>core-api</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
 			<artifactId>core-impl</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
 
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.ac</artifactId>
+			<artifactId>core.module.ac</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
 
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.acusecases</artifactId>
+			<artifactId>core.module.acusecases</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.administration</artifactId>
+			<artifactId>core.module.administration</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.cache</artifactId>
+			<artifactId>core.module.cache</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.gui</artifactId>
+			<artifactId>core.module.gui</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.i18n</artifactId>
+			<artifactId>core.module.i18n</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.janitor</artifactId>
+			<artifactId>core.module.janitor</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.ldap</artifactId>
+			<artifactId>core.module.ldap</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.linking</artifactId>
+			<artifactId>core.module.linking</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.metadata</artifactId>
+			<artifactId>core.module.metadata</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.monitoring</artifactId>
+			<artifactId>core.module.monitoring</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.observation</artifactId>
+			<artifactId>core.module.observation</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.properties</artifactId>
+			<artifactId>core.module.properties</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.sitemanagement</artifactId>
+			<artifactId>core.module.sitemanagement</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.templating</artifactId>
+			<artifactId>core.module.templating</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.usecase</artifactId>
+			<artifactId>core.module.usecase</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-<dependency>
+		<dependency>
 			<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.workflow</artifactId>
+			<artifactId>core.module.workflow</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
 
@@ -152,6 +150,7 @@
 						<phase>process-resources</phase>
 						<goals>
 							<goal>touch</goal>
+							<goal>webresources</goal>
 						</goals>
 					</execution>
 				</executions>

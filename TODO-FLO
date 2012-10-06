@@ -66,7 +66,7 @@
 * ac : OK : BUT : need to restore test as they all depends on org/apache/lenya/ac/impl/AbstractAccessControlTest.java witch depends on LenyaTestCase
 
 * usecase : OK
-* acusecases : OK : BUT : need to restore lenyatestcase dependent tests
+* acusecases : OK-2 : BUT : need to restore lenyatestcase dependent tests
 
 * ldap : OK : BUT : TEST
 * monitoring : OK
