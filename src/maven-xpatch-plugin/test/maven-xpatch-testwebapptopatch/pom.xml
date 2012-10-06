@@ -47,6 +47,12 @@
 			<artifactId>xpatch-test-libwithpatches</artifactId>
   			<version>0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>xpatch-test-libwithwebresources</artifactId>
+  			<version>0.1-SNAPSHOT</version>
+		</dependency>
 
 <!-- 		<dependency> -->
 <!-- 			<groupId>org.apache.lenya</groupId> -->
@@ -70,6 +76,8 @@
 						<phase>process-resources</phase>
 						<goals>
 							<goal>touch</goal>
+							<!-- TODO : make another execution with specifics parameter when plugin configurable -->
+							<goal>webresources</goal>
 						</goals>
 					</execution>
 				</executions>
