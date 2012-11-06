@@ -22,8 +22,35 @@
         <module>core-api</module>
         <module>core-impl</module>
 	<module>modules-core/cache</module>
+	<!-- linking : OK : BUT : restore TEST-CASE in test folder : this tests depends on AbstractAccessControlTest (loop dependency), but may only depends on LenyaTestCase -->
 	<module>modules-core/linking</module>
+	<!-- ac : OK : BUT : need to restore test as they all depends on org/apache/lenya/ac/impl/AbstractAccessControlTest.java witch depends on LenyaTestCase -->
 	<module>modules-core/ac</module>
+	<module>modules-core/usecase</module>
+	<!-- acusecases : OK : BUT : need to restore lenyatestcase dependent tests -->
+	<module>modules-core/acusecases</module>
+	<!-- ldap : OK : BUT : TEST -->
+	<module>modules-core/ldap</module>
+	<module>modules-core/monitoring</module>
+	<module>modules-core/administration</module>
+	<module>modules-core/gui</module>
+	<module>modules-core/i18n</module>
+	<module>modules-core/janitor</module>
+	<module>modules-core/properties</module>
+	<module>modules-core/templating</module>
+	<!-- notification : OK : BUT : TEST : !!Not dans module-core BUT required dependency for workflow !! ?? TODO : move this to module-core ??  -->
+	<module>modules/notification</module>
+	<!-- workflow : OK : BUT : TEST -->
+	<module>modules-core/workflow</module>
+	<module>modules-core/metadata</module>
+	<!-- observation : OK : BUT : TEST -->
+	<module>modules-core/observation</module>
+	<!-- sitemanagement : OK : BUT : TEST -->
+	<module>modules-core/sitemanagement</module>
+	
+	<!-- And finally.. THE Webapp !! -->
+	<module>webapp-maven</module>
+
     </modules>
 
 </project>

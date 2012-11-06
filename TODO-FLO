@@ -61,29 +61,6 @@
 * !!!!! test file in core-impl are temporarilly in core-impl-TEST. They are intended to be move to specifics modules when needed, because actuals test in core-impl tests things from all modules and not from core-impl !!!
 ** Solve the LenyaTestCase things (in core-impl-TEST) : as it seems to be an integration test with a complete lenya ready.
 
-* cache : OK
-* linking : OK : BUT : restore TEST-CASE in test folder : this tests depends on AbstractAccessControlTest (loop dependency), but may only depends on LenyaTestCase
-* ac : OK : BUT : need to restore test as they all depends on org/apache/lenya/ac/impl/AbstractAccessControlTest.java witch depends on LenyaTestCase
-
-* usecase : OK
-* acusecases : OK-2 : BUT : need to restore lenyatestcase dependent tests
-
-* ldap : OK : BUT : TEST
-* monitoring : OK
-* administration : OK
-
-* gui : OK
-* i18n : OK
-* janitor : OK
-* properties : OK
-* templating : OK
-
-* notification : OK : BUT : TEST : !!Not dans module-core BUT required dependency for workflow !! ?? TODO : move this to module-core ?? 
-* workflow : OK : BUT : TEST
-
-* metadata : OK
-* observation : OK : BUT : TEST
-* sitemanagement : OK : BUT : TEST
 
 
 = code cleanning :
