@@ -56,6 +56,12 @@
 ** when done write a OK-2 in module migration list
 
 
+* java.io.FileNotFoundException: /WEB-INF/logkit.xconf (No such file or directory)
+** WARN:oejuc.AbstractLifeCycle:FAILED Cocoon: java.lang.NoClassDefFoundError: org/apache/avalon/excalibur/pool/InstrumentedResourceLimitingPool
+java.lang.NoClassDefFoundError: org/apache/avalon/excalibur/pool/InstrumentedResourceLimitingPool
+
+
+
 = module migration
 
 * !!!!! test file in core-impl are temporarilly in core-impl-TEST. They are intended to be move to specifics modules when needed, because actuals test in core-impl tests things from all modules and not from core-impl !!!

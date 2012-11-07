@@ -132,7 +132,11 @@
 		</dependency>
 
 
-
+		<dependency>
+			<groupId>org.apache.excalibur.components</groupId>
+			<artifactId>excalibur-pool-instrumented</artifactId>
+			<version>2.1</version>
+		</dependency>
 
 	</dependencies>
 
