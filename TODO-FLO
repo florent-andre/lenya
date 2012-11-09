@@ -62,6 +62,8 @@ java.lang.NoClassDefFoundError: org/apache/avalon/excalibur/pool/InstrumentedRes
 
 
 
+* use the cocoon-dep repository more than the local one (cp parent pom.xml and webapp-maven pom)
+
 = module migration
 
 * !!!!! test file in core-impl are temporarilly in core-impl-TEST. They are intended to be move to specifics modules when needed, because actuals test in core-impl tests things from all modules and not from core-impl !!!
@@ -157,6 +159,12 @@ cf : http://stackoverflow.com/a/2247645
 * voir pour utiliser le unpack 
 ** http://svn.apache.org/viewvc/maven/plugins/tags/maven-dependency-plugin-2.5/src/main/java/org/apache/maven/plugin/dependency/UnpackDependenciesMojo.java?view=markup
 * B) get information directly from jar
+
+== Root webapp sitemap / cocoon imported sitemap ==
+
+* actually use the directly from cocoon one, but there is some diff between this one and the from build one :
+* diff externals/cocoon_2_1_x/src/webapp/sitemap.xmap build/lenya/webapp/sitemap.xmap
+
 
 == documentation: ==
 

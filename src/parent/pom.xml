@@ -38,5 +38,19 @@
         <name>localDependencies</name>
         <url>file:/home/florent/devel/dev-lenya/lenyaSources/GIT-MAVEN-OSGI/lenya/src/parent/maven-repo</url>
     </repository>
+
+<repository>
+        <id>cocoonDep.Archives</id>
+        <name>Cocoon dep Archives</name>
+        <url>http://comp.cast.org/maven2/</url>
+    </repository>
+
+<repository>
+        <id>batikAll.Archives</id>
+        <name>Batik All Archives</name>
+        <url>http://www.intalio.org/public/maven2/</url>
+    </repository>
+
+
 </repositories>
 </project>

@@ -2,8 +2,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- <parent> <artifactId>maven-plugins</artifactId> <groupId>org.apache.maven.plugins</groupId> 
-		<version>22</version> </parent> -->
+	<parent>
+<groupId>org.apache.lenya</groupId>
+	<artifactId>parent</artifactId>
+	<version>2.6-SNAPSHOT</version>
+	<relativePath>../parent</relativePath>
+	</parent>
+
+	
 
 	<groupId>org.apache.lenya</groupId>
 	<artifactId>core-reactor</artifactId>
