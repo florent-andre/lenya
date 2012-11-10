@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+<?xml version="1.0" encoding="UTF-8"?><!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
   this work for additional information regarding copyright ownership.
@@ -14,17 +13,18 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
--->
-
-<!--+
+--><!--+
     | This is the Cocoon web-app configurations file
-    +-->
-
-<!DOCTYPE web-app
-    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
-    "http://java.sun.com/dtd/web-app_2_3.dtd">
-
+    +--><!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
+  <listener>
+    <listener-class>org.apache.lenya.modules.monitoring.SessionListener</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>org.apache.lenya.modules.monitoring.SessionCountLogger</listener-class>
+  </listener>
+
 
   <!-- Context Configuration ========================================== -->
 
@@ -188,7 +188,11 @@
         org.apache.cocoon.samples.parentcm.Configurator -->
         <!-- For IBM WebSphere:
         com.ibm.servlet.classloader.Handler -->
-      </param-value>
+      
+        <!-- For Database Driver: -->
+        org.hsqldb.jdbcDriver
+
+</param-value>
     </init-param>
 
     <!--
@@ -198,7 +202,7 @@
     -->
     <init-param>
       <param-name>enable-uploads</param-name>
-      <param-value>false</param-value>
+      <param-value>true</param-value>
     </init-param>
 
     <!--
@@ -233,7 +237,7 @@
     -->
     <init-param>
       <param-name>overwrite-uploads</param-name>
-      <param-value>rename</param-value>
+      <param-value>allow</param-value>
     </init-param>
 
     <!--
@@ -242,7 +246,7 @@
     -->
     <init-param>
       <param-name>upload-max-size</param-name>
-      <param-value>102400</param-value>
+      <param-value>10000000</param-value>
     </init-param>
 
     <!--
@@ -381,6 +385,15 @@
       <param-name>form-encoding</param-name>
       <param-value>UTF-8</param-value>
     </init-param>
+    <init-param>
+      <param-name>logger-class</param-name>
+      <param-value>org.apache.avalon.excalibur.logger.Log4JLoggerManager</param-value>
+    </init-param>
+    <init-param>
+      <param-name>log4j-config</param-name>
+      <param-value>/WEB-INF/log4j.xconf</param-value>
+    </init-param>
+
 
     <!--
       This parameter allows you to startup Cocoon2 immediately after startup

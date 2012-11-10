@@ -26,7 +26,7 @@
     |
     |   http://wiki.apache.org/cocoon/ConfiguringTheLogs
     |
-    | $Id$
+    | $Id: logkit.xconf 433543 2006-08-22 06:22:54Z crossley $
     +--><logkit>
 
   <!--+
@@ -118,6 +118,14 @@
         </format>
         <append>true</append>
     </cocoon>
+
+	<cocoon id="lenya">
+	  <filename>${context-root}/WEB-INF/logs/lenya.log</filename>
+	  <format type="cocoon">
+	    %7.7{priority} %{time}   [%{category}] (%{uri}) %{thread}/%{class:short}: %{message}\n%{throwable}
+	  </format>
+	  <append>false</append>
+	</cocoon>
 </targets>
 
   <!--+
@@ -183,6 +191,11 @@
         <log-target id-ref="imageop"/>
     </category>
 
+
+    <category log-level="INFO" name="lenya">
+      <log-target id-ref="lenya"/>
+      <log-target id-ref="error"/>
+    </category>
 </categories>
 
 </logkit>
