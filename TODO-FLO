@@ -1,19 +1,16 @@
-== Goal : passage sous maven ==
+== Goal : maven migration ==
 
-* commencer par faire migrer le code sous /src/java
+* module name : maven-xpatch
 
-* mais va nécessiter de pouvoir appliquer les patch cocoon qui se trouvent dans src/confpatch
+* From the xPatch ant : lenya/externals/cocoon_2_1_x/tools/src/anttasks/XConfToolTask.java
+* list the project dependencies
+* and then list the content of the jars
 
-* Création d'un plug maven spécifique
+* create the patch pool with later application
+* move code to /src/java
+ 
+* add configuration to restrict patch application to some groupid/artifact ids
 
-* test d'implementation d'un plug maven a partir du xPatch ant
-** lenya/externals/cocoon_2_1_x/tools/src/anttasks/XConfToolTask.java
-
-* Status de l'implementation ==> nom du module créé :: maven-xpatch
-** plugin maven ok
-** permet de faire la liste des dépendencies 
-*** voir pour configurer les restrictions aux seuls lib lenya
-** permet de lister le contenu des jar
 
 * A FAIRE : 
 ** ajouter le patching via le code ant xpatch
@@ -40,29 +37,23 @@
 </execution>
 
 
-* TODAY status:
-* maven-xpatch
-** xconf patch are not applyed because of missing <configuration> in cocoon.xconf. See if apply due to wait list in ant build
-* lenya maven : start migration
-** core-api : OK : contains java/ (to remove)
-** core-impl : OK : contains impl/ (to remove)
-
 = RESTART HERE : 
 
-* test compilation : from ant build and from maven
-** Then compare webapp files with diff.
+* error : Scheduler with name 'Cocoon' already exists.
+** may be due to diff with an already running instance
+*** ==> do the diff with a just compiled one
 
-* have to modify the  webresources folders of modules in order to use the webresouces goal and get all files in place
-** when done write a OK-2 in module migration list
+* process the DIFF file for geting the same things in maven and ant webapp
+** diff -r TOMCAT-WORKING/ webapp-maven/target/lenya/ > DIFF
 
+* remove the copied root/sitemap.xmap and make the patches fully working
+** same for WEB-inf/logkit.xconf and log4j.xcon
+** same for WEB-INF/web.xml
 
-* java.io.FileNotFoundException: /WEB-INF/logkit.xconf (No such file or directory)
-** WARN:oejuc.AbstractLifeCycle:FAILED Cocoon: java.lang.NoClassDefFoundError: org/apache/avalon/excalibur/pool/InstrumentedResourceLimitingPool
-java.lang.NoClassDefFoundError: org/apache/avalon/excalibur/pool/InstrumentedResourceLimitingPool
+* see the User-roles configuration '/WEB-INF/classes/org/apache/lenya/lenya.roles' cannot be found.
+** why it's here web-inf/classes ? can be move ? 
+*** originally in impl/java/org/apache/lenya/lenya.roles (core-impl/src/main/java/org/apache/lenya/lenya.roles for maven impl)
 
-
-
-* use the cocoon-dep repository more than the local one (cp parent pom.xml and webapp-maven pom)
 
 = module migration
 
@@ -75,7 +66,7 @@ java.lang.NoClassDefFoundError: org/apache/avalon/excalibur/pool/InstrumentedRes
 
 * remove deprecated axis : core-impl/src/main/java/org/apache/lenya/cms/repository/AxisUUIDGenerator.java
 
-* install the maven local-repository in svn in order to not have absolute path
+* use the cocoon-dep repository more than the local one (cp parent pom.xml and webapp-maven pom)
 
 = Copy de la webapp cocoon =
 
@@ -165,6 +156,15 @@ cf : http://stackoverflow.com/a/2247645
 * actually use the directly from cocoon one, but there is some diff between this one and the from build one :
 * diff externals/cocoon_2_1_x/src/webapp/sitemap.xmap build/lenya/webapp/sitemap.xmap
 
+== Architecture idea ==
+
+* Rendering
+    /\
+* templating
+    /\
+* Transforming
+    /\
+* Data sources
 
 == documentation: ==
 
