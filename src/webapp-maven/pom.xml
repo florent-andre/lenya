@@ -301,6 +301,12 @@
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
 		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>pubs.default</artifactId>
+			<version>2.6-SNAPSHOT</version>
+		</dependency>
+
 		
 		<!-- runtime dependencies -->
 		<dependency>
@@ -786,8 +792,219 @@
 			<version>1.6</version>
 		</dependency>
 
+		<dependency>
+<groupId>jena</groupId>
+<artifactId>jena</artifactId>
+<version>2.1</version>
+		</dependency>
 		<!--<dependency> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> 
 			<version>2.0</version> </dependency> -->
+
+<!-- dependency from local repository -->
+<dependency>
+    <groupId>com.hp.hpl</groupId>
+    <artifactId>deli</artifactId>
+    <version>x050330</version>
+</dependency>
+
+<dependency>
+<groupId>cocoon-deps</groupId>
+<artifactId>commons-collections</artifactId>
+<version>3.1</version>
+</dependency>
+
+<!-- dependencies stack to get it working -->
+<dependency>
+    <groupId>axis</groupId>
+    <artifactId>axis-jaxrpc</artifactId>
+    <version>1.4</version>
+</dependency>
+
+<dependency>
+<groupId>axis</groupId>
+<artifactId>axis-saaj</artifactId>
+<version>1.4</version>
+</dependency>
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>bcmail</artifactId>
+<version>jdk15-141</version>
+</dependency>
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>xreporter-expression</artifactId>
+<version>r683</version>
+</dependency>
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>xmlunit</artifactId>
+<version>1.0</version>
+</dependency>
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>xmlgraphics-commons</artifactId>
+<version>1.3.1</version>
+</dependency>
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>xmldb-xupdate</artifactId>
+<version>20040205</version>
+</dependency>
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>xmldb-common</artifactId>
+<version>20030701</version>
+</dependency>
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>xml-apis</artifactId>
+<version>1.3.04</version>
+</dependency>
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>xindice</artifactId>
+<version>1.1</version>
+</dependency>
+
+
+
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>wsdl4j</artifactId>
+<version>1.5.1</version>
+</dependency>
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>websphinx</artifactId>
+<version>0.5</version>
+</dependency>
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>nekopull</artifactId>
+<version>0.2.4</version>
+</dependency>
+
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>jtidy</artifactId>
+<version>04aug2000r7-dev</version>
+</dependency>
+
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>jing</artifactId>
+<version>20030619</version>
+</dependency>
+
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>jdtcore</artifactId>
+<version>3.1.0</version>
+</dependency>
+
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>jcs</artifactId>
+<version>1.2.5-dev-20050313</version>
+</dependency>
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>jcifs-mock</artifactId>
+<version>vLenyaDeps</version>
+</dependency>
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>jackrabbit-commons</artifactId>
+<version>1.0-LCR330244</version>
+</dependency>
+
+
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>icu4j</artifactId>
+<version>2.8</version>
+</dependency>
+
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>fop</artifactId>
+<version>0.95</version>
+</dependency>
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>excalibur-testcase</artifactId>
+<version>1.0</version>
+</dependency>
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>dojo-rsrc</artifactId>
+<version>0.4.3</version>
+</dependency>
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>commons-discovery</artifactId>
+<version>0.2</version>
+</dependency>
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>castor</artifactId>
+<version>0.9.6-xml</version>
+</dependency>
+
+
+<dependency>
+<groupId>lenyaDeps</groupId>
+<artifactId>bcprov</artifactId>
+<version>jdk15-141</version>
+</dependency>
+
+
+
+
+
 
 	</dependencies>
 
@@ -795,7 +1012,7 @@
 		<finalName>lenya</finalName>
 
 		<plugins>
-			<plugin>
+			<!--<plugin>
 				<groupId>org.apache.lenya</groupId>
 				<artifactId>maven-xpatch</artifactId>
 				<version>1.0-SNAPSHOT</version>
@@ -809,7 +1026,7 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+			</plugin>-->
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

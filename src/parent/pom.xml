@@ -45,12 +45,12 @@
         <url>http://comp.cast.org/maven2/</url>
     </repository>
 
+<!-- for batik -->
 <repository>
         <id>batikAll.Archives</id>
         <name>Batik All Archives</name>
         <url>http://www.intalio.org/public/maven2/</url>
     </repository>
-
 
 </repositories>
 </project>

@@ -53,7 +53,10 @@
 	<module>modules-core/observation</module>
 	<!-- sitemanagement : OK : BUT : TEST -->
 	<module>modules-core/sitemanagement</module>
-	
+
+	<!--publication related stuff -->
+	<module>pubs/default</module>
+
 	<!-- And finally.. THE Webapp !! -->
 	<module>webapp-maven</module>
 

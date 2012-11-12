@@ -39,20 +39,42 @@
 
 = RESTART HERE : 
 
-* error : Scheduler with name 'Cocoon' already exists.
-** may be due to diff with an already running instance
-*** ==> do the diff with a just compiled one
+
+* http://localhost:8080/lenya/index.html
+** error due to missing modules ressources (here : tomcat/webapps/lenya/lenya/modules/prettyprinting/xslt/xml2nicexml.xsl )
+==> see if the maven modules developped take care of that :: I think yes... Or there is a structure to have them in webapp... See examples/tests
 
 * process the DIFF file for geting the same things in maven and ant webapp
 ** diff -r TOMCAT-WORKING/ webapp-maven/target/lenya/ > DIFF
+
+== To reactivate : 
+
+=== Patch 
+
+* ==> reactivate xpatch module as it's now falling for some special case with dependency...
 
 * remove the copied root/sitemap.xmap and make the patches fully working
 ** same for WEB-inf/logkit.xconf and log4j.xcon
 ** same for WEB-INF/web.xml
 
+=== Scheduler 
+
+==> maybe solve with all the dependencies missing solved
+
+* error : Scheduler with name 'Cocoon' already exists.
+** may be due to diff with an already running instance
+*** ==> do the diff with a just compiled one
+
+
+=== others
+
 * see the User-roles configuration '/WEB-INF/classes/org/apache/lenya/lenya.roles' cannot be found.
 ** why it's here web-inf/classes ? can be move ? 
 *** originally in impl/java/org/apache/lenya/lenya.roles (core-impl/src/main/java/org/apache/lenya/lenya.roles for maven impl)
+
+
+* restore the deli component, desactivate cause class initialisation
+
 
 
 = module migration
