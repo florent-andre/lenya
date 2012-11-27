@@ -1012,7 +1012,7 @@
 		<finalName>lenya</finalName>
 
 		<plugins>
-			<!--<plugin>
+			<plugin>
 				<groupId>org.apache.lenya</groupId>
 				<artifactId>maven-xpatch</artifactId>
 				<version>1.0-SNAPSHOT</version>
@@ -1021,12 +1021,12 @@
 						<id>default-resources</id>
 						<phase>process-resources</phase>
 						<goals>
-							<goal>touch</goal>
+							<!--<goal>touch</goal>-->
 							<goal>webresources</goal>
 						</goals>
 					</execution>
 				</executions>
-			</plugin>-->
+			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

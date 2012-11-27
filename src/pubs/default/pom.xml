@@ -11,7 +11,7 @@
 	
 	<artifactId>pubs.default</artifactId>
 	<packaging>jar</packaging>
-	<name>Lenya core AC module</name>
+	<name>Lenya Pub default module</name>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

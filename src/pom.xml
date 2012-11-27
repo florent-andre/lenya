@@ -57,6 +57,36 @@
 	<!--publication related stuff -->
 	<module>pubs/default</module>
 
+	<!-- "optionnal" modules (some are not really optionnals) -->
+	<module>modules/bxe</module>
+	<module>modules/cforms</module>
+	<module>modules/collection</module>
+	<module>modules/contactform</module>
+	<module>modules/development</module>
+	<module>modules/editors</module>
+	<module>modules/export</module>
+	<module>modules/jquery</module>
+	<module>modules/languageselector</module>
+	<module>modules/lenyadoc</module>
+	<module>modules/linkcheck</module>
+	<module>modules/links</module>
+	<module>modules/lucene</module>
+	<module>modules/menubar</module>
+	<module>modules/navigation</module>
+	<module>modules/neutron</module>
+	<module>modules/news</module>
+	<module>modules/opendocument</module>
+	<module>modules/prettyprinting</module>
+	<module>modules/profiling</module>
+	<module>modules/resource</module>
+	<module>modules/sitetree</module>
+	<module>modules/sourcerepository</module>
+	<module>modules/svg</module>
+	<module>modules/tinymce</module>
+	<module>modules/usecasedocument</module>
+	<module>modules/webdav</module>
+	<module>modules/xhtml</module>	
+	
 	<!-- And finally.. THE Webapp !! -->
 	<module>webapp-maven</module>
 

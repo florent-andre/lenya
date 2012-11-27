@@ -67,48 +67,48 @@ public class WebResourceMojo extends AbstractMojo {
     	for(Artifact da : dal){
     		//TODO : a filter procedure for artifact
     		File f = da.getFile();
-            //then use jar file for exploring
-            try{
-            	final InputStream is = new FileInputStream(f);
-				ArchiveInputStream in = new ArchiveStreamFactory().createArchiveInputStream("jar", is);
-				JarArchiveEntry entry = (JarArchiveEntry)in.getNextEntry();
-				
-            	//get all files that are in the configured folder
-				while(entry != null){
-					if(entry.getName().startsWith(resourcesFolder) && !excluded(entry.getName())){
-            			
-						//TODO : how to deal with override ?
-						// ==> make a test case with another dependency that have same folder and same file
-						String entryPart = entry.getName().replaceFirst(resourcesFolder, "");
-        				String fName2 = baseFile+entryPart;
-        				//extract file from jar
-        				//File resultFile = File.createTempFile("jarpatch", fName);
-						//File resultFile = new File(fName2);
-						if(entry.isDirectory()) new File(fName2).mkdir();
-						else{
-							OutputStream out = new FileOutputStream(fName2);
-	        				
-	        				IOUtils.copy(in, out);
-	        				out.close();
-						}
-        				
-						
-            		}
-            		
-            		entry = (JarArchiveEntry)in.getNextEntry();
-            	}
-            	
-				//now close the archive input stream
-				in.close();
-            	
-            	
-            }catch ( IOException e ){
-                throw new MojoExecutionException( "Error accessing file "+da.toString(), e );
-			} catch (DOMException e) {
-				throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-			} catch (ArchiveException e) {
-				throw new MojoExecutionException( "Error during reading the jar archive", e );
-			}
+    		
+    		//sometimes file from artifact is null... see why 
+    		if(f != null){
+    			//then use jar file for exploring
+                try{
+                	final InputStream is = new FileInputStream(f);
+    				ArchiveInputStream in = new ArchiveStreamFactory().createArchiveInputStream("jar", is);
+    				JarArchiveEntry entry = (JarArchiveEntry)in.getNextEntry();
+    				
+                	//get all files that are in the configured folder
+    				while(entry != null){
+    					if(entry.getName().startsWith(resourcesFolder) && !excluded(entry.getName())){
+    						//TODO : how to deal with override ?
+    						// ==> make a test case with another dependency that have same folder and same file
+    						String entryPart = entry.getName().replaceFirst(resourcesFolder, "");
+            				String fName2 = baseFile+entryPart;
+            				//extract file from jar
+            				//File resultFile = File.createTempFile("jarpatch", fName);
+    						//File resultFile = new File(fName2);
+    						if(entry.isDirectory()) new File(fName2).mkdir();
+    						else{
+    							OutputStream out = new FileOutputStream(fName2);
+    	        				IOUtils.copy(in, out);
+    	        				out.close();
+    						}
+                		}
+                		entry = (JarArchiveEntry)in.getNextEntry();
+                	}
+                	
+    				//now close the archive input stream
+    				in.close();
+                	
+                	
+                }catch ( IOException e ){
+                    throw new MojoExecutionException( "Error accessing file "+da.toString(), e );
+    			} catch (DOMException e) {
+    				throw new MojoExecutionException( "Error during parsing of the document to patch", e );
+    			} catch (ArchiveException e) {
+    				throw new MojoExecutionException( "Error during reading the jar archive", e );
+    			}
+    			
+    		}
     	}
     	
     }
