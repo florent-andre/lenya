@@ -1,0 +1,1363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>org.apache.lenya</groupId>
+    <artifactId>core-reactor</artifactId>
+    <version>2.6-SNAPSHOT</version>
+    <relativePath>../</relativePath>
+  </parent>
+
+  <artifactId>onbundle-osgi</artifactId>
+  <packaging>bundle</packaging>
+
+  <name>Bundle that contains all lenya classes</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+    <!-- property for patch web.xml and cocoon.xconf -->
+    <preassembly.dir>${project.build.outputDirectory}/webresources</preassembly.dir>
+    <!-- Configuration properties -->
+    <!-- remove this property for not enable upload -->
+    <enable.uploads>true</enable.uploads>
+  </properties>
+
+  <dependencies>
+    <!--TODO see if transitive deps are fetched. If yes : test if patch is 
+	     apply remove transitive deps from here -->
+    <!-- Lenya deps -->
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core-api</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core-impl</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.ac</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.acusecases</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.administration</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.cache</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.gui</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.i18n</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.janitor</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.ldap</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.linking</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.metadata</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.monitoring</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.observation</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.properties</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.sitemanagement</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.templating</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.usecase</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.workflow</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <!-- lenya modules dependencies -->
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.bxe</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.cforms</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.collection</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.contactform</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.development</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.editors</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.export</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.jquery</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.languageselector</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.lenyadoc</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.linkcheck</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.links</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.lucene</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.menubar</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.navigation</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.neutron</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.news</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.notification</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.opendocument</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.prettyprinting</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.profiling</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.resource</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.sitetree</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.sourcerepository</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.svg</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.tinymce</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.usecasedocument</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.webdav</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>module.xhtml</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>pubs.default</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+
+    
+    <!-- runtime dependencies -->
+    <dependency>
+      <groupId>org.apache.excalibur.components</groupId>
+      <artifactId>excalibur-pool-instrumented</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>concurrent</groupId>
+      <artifactId>concurrent</artifactId>
+      <version>1.3.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-jxpath</artifactId>
+      <version>1.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>3.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.sf.ehcache</groupId>
+      <artifactId>ehcache</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+
+    <!-- All the cocoon dependencies -->
+    <!-- TODO : keep only the required ones -->
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>ajax-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>batik-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>cocoon-testcase</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>forms-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>linkrewriter-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>profiler-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>session-fw-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>xsp-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>asciiart-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>captcha-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>databases-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>hsqldb-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>lucene-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>proxy-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>template-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>auth-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>chaperon-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>deli-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>html-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>mail-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>querybean-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>validation-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>axis-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>cocoon</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>fop-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>imageop-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>naming-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>serializers-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>xsltal-block</artifactId>
+      <version>2.1.12-dev</version>
+    </dependency>
+
+
+
+
+    <!-- external dependencies -->
+
+    <!-- Really all the dependencies : TODO : clean this when direct update 
+	 to tomcat is okay -->
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>avalon-framework-api</artifactId>
+      <version>4.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>avalon-framework-impl</artifactId>
+      <version>4.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>avalon-logkit</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>chaperon</artifactId>
+      <version>20040205</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>cocoon-serializers-charsets</artifactId>
+      <version>0.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>commons-beanutils-core</artifactId>
+      <version>1.7.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>commons-cli</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>commons-httpclient</artifactId>
+      <version>2.0.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>commons-jexl</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>commons-jxpath</artifactId>
+      <version>1.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>commons-logging</artifactId>
+      <version>1.0.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>concurrent</artifactId>
+      <version>1.3.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>daisy-htmlcleaner</artifactId>
+      <version>1.4.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>daisy-util</artifactId>
+      <version>1.4.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-component</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-datasource</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-i18n</artifactId>
+      <version>1.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-instrument-api</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-instrument-mgr-api</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-instrument-mgr-http</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-instrument-mgr-impl</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-logger</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-naming</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-pool-api</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-pool-impl</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-pool-instrumented</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-store</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-xmlutil</artifactId>
+      <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>jakarta-bcel</artifactId>
+      <version>20040329</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>jakarta-oro</artifactId>
+      <version>2.0.8</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>javacApi</artifactId>
+      <version>0.9</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>javacImpl</artifactId>
+      <version>0.9</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>jdbi</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>nekodtd</artifactId>
+      <version>0.1.11</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>nekohtml</artifactId>
+      <version>0.9.5</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>pizza</artifactId>
+      <version>1.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>xml-commons-resolver</artifactId>
+      <version>1.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>1.8.0.7</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>quartz</groupId>
+      <artifactId>quartz</artifactId>
+      <version>1.5.2</version>
+    </dependency>
+
+    <!-- dependency from others repository -->
+    <dependency>
+      <groupId>batik</groupId>
+      <artifactId>batik-all</artifactId>
+      <version>1.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>jena</groupId>
+      <artifactId>jena</artifactId>
+      <version>2.1</version>
+    </dependency>
+    <!--<dependency> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> 
+		     <version>2.0</version> </dependency> -->
+
+    <!-- dependency from local repository -->
+    <dependency>
+      <groupId>com.hp.hpl</groupId>
+      <artifactId>deli</artifactId>
+      <version>x050330</version>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>3.1</version>
+    </dependency>
+
+    <!-- dependencies stack to get it working -->
+    <dependency>
+      <groupId>axis</groupId>
+      <artifactId>axis-jaxrpc</artifactId>
+      <version>1.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>axis</groupId>
+      <artifactId>axis-saaj</artifactId>
+      <version>1.4</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>bcmail</artifactId>
+      <version>jdk15-141</version>
+    </dependency>
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>xreporter-expression</artifactId>
+      <version>r683</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>xmlunit</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>xmlgraphics-commons</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>xmldb-xupdate</artifactId>
+      <version>20040205</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>xmldb-common</artifactId>
+      <version>20030701</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>xml-apis</artifactId>
+      <version>1.3.04</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>xindice</artifactId>
+      <version>1.1</version>
+    </dependency>
+
+
+
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>wsdl4j</artifactId>
+      <version>1.5.1</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>websphinx</artifactId>
+      <version>0.5</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>nekopull</artifactId>
+      <version>0.2.4</version>
+    </dependency>
+
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>jtidy</artifactId>
+      <version>04aug2000r7-dev</version>
+    </dependency>
+
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>jing</artifactId>
+      <version>20030619</version>
+    </dependency>
+
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>jdtcore</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>jcs</artifactId>
+      <version>1.2.5-dev-20050313</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>jcifs-mock</artifactId>
+      <version>vLenyaDeps</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>jackrabbit-commons</artifactId>
+      <version>1.0-LCR330244</version>
+    </dependency>
+
+
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>icu4j</artifactId>
+      <version>2.8</version>
+    </dependency>
+
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>fop</artifactId>
+      <version>0.95</version>
+    </dependency>
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>excalibur-testcase</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+
+    <!-- <dependency> -->
+    <!--   <groupId>lenyaDeps</groupId> -->
+    <!--   <artifactId>dojo-rsrc</artifactId> -->
+    <!--   <version>0.4.3</version> -->
+    <!-- </dependency> -->
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>commons-discovery</artifactId>
+      <version>0.2</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>castor</artifactId>
+      <version>0.9.6-xml</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>bcprov</artifactId>
+      <version>jdk15-141</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    
+    <finalName>lenya</finalName>
+
+    <plugins>
+      <!-- build parameter from the webapp builder -->
+      <!-- <plugin> -->
+      <!-- 	<groupId>org.apache.lenya</groupId> -->
+      <!-- 	<artifactId>maven-xpatch</artifactId> -->
+      <!-- 	<version>1.0-SNAPSHOT</version> -->
+      <!-- 	<executions> -->
+      <!-- 	  <execution> -->
+      <!-- 	    <id>default-resources</id> -->
+      <!-- 	    <phase>process-resources</phase> -->
+      <!-- 	    <goals> -->
+      <!-- 	      <goal>webresources</goal> -->
+      <!-- 	    </goals> -->
+      <!-- 	  </execution> -->
+      <!-- 	</executions> -->
+      <!-- </plugin> -->
+
+      <!-- <plugin> -->
+      <!-- 	<groupId>org.apache.maven.plugins</groupId> -->
+      <!-- 	<artifactId>maven-war-plugin</artifactId> -->
+      <!-- 	<version>2.0</version> -->
+      <!-- 	<configuration> -->
+      <!-- 	  <webResources> -->
+      <!-- 	    <resource> -->
+      <!-- 	      <directory>${preassembly.dir}</directory> -->
+      <!-- 	    </resource> -->
+      <!-- 	  </webResources> -->
+      <!-- 	</configuration> -->
+      <!-- </plugin> -->
+
+      <!-- <plugin> -->
+      <!-- 	<groupId>org.mortbay.jetty</groupId> -->
+      <!-- 	<artifactId>jetty-maven-plugin</artifactId> -->
+      <!-- 	<version>8.1.6.v20120903</version> -->
+      <!-- </plugin> -->
+      
+      <!-- <plugin> -->
+      <!-- 	<groupId>org.apache.tomcat.maven</groupId> -->
+      <!-- 	<artifactId>tomcat7-maven-plugin</artifactId> -->
+      <!-- 	<version>2.1-SNAPSHOT</version> -->
+      <!-- 	<configuration> -->
+      <!-- 	  <url>http://localhost:8088/manager/text</url> -->
+      <!-- 	  <username>tomcat</username> -->
+      <!-- 	  <password>tomcat</password> -->
+      <!-- 	  <update>true</update> -->
+      <!-- 	</configuration> -->
+      <!-- </plugin> -->
+
+      <!-- ********************************** -->
+      <!-- from the stanbol launcher -->
+      <!-- ********************************** -->
+      
+      <!-- <plugin> -->
+      <!--   <groupId>org.apache.maven.plugins</groupId> -->
+      <!--   <artifactId>maven-clean-plugin</artifactId> -->
+      <!--   <configuration> -->
+      <!--     <filesets> -->
+      <!--       <fileset> -->
+      <!--         <directory>.</directory> -->
+      <!--         <includes> -->
+      <!--           <include>stanbol/**</include> -->
+      <!--           <include>factstore/**</include> -->
+      <!--           <include>*.log</include> -->
+      <!--         </includes> -->
+      <!--       </fileset> -->
+      <!--     </filesets> -->
+      <!--   </configuration> -->
+      <!-- </plugin> -->
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Embed-Dependency>
+            	!servlet-api,
+	      		*
+            </Embed-Dependency>
+	    <Embed-Transitive>true</Embed-Transitive>
+	    <Import-Package>
+	      !antlr,
+	      !antlr.collections,
+	      !antlr.collections.impl,
+	      !com.coyotegulch.jisp,
+	      !com.fujitsu.xml.omquery,
+	      !com.google.common.collect,
+	      !com.ibatis.sqlmap.engine.datasource,
+	      !com.icl.saxon,
+	      !com.icl.saxon.expr,
+	      !com.icl.saxon.om,
+	      !com.icl.saxon.tinytree,
+	      !com.informix.jdbc,
+	      !com.sun.image.codec.jpeg,
+	      !com.sun.jndi.ldap,
+	      !com.sun.tools.javac,
+	      !javax.activation,
+	      !javax.ejb,
+	      !javax.jcr,
+	      !javax.jcr.nodetype,
+	      !javax.jcr.util,
+	      !javax.jms,
+	      !javax.mail,
+	      !javax.mail.internet,
+	      !javax.mail.search,
+	      !javax.media.jai,
+	      !javax.servlet.jsp,
+	      !javax.transaction,
+	      !javax.xml.rpc,
+	      !javax.xml.rpc.handler,
+	      !javax.xml.rpc.server,
+	      !javax.xml.soap,
+	      !junit.framework,
+	      !junit.swingui,
+	      !junit.textui,
+	      !net.sf.saxon,
+	      !net.sf.saxon.expr,
+	      !net.sf.saxon.om,
+	      !net.sf.saxon.tinytree,
+	      !net.sf.saxon.xpath,
+	      !oracle.jdbc,
+	      !oracle.sql,
+	      !org.aopalliance.aop,
+	      !org.apache.axis,
+	      !org.apache.axis.components.uuid,
+	      !org.apache.axis.configuration,
+	      !org.apache.axis.deployment.wsdd,
+	      !org.apache.axis.handlers.soap,
+	      !org.apache.axis.providers.java,
+	      !org.apache.axis.security.servlet,
+	      !org.apache.axis.server,
+	      !org.apache.axis.session,
+	      !org.apache.axis.soap,
+	      !org.apache.axis.transport.http,
+	      !org.apache.axis.utils,
+	      !org.apache.cocoon.components.cron,
+	      !org.apache.commons.dbcp,
+	      !org.apache.commons.digester,
+	      !org.apache.commons.validator,
+	      !org.apache.excalibur.source,
+	      !org.apache.excalibur.source.impl,
+	      !org.apache.excalibur.source.impl.validity,
+	      !org.apache.forrest.conf,
+	      !org.apache.log4j.helpers,
+	      !org.apache.log4j.lf5,
+	      !org.apache.log4j.lf5.viewer,
+	      !org.apache.log4j.spi,
+	      !org.apache.log4j.xml,
+	      !org.apache.lucene.analysis,
+	      !org.apache.lucene.analysis.standard,
+	      !org.apache.lucene.document,
+	      !org.apache.lucene.index,
+	      !org.apache.lucene.queryParser,
+	      !org.apache.lucene.search,
+	      !org.apache.lucene.store,
+	      !org.apache.pdfbox.pdfparser,
+	      !org.apache.pdfbox.pdmodel,
+	      !org.apache.pdfbox.util,
+	      !org.apache.struts.action,
+	      !org.apache.struts.config,
+	      !org.apache.tools.ant,
+	      !org.apache.tools.ant.taskdefs,
+	      !org.apache.tools.ant.types,
+	      !org.apache.tools.ant.util,
+	      !org.apache.velocity,
+	      !org.apache.velocity.context,
+	      !org.apache.velocity.servlet,
+	      !org.apache.xalan.processor,
+	      !org.apache.xerces.dom,
+	      !org.apache.xerces.impl,
+	      !org.apache.xerces.impl.dv,
+	      !org.apache.xerces.impl.dv.util,
+	      !org.apache.xerces.impl.dv.xs,
+	      !org.apache.xerces.impl.validation,
+	      !org.apache.xerces.impl.xpath.regex,
+	      !org.apache.xerces.impl.xs,
+	      !org.apache.xerces.parsers,
+	      !org.apache.xerces.util,
+	      !org.apache.xerces.utils.regex,
+	      !org.apache.xerces.xni,
+	      !org.apache.xerces.xni.grammars,
+	      !org.apache.xerces.xni.parser,
+	      !org.apache.xerces.xs,
+	      !org.apache.xml.serialize,
+	      !org.apache.xml.utils,
+	      !org.apache.xmlrpc,
+	      !org.apache.xpath,
+	      !org.apache.xpath.compiler,
+	      !org.apache.xpath.objects,
+	      !org.easymock,
+	      !org.easymock.internal,
+	      !org.eclipse.core.resources,
+	      !org.eclipse.core.runtime,
+	      !org.eclipse.core.runtime.jobs,
+	      !org.eclipse.core.runtime.preferences,
+	      !org.eclipse.jface.text,
+	      !org.eclipse.osgi.util,
+	      !org.eclipse.text.edits,
+	      !org.exolab.castor.jdo.conf,
+	      !org.hibernate.cache,
+	      !org.iso_relax.verifier,
+	      !org.iso_relax.verifier.impl,
+	      !org.jaxen,
+	      !org.jaxen.dom,
+	      !org.jdom,
+	      !org.jdom.input,
+	      !org.jgroups,
+	      !org.jgroups.blocks,
+	      !org.jgroups.util,
+	      !org.mozilla.javascript,
+	      !org.mozilla.javascript.continuations,
+	      !org.mozilla.javascript.debug,
+	      !org.mozilla.javascript.tools,
+	      !org.mozilla.javascript.tools.debugger,
+	      !org.mozilla.javascript.tools.jsc,
+	      !org.mozilla.javascript.tools.shell,
+	      !org.osgi.service.prefs,
+	      !org.outerj.i18n,
+	      !org.outerj.xreporter.report.definition,
+	      !org.springframework.aop,
+	      !org.springframework.aop.framework,
+	      !org.springframework.beans.factory,
+	      !org.springframework.dao,
+	      !org.springframework.jdbc.datasource,
+	      !org.springframework.jdbc.support,
+	      !org.springframework.transaction.support,
+	      !org.tempuri.javac.util,
+	      !org.w3c.rdf.model,
+	      !org.w3c.rdf.syntax,
+	      !org.xmldb.api,
+	      !org.xmldb.api.base,
+	      !org.xmldb.api.modules,
+	      !sun.misc,
+	      !sun.security.action,
+	      !sun.tools.javac,
+	      !com.sun.jdmk.comm,
+	      !com.sun.jimi.core,
+	      !com.sun.net.ssl,
+	      !com.sun.net.ssl.internal.ssl,
+	      !javax.transaction.xa,
+	      !org.apache.bsf,
+	      !org.apache.commons.httpclient.params,
+	      !org.apache.commons.net.pop3,
+	      !org.apache.commons.net.smtp,
+	      !org.apache.commons.vfs,
+	      !org.apache.xmlbeans,
+	      !sun.awt.image.codec,
+	      !sun.io,
+	      !sun.net,
+	      !sun.net.ftp,
+	      !sun.security.provider,
+	      *
+	    </Import-Package>
+	    <Export-Package>
+	    	org.apache.cocoon.servlet.*,
+	    	org.apache.lenya.modules.monitoring.*
+	    </Export-Package>
+          </instructions>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-scr-plugin</artifactId>
+      </plugin>
+      <!-- <plugin> -->
+      <!--   <groupId>org.apache.sling</groupId> -->
+      <!--   <artifactId>maven-launchpad-plugin</artifactId> -->
+      <!--   <executions> -->
+      <!--     <execution> -->
+      <!--       <id>prepare-package</id> -->
+      <!--       <goals> -->
+      <!--         <goal>prepare-package</goal> -->
+      <!--       </goals> -->
+      <!--       <configuration> -->
+      <!--         <includeDefaultBundles>false</includeDefaultBundles> -->
+      <!--         <jarWebSupport> -->
+      <!--           <groupId>org.apache.felix</groupId> -->
+      <!--           <artifactId>org.apache.felix.http.jetty</artifactId> -->
+      <!--           <version>2.2.0</version> -->
+      <!--         </jarWebSupport> -->
+      <!--       </configuration> -->
+      <!--     </execution> -->
+      <!--   </executions> -->
+      <!-- </plugin> -->
+      <!-- <plugin> -->
+      <!--   <groupId>org.apache.maven.plugins</groupId> -->
+      <!--   <artifactId>maven-jar-plugin</artifactId> -->
+      <!--   <configuration> -->
+      <!--     <archive> -->
+      <!--       <manifest> -->
+      <!--         <addClasspath>true</addClasspath> -->
+      <!--         <mainClass>org.apache.stanbol.launchpad.Main</mainClass> -->
+      <!--         <addDefaultImplementationEntries>true</addDefaultImplementationEntries> -->
+      <!--       </manifest> -->
+      <!--     </archive> -->
+      <!--   </configuration> -->
+      <!-- </plugin> -->
+      <!-- <plugin> -->
+      <!--   <groupId>org.apache.maven.plugins</groupId> -->
+      <!--   <artifactId>maven-shade-plugin</artifactId> -->
+      <!--   <version>1.2</version> -->
+      <!--   <executions> -->
+      <!--     <execution> -->
+      <!--       <phase>package</phase> -->
+      <!--       <goals> -->
+      <!--         <goal>shade</goal> -->
+      <!--       </goals> -->
+      <!--       <configuration> -->
+      <!--         <artifactSet> -->
+      <!--           <includes> -->
+      <!--             <include>org.apache.stanbol:org.apache.stanbol.launchpad</include> -->
+      <!--           </includes> -->
+      <!--         </artifactSet> -->
+      <!--         <transformers> -->
+      <!--           <transformer implementation="org.apache.maven.plugins.shade.resource.ComponentsXmlResourceTransformer" /> -->
+      <!--         </transformers> -->
+      <!--       </configuration> -->
+      <!--     </execution> -->
+      <!--   </executions> -->
+      <!-- </plugin> -->
+      
+      <!-- <plugin> -->
+      <!--   <groupId>org.apache.rat</groupId> -->
+      <!--   <artifactId>apache-rat-plugin</artifactId> -->
+      <!--   <configuration> -->
+      <!--     <excludes></excludes> -->
+      <!--   </configuration> -->
+      <!-- </plugin> -->
+      
+      <!-- end from Stanbol launcher -->
+      
+    </plugins>
+  </build>
+
+
+</project>
