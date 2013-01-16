@@ -96,8 +96,8 @@
       <version>2.2.0</version>
     </bundle>
   </startLevel>
-
-    <!-- Sling installer and Stanbol extensions -->
+  
+  <!-- Sling installer and Stanbol extensions -->
   <startLevel level="8">
     <bundle>
       <groupId>org.apache.sling</groupId>
@@ -195,15 +195,16 @@
       <version>20090211_1</version>
     </bundle>
     <!-- bundle> Stax is included in JDK 1.6+ 
-      <groupId>org.apache.servicemix.specs</groupId>
-      <artifactId>org.apache.servicemix.specs.stax-api-1.0</artifactId>
-      <version>2.1.0</version>
+    <groupId>org.apache.servicemix.specs</groupId>
+    <artifactId>org.apache.servicemix.specs.stax-api-1.0</artifactId>
+    <version>2.1.0</version>
     </bundle -->
-    <bundle> <!-- woodstox Stax impl as bundle provided by servicemix.apache.org -->
-      <groupId>org.apache.servicemix.bundles</groupId>
-      <artifactId>org.apache.servicemix.bundles.woodstox</artifactId>
-      <version>3.2.9_3</version>
-    </bundle>
+    <!-- woodstox Stax impl as bundle provided by servicemix.apache.org -->
+    <!--     <bundle>  -->
+    <!--       <groupId>org.apache.servicemix.bundles</groupId> -->
+    <!--       <artifactId>org.apache.servicemix.bundles.woodstox</artifactId> -->
+    <!--       <version>3.2.9_3</version> -->
+    <!--     </bundle> -->
     <bundle> <!-- jarkata regexp as bundle provided by servicemix.apache.org -->
       <groupId>org.apache.servicemix.bundles</groupId>
       <artifactId>org.apache.servicemix.bundles.regexp</artifactId>
@@ -214,6 +215,17 @@
       <artifactId>joda-time</artifactId>
       <version>1.6.2</version>
     </bundle>
+    <!-- service mix xerce related bundles -->
+    <!-- <bundle> -->
+    <!--   <groupId>org.apache.servicemix.bundles</groupId> -->
+    <!--   <artifactId>org.apache.servicemix.bundles.xmlresolver</artifactId> -->
+    <!--   <version>1.2_5</version> -->
+    <!-- </bundle> -->
+    <!-- <bundle> -->
+    <!--   <groupId>org.apache.servicemix.bundles</groupId> -->
+    <!--   <artifactId>org.apache.servicemix.bundles.xerces</artifactId> -->
+    <!--   <version>2.10.0_1</version> -->
+    <!-- </bundle> -->
   </startLevel>
 
   <!-- Felix web console and plugins -->
@@ -260,32 +272,107 @@
     </bundle>
   </startLevel>
   
+  <!-- PAX WEB -->
+  <startLevel level="22">
+    <!-- test with no jetty bundle from pax... -->
+    <!-- 		<bundle> -->
+    <!-- 			<groupId>org.ops4j.pax.web</groupId> -->
+    <!-- <artifactId>pax-web-api</artifactId> -->
+    <!-- <version>2.1.2</version>		 -->
+    <!-- 		</bundle> -->
+    
+    <!-- 		<bundle> -->
+    <!-- 			<groupId>org.ops4j.pax.web</groupId> -->
+    <!-- <artifactId>pax-web-spi</artifactId> -->
+    <!-- <version>2.1.2</version> -->
+    <!-- 		</bundle> -->
+    
+    <!-- 		<bundle> -->
+    <!-- 		<groupId>org.ops4j.pax.web</groupId> -->
+    <!-- <artifactId>pax-web-runtime</artifactId> -->
+    <!-- <version>2.1.2</version> -->
+    <!-- 		</bundle> -->
+    
+    <!-- 		<bundle> -->
+    <!-- 		<groupId>org.ops4j.pax.web</groupId> -->
+    <!-- <artifactId>pax-web-jetty</artifactId> -->
+    <!-- <version>2.1.2</version> -->
+    <!-- 		</bundle> -->
+    
+    <!-- test with the pax bundle that embeded a jetty -->
+    
+    <!-- required as of this bug : http://team.ops4j.org/browse/PAXWEB-423 -->
+    <bundle>
+      <groupId>org.ops4j.pax.web</groupId>
+      <artifactId>pax-web-api</artifactId>
+      <version>2.1.2</version>		
+    </bundle>
+    
+    <!-- embed all the pax-web and also a jetty implementation -->
+    <bundle>
+      <groupId>org.ops4j.pax.web</groupId>
+      <artifactId>pax-web-jetty-bundle</artifactId>
+      <version>2.1.2</version>
+    </bundle>
+    
+    <bundle>
+      <groupId>org.ops4j.pax.web</groupId>
+      <artifactId>pax-web-extender-war</artifactId>
+      <version>2.1.2</version>
+    </bundle>
+    
+    <bundle>
+      <groupId>org.ops4j.pax.web</groupId>
+      <artifactId>pax-web-extender-whiteboard</artifactId>
+      <version>2.1.2</version>
+    </bundle>
+  </startLevel>
   
   <!-- *********************************************************************
           start level 10 TO 19 reserved for required libraries
           (internal and external)
        ********************************************************************* -->
 
-  <!-- Jersey -->
+  <!-- Xerce related bundles -->
   <startLevel level="25">
-    <bundle>
-      <groupId>com.sun.jersey</groupId>
-      <artifactId>jersey-client</artifactId>
-      <version>1.12</version>
-    </bundle>
-  </startLevel>
-
-  <!-- Stanbol Commons -->
-  <startLevel level="27">
-    <!-- The common web interface -->
     <!-- <bundle> -->
-    <!--   <groupId>org.apache.stanbol</groupId> -->
-    <!--   <artifactId>org.apache.stanbol.commons.web.sparql</artifactId> -->
-    <!--   <version>0.10.0-SNAPSHOT</version> -->
+    <!--   <groupId>org.apache.servicemix.bundles</groupId> -->
+    <!--   <artifactId>org.apache.servicemix.bundles.xmlresolver</artifactId> -->
+    <!--   <version>1.2_5</version> -->
+    <!-- </bundle> -->
+    <!-- <bundle> -->
+    <!--   <groupId>org.apache.servicemix.bundles</groupId> -->
+    <!--   <artifactId>org.apache.servicemix.bundles.xerces</artifactId> -->
+    <!--   <version>2.10.0_1</version> -->
     <!-- </bundle> -->
     <bundle>
+      <groupId>org.apache.xmlcommons</groupId>
+      <artifactId>com.springsource.org.apache.xmlcommons</artifactId>
+      <version>1.3.4</version>
+    </bundle>
+    <bundle>
+      <groupId>org.apache.xerces</groupId>
+      <artifactId>com.springsource.org.apache.xerces</artifactId>
+      <version>2.9.1</version>
+    </bundle>
+    <bundle>
+      <groupId>org.apache.xml</groupId>
+      <artifactId>com.springsource.org.apache.xml.resolver</artifactId>
+      <version>1.2.0</version>
+    </bundle>
+<!--     <bundle> -->
+<!--       <groupId>com.sun.jersey</groupId> -->
+<!--       <artifactId>jersey-client</artifactId> -->
+<!--       <version>1.12</version> -->
+<!--     </bundle> -->
+
+  </startLevel>
+
+  <!-- Excalibur bundle -->
+  <startLevel level="27">
+    <bundle>
       <groupId>org.apache.lenya</groupId>
-      <artifactId>onbundle-osgi</artifactId>
+      <artifactId>excalibur-osgi</artifactId>
       <version>2.6-SNAPSHOT</version>
     </bundle>
   </startLevel>
@@ -308,11 +395,11 @@
   
   <startLevel level="36">
     <!-- The Content-Editable based UI for Enhancing Text written on a Webpage -->
-    <bundle>
-        <groupId>org.apache.stanbol</groupId>
-        <artifactId>org.apache.stanbol.demos.enhancer.vie</artifactId>
-        <version>0.10.0-SNAPSHOT</version>
-    </bundle>
+<!--     <bundle> -->
+<!--         <groupId>org.apache.stanbol</groupId> -->
+<!--         <artifactId>org.apache.stanbol.demos.enhancer.vie</artifactId> -->
+<!--         <version>0.10.0-SNAPSHOT</version> -->
+<!--     </bundle> -->
   </startLevel>
 
   <!-- *********************************************************************

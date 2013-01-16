@@ -29,8 +29,8 @@
   </parent>
 
   <artifactId>onbundle-osgi-all</artifactId>
-<!--   <packaging>bundle</packaging> -->
-	<packaging>war</packaging>
+  <!--   <packaging>bundle</packaging> -->
+  <packaging>war</packaging>
 
   <name>TEST Bundle that contains all lenya classes and the servlet register</name>
   <url>http://maven.apache.org</url>
@@ -56,6 +56,13 @@
       <groupId>org.apache.lenya</groupId>
       <artifactId>core-impl</artifactId>
       <version>2.6-SNAPSHOT</version>
+      <!-- exclude the XerceImpl for osgi wiring -->
+      <exclusions>
+        <exclusion>
+	  <groupId>xerces</groupId>
+	  <artifactId>xercesImpl</artifactId>
+        </exclusion>
+      </exclusions> 
     </dependency>
 
     <dependency>
@@ -329,11 +336,11 @@
 
     
     <!-- runtime dependencies -->
-    <dependency>
-      <groupId>org.apache.excalibur.components</groupId>
-      <artifactId>excalibur-pool-instrumented</artifactId>
-      <version>2.1</version>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>org.apache.excalibur.components</groupId> -->
+    <!--   <artifactId>excalibur-pool-instrumented</artifactId> -->
+    <!--   <version>2.1</version> -->
+    <!-- </dependency> -->
 
     <dependency>
       <groupId>concurrent</groupId>
@@ -595,11 +602,11 @@
       <version>4.3</version>
     </dependency>
 
-<!--     <dependency> -->
-<!--       <groupId>cocoon-deps</groupId> -->
-<!--       <artifactId>avalon-logkit</artifactId> -->
-<!--       <version>2.1</version> -->
-<!--     </dependency> -->
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>avalon-logkit</artifactId>
+      <version>2.1</version>
+    </dependency>
     
     <dependency>
     	<artifactId>avalon-logkit</artifactId>
@@ -673,23 +680,23 @@
       <version>1.4.1</version>
     </dependency>
 
-    <dependency>
-      <groupId>cocoon-deps</groupId>
-      <artifactId>excalibur-component</artifactId>
-      <version>2.1</version>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>cocoon-deps</groupId> -->
+    <!--   <artifactId>excalibur-component</artifactId> -->
+    <!--   <version>2.1</version> -->
+    <!-- </dependency> -->
 
-    <dependency>
-      <groupId>cocoon-deps</groupId>
-      <artifactId>excalibur-datasource</artifactId>
-      <version>2.1</version>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>cocoon-deps</groupId> -->
+    <!--   <artifactId>excalibur-datasource</artifactId> -->
+    <!--   <version>2.1</version> -->
+    <!-- </dependency> -->
 
-    <dependency>
-      <groupId>cocoon-deps</groupId>
-      <artifactId>excalibur-i18n</artifactId>
-      <version>1.1</version>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>cocoon-deps</groupId> -->
+    <!--   <artifactId>excalibur-i18n</artifactId> -->
+    <!--   <version>1.1</version> -->
+    <!-- </dependency> -->
 
 	<!-- TODO : remove them from local repository and use this 
 		osgi compliant version 
@@ -725,71 +732,73 @@
 <!--       <version>2.1</version> -->
 <!--     </dependency> -->
 	
-	<dependency>
-      <groupId>org.apache.excalibur.containerkit</groupId>
-      <artifactId>excalibur-instrument-api</artifactId>
-      <version>2.2.1</version>
-    </dependency>
+<!-- END not in central repository -->
 
-    <dependency>
-      <groupId>org.apache.excalibur.containerkit</groupId>
-      <artifactId>excalibur-instrument-mgr-api</artifactId>
-      <version>2.2.1</version>
-    </dependency>
+    <!-- 	<dependency> -->
+    <!--   <groupId>org.apache.excalibur.containerkit</groupId> -->
+    <!--   <artifactId>excalibur-instrument-api</artifactId> -->
+    <!--   <version>2.2.1</version> -->
+    <!-- </dependency> -->
 
-    <dependency>
-      <groupId>org.apache.excalibur.containerkit</groupId>
-      <artifactId>excalibur-instrument-mgr-http</artifactId>
-      <version>2.2.1</version>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>org.apache.excalibur.containerkit</groupId> -->
+    <!--   <artifactId>excalibur-instrument-mgr-api</artifactId> -->
+    <!--   <version>2.2.1</version> -->
+    <!-- </dependency> -->
 
-    <dependency>
-      <groupId>org.apache.excalibur.containerkit</groupId>
-      <artifactId>excalibur-instrument-mgr-impl</artifactId>
-      <version>2.2.1</version>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>org.apache.excalibur.containerkit</groupId> -->
+    <!--   <artifactId>excalibur-instrument-mgr-http</artifactId> -->
+    <!--   <version>2.2.1</version> -->
+    <!-- </dependency> -->
+
+    <!-- <dependency> -->
+    <!--   <groupId>org.apache.excalibur.containerkit</groupId> -->
+    <!--   <artifactId>excalibur-instrument-mgr-impl</artifactId> -->
+    <!--   <version>2.2.1</version> -->
+    <!-- </dependency> -->
 	
-    <dependency>
-      <groupId>org.apache.excalibur.containerkit</groupId>
-      <artifactId>excalibur-logger</artifactId>
-      <version>2.2.1</version>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>org.apache.excalibur.containerkit</groupId> -->
+    <!--   <artifactId>excalibur-logger</artifactId> -->
+    <!--   <version>2.2.1</version> -->
+    <!-- </dependency> -->
     
-    <dependency>
-      <groupId>cocoon-deps</groupId>
-      <artifactId>excalibur-naming</artifactId>
-      <version>1.0</version>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>cocoon-deps</groupId> -->
+    <!--   <artifactId>excalibur-naming</artifactId> -->
+    <!--   <version>1.0</version> -->
+    <!-- </dependency> -->
 
-    <dependency>
-      <groupId>cocoon-deps</groupId>
-      <artifactId>excalibur-pool-api</artifactId>
-      <version>2.1</version>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>cocoon-deps</groupId> -->
+    <!--   <artifactId>excalibur-pool-api</artifactId> -->
+    <!--   <version>2.1</version> -->
+    <!-- </dependency> -->
 
-    <dependency>
-      <groupId>cocoon-deps</groupId>
-      <artifactId>excalibur-pool-impl</artifactId>
-      <version>2.1</version>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>cocoon-deps</groupId> -->
+    <!--   <artifactId>excalibur-pool-impl</artifactId> -->
+    <!--   <version>2.1</version> -->
+    <!-- </dependency> -->
 
-    <dependency>
-      <groupId>cocoon-deps</groupId>
-      <artifactId>excalibur-pool-instrumented</artifactId>
-      <version>2.1</version>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>cocoon-deps</groupId> -->
+    <!--   <artifactId>excalibur-pool-instrumented</artifactId> -->
+    <!--   <version>2.1</version> -->
+    <!-- </dependency> -->
 
-    <dependency>
-      <groupId>cocoon-deps</groupId>
-      <artifactId>excalibur-store</artifactId>
-      <version>2.1</version>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>cocoon-deps</groupId> -->
+    <!--   <artifactId>excalibur-store</artifactId> -->
+    <!--   <version>2.1</version> -->
+    <!-- </dependency> -->
 
-    <dependency>
-      <groupId>cocoon-deps</groupId>
-      <artifactId>excalibur-xmlutil</artifactId>
-      <version>2.1</version>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>cocoon-deps</groupId> -->
+    <!--   <artifactId>excalibur-xmlutil</artifactId> -->
+    <!--   <version>2.1</version> -->
+    <!-- </dependency> -->
 
     <dependency>
       <groupId>cocoon-deps</groupId>
@@ -1032,11 +1041,11 @@
       <version>0.95</version>
     </dependency>
 
-    <dependency>
-      <groupId>lenyaDeps</groupId>
-      <artifactId>excalibur-testcase</artifactId>
-      <version>1.0</version>
-    </dependency>
+    <!-- <dependency> -->
+    <!--   <groupId>lenyaDeps</groupId> -->
+    <!--   <artifactId>excalibur-testcase</artifactId> -->
+    <!--   <version>1.0</version> -->
+    <!-- </dependency> -->
 
 
     <!-- <dependency> -->
@@ -1096,6 +1105,12 @@
       <version>2.1.12-dev</version>
     </dependency>
     
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.14</version>
+    </dependency>
+    
   </dependencies>
   
   <build>
@@ -1135,7 +1150,11 @@
           </archive>
       	</configuration>
       </plugin>
-
+      
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+      </plugin>
       <!-- <plugin> -->
       <!-- 	<groupId>org.mortbay.jetty</groupId> -->
       <!-- 	<artifactId>jetty-maven-plugin</artifactId> -->
@@ -1194,30 +1213,45 @@
             	<supportedProjectType>war</supportedProjectType>
           </supportedProjectTypes>
           <instructions>
-          	<!-- Test for WAB -->
-          	<Bundle-ClassPath>.,WEB-INF/classes</Bundle-ClassPath>
-    		<Embed-Directory>WEB-INF/lib</Embed-Directory>
-    		<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
-    		<Embed-Transitive>true</Embed-Transitive>
-    		<!-- TODO : one of the two can be remove : 
-    			* see : http://leshazlewood.com/2010/09/08/osgi-maven-pax-and-web-applications/
-    			* an related issue : http://team.ops4j.org/browse/PAXWEB-206
-    			 -->
-    		<Web-ContextPath>lenya</Web-ContextPath>
-          	<Webapp-Context>lenya</Webapp-Context>
-<!--     		<Import-Package>*;resolution:=optional</Import-Package> -->
-          	<!-- End test for WAB -->
-<!--           	<Bundle-Activator> -->
-<!--                 org.apache.felix.http.samples.whiteboard.Activator -->
-<!-- 			</Bundle-Activator> -->
-<!--             <Private-Package> -->
-<!--                org.apache.felix.http.samples.whiteboard.* -->
-<!--             </Private-Package> -->
-<!--             <Embed-Dependency> -->
-<!--             	!servlet-api, -->
-<!-- 	      		* -->
-<!--             </Embed-Dependency> -->
+            <!-- Test for WAB -->
+            <Bundle-ClassPath>.,WEB-INF/classes</Bundle-ClassPath>
+    	    <Embed-Directory>WEB-INF/lib</Embed-Directory>
+    	    <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+    	    <Embed-Transitive>true</Embed-Transitive>
+    	    <!-- TODO : one of the two can be remove : 
+    		 * see : http://leshazlewood.com/2010/09/08/osgi-maven-pax-and-web-applications/
+    		 * an related issue : http://team.ops4j.org/browse/PAXWEB-206
+    	      -->
+    	    <Web-ContextPath>lenya</Web-ContextPath>
+            <Webapp-Context>lenya</Webapp-Context>
+	    <!--     		<Import-Package>*;resolution:=optional</Import-Package> -->
+            <!-- End test for WAB -->
+	    <!--           	<Bundle-Activator> -->
+	    <!--                 org.apache.felix.http.samples.whiteboard.Activator -->
+	    <!-- 			</Bundle-Activator> -->
+	    <!--             <Private-Package> -->
+	    <!--                org.apache.felix.http.samples.whiteboard.* -->
+	    <!--             </Private-Package> -->
+	    <!--             <Embed-Dependency> -->
+	    <!--             	!servlet-api, -->
+	    <!-- 	      		* -->
+	    <!--             </Embed-Dependency> -->
 	    <Embed-Transitive>true</Embed-Transitive>
+	    <!--
+	       DynamicImport mostly to solve the classLoading issues that comes from 
+	       externals/cocoon_2_1_x/src/java/org/apache/cocoon/util/ClassUtils.java
+	      -->
+	    <DynamicImport-Package>
+	      *
+	    </DynamicImport-Package>
+	    <!--
+	       removed : 
+	       	      !org.apache.log4j.helpers,
+	      !org.apache.log4j.lf5,
+	      !org.apache.log4j.lf5.viewer,
+	      !org.apache.log4j.spi,
+	      !org.apache.log4j.xml,
+	      -->
 	    <Import-Package>
 	      !antlr,
 	      !antlr.collections,
@@ -1281,11 +1315,6 @@
 	      !org.apache.excalibur.source.impl,
 	      !org.apache.excalibur.source.impl.validity,
 	      !org.apache.forrest.conf,
-	      !org.apache.log4j.helpers,
-	      !org.apache.log4j.lf5,
-	      !org.apache.log4j.lf5.viewer,
-	      !org.apache.log4j.spi,
-	      !org.apache.log4j.xml,
 	      !org.apache.lucene.analysis,
 	      !org.apache.lucene.analysis.standard,
 	      !org.apache.lucene.document,
@@ -1376,13 +1405,15 @@
 	      !sun.net.ftp,
 	      !sun.security.provider,
 	      !javax.microedition.io,
+	      !org.apache.log4j.*
 	      *
 	    </Import-Package>
 	    <!-- removed from export package for xerce problem 
 	      org.apache.xerces.jaxp.*
 	      -->
 	    <Export-Package>
-	    	org.apache.log.format
+	    	org.apache.log.format,
+		org.apache.log4j.*
 	    </Export-Package>
           </instructions>
         </configuration>
@@ -1391,6 +1422,19 @@
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-scr-plugin</artifactId>
       </plugin>
+      
+      <!-- test plugin by unsing the pax-runner -->
+      <plugin>
+      	<groupId>org.ops4j</groupId>
+      	<artifactId>maven-pax-plugin</artifactId>
+      	<configuration>
+          <provision>
+            <param>--platform=felix</param>
+            <param>--profiles=compendium,web,war</param>
+          </provision>
+      	</configuration>
+      </plugin>
+      
       <!-- <plugin> -->
       <!--   <groupId>org.apache.sling</groupId> -->
       <!--   <artifactId>maven-launchpad-plugin</artifactId> -->
