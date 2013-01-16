@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>core-reactor</artifactId>
+    <groupId>org.apache.lenya</groupId>
+    <version>2.6-SNAPSHOT</version>
+    <relativePath>../</relativePath>
+  </parent>
+  <groupId>org.apache.lenya.onbundle-osgi-all.build</groupId>
+  <artifactId>deployment</artifactId>
+  <version>2.6-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>TEST Bundle that contains all lenya classes and the servlet register</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+    <preassembly.dir>/home/florent/devel/dev-lenya/lenyaSources/GIT-MAVEN-OSGI/lenya/src/webapp-osgi/onebundleAll/target/classes/webresources</preassembly.dir>
+    <enable.uploads>true</enable.uploads>
+    <cocoon.version>2.1.12-dev</cocoon.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>onbundle-osgi-all</artifactId>
+      <version>2.6-SNAPSHOT</version>
+      <type>war</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.4</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.pdfbox</groupId>
+      <artifactId>pdfbox</artifactId>
+      <version>1.5.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.pdfbox</groupId>
+      <artifactId>fontbox</artifactId>
+      <version>1.5.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.pdfbox</groupId>
+      <artifactId>jempbox</artifactId>
+      <version>1.5.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>jdtcore</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+  <repositories>
+    <repository>
+      <id>lenyaDep.local</id>
+      <name>localDependencies</name>
+      <url>file:/home/florent/devel/dev-lenya/lenyaSources/GIT-MAVEN-OSGI/lenya/src/parent/maven-repo</url>
+    </repository>
+    <repository>
+      <id>cocoonDep.Archives</id>
+      <name>Cocoon dep Archives</name>
+      <url>http://comp.cast.org/maven2/</url>
+    </repository>
+    <repository>
+      <id>batikAll.Archives</id>
+      <name>Batik All Archives</name>
+      <url>http://www.intalio.org/public/maven2/</url>
+    </repository>
+    <repository>
+      <id>atlassian</id>
+      <name>Atlassian repository</name>
+      <url>https://maven.atlassian.com/content/groups/public/</url>
+    </repository>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>central</id>
+      <name>Maven Repository Switchboard</name>
+      <url>http://repo1.maven.org/maven2</url>
+    </repository>
+  </repositories>
+</project>
