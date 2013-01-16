@@ -1044,23 +1044,47 @@
 	<artifactId>jetty-maven-plugin</artifactId>
 	<version>8.1.6.v20120903</version>
       </plugin>
+      
       <!-- tomcat one -->
       <plugin>
-
 	<groupId>org.apache.tomcat.maven</groupId>
 	<artifactId>tomcat7-maven-plugin</artifactId>
-	<version>2.1-SNAPSHOT</version>
+	<version>2.0</version>
 	<configuration>
-	  <url>http://localhost:8088/manager/text</url>
+	  <url>http://localhost:8080/manager/html</url>
 	  <username>tomcat</username>
 	  <password>tomcat</password>
+	  <path>/lenya</path>
 	  <!-- <path>/lenya</path> <warFile>target/lenya.war</warFile> -->
 	  <update>true</update>
 	</configuration>
       </plugin>
-
+      
+      <!-- get an executable war with tomcat 7 -->
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.0</version>
+        <executions>
+          <execution>
+            <id>tomcat-run</id>
+            <goals>
+              <goal>exec-war-only</goal>
+            </goals>
+            <phase>package</phase>
+            <configuration>
+              <path>lenya</path>
+              <!-- optional only if you want to use a preconfigured server.xml file -->
+              <!-- <serverXml>src/main/tomcatconf/server.xml</serverXml> -->
+              <!-- optional values which can be configurable -->
+              <!-- <attachArtifactClassifier>default value is exec-war but you can customize</attachArtifactClassifier> -->
+              <!-- <attachArtifactClassifierType>default value is jar</attachArtifactClassifierType> -->
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
     </plugins>
   </build>
-
 
 </project>
