@@ -40,14 +40,17 @@
 = RESTART HERE : 
 
 
-* http://localhost:8080/lenya/index.html
-** build the pub/default to get all default file in
+* check why someusecase missing (edit, create, etc...)
+** ==> mostly due to xpatch commented imo
 
-* process the DIFF file for geting the same things in maven and ant webapp
-** diff -r TOMCAT-WORKING/ webapp-maven/target/lenya/ > DIFF
 
-* add the all module's ressources to final war
-** folder template for module's resources : src/main/resources/webresources/lenya/modules/{moduleName}
+=====> for OSGI : try to "extract" (put it as an independant bundle the bundle that fail (xml related stuff) : just put the bundle outside the war, in the felix framework
+
+* OSGI implementation : 
+** use the servlet registration module to add the cocoon servlet registration like : 
+*** documentation : http://felix.apache.org/site/apache-felix-http-service.html#ApacheFelixHTTPService-UsingtheWhiteboard
+*** exemple : http://svn.apache.org/repos/asf/felix/trunk/http/samples/whiteboard/src/main/java/org/apache/felix/http/samples/whiteboard/Activator.java
+** TODO : from the one bundle export cocoon servlet and filter dependency
 
 == To reactivate : 
 
