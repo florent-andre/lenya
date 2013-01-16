@@ -1,56 +1,63 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-
-	<!-- <parent> <artifactId>maven-plugins</artifactId> <groupId>org.apache.maven.plugins</groupId> 
-		<version>22</version> </parent> -->
-
-	<groupId>org.apache.lenya</groupId>
-	<artifactId>parent</artifactId>
-	<packaging>pom</packaging>
-	<version>2.6-SNAPSHOT</version>
-	<name>Lenya core reactor</name>
-	<url>http://lenya.apache.org</url>
-
-	<properties>
-		<cocoon.version>2.1.12-dev</cocoon.version>
-	</properties>
-
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>1.6</source>
-                        <target>1.6</target>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-
-<repositories>
-    <!--other repositories if any-->
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <!-- <parent> <artifactId>maven-plugins</artifactId> <groupId>org.apache.maven.plugins</groupId> 
+       <version>22</version> </parent> -->
+  
+  <groupId>org.apache.lenya</groupId>
+  <artifactId>parent</artifactId>
+  <packaging>pom</packaging>
+  <version>2.6-SNAPSHOT</version>
+  <name>Lenya core reactor</name>
+  <url>http://lenya.apache.org</url>
+  
+  <properties>
+    <cocoon.version>2.1.12-dev</cocoon.version>
+  </properties>
+  
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  
+  <repositories>
+    <!--Lenya non maven ready library-->
     <repository>
-        <id>lenyaDep.local</id>
-        <name>localDependencies</name>
-        <url>file:/home/florent/devel/dev-lenya/lenyaSources/GIT-MAVEN-OSGI/lenya/src/parent/maven-repo</url>
+      <id>lenyaDep.local</id>
+      <name>localDependencies</name>
+      <url>file:/home/florent/devel/dev-lenya/lenyaSources/GIT-MAVEN-OSGI/lenya/src/parent/maven-repo</url>
     </repository>
-
-<repository>
-        <id>cocoonDep.Archives</id>
-        <name>Cocoon dep Archives</name>
-        <url>http://comp.cast.org/maven2/</url>
+    
+    <repository>
+      <id>cocoonDep.Archives</id>
+      <name>Cocoon dep Archives</name>
+      <url>http://comp.cast.org/maven2/</url>
     </repository>
-
-<!-- for batik -->
-<repository>
-        <id>batikAll.Archives</id>
-        <name>Batik All Archives</name>
-        <url>http://www.intalio.org/public/maven2/</url>
+    
+    <!-- for batik -->
+    <repository>
+      <id>batikAll.Archives</id>
+      <name>Batik All Archives</name>
+      <url>http://www.intalio.org/public/maven2/</url>
     </repository>
-
-</repositories>
+    
+    <!-- for xerceImpl 2.11.0, see https://issues.apache.org/jira/browse/XERCESJ-1454 -->
+    <repository>
+      <id>atlassian</id>
+      <name>Atlassian repository</name>
+      <url>https://maven.atlassian.com/content/groups/public/</url>
+    </repository>
+    
+  </repositories>
 </project>
