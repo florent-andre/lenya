@@ -55,6 +55,8 @@
     <module>modules-core/observation</module>
     <!-- sitemanagement : OK : BUT : TEST -->
     <module>modules-core/sitemanagement</module>
+
+    <module>modules-core/homepage</module>
     
     <!--publication related stuff -->
     <module>pubs/default</module>
