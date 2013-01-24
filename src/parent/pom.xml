@@ -34,9 +34,9 @@
   <repositories>
     <!--Lenya non maven ready library-->
     <repository>
-      <id>lenyaDep.local</id>
-      <name>localDependencies</name>
-      <url>file:/home/florent/devel/dev-lenya/lenyaSources/GIT-MAVEN-OSGI/lenya/src/parent/maven-repo</url>
+      <id>lenya.dependencies</id>
+      <name>Lenya dependencies not available throw Maven central</name>
+      <url>http://svn.apache.org/repos/asf/lenya/branches/mavenrepo/</url>
     </repository>
     
     <repository>

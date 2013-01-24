@@ -6,68 +6,40 @@
     <artifactId>maven-plugins</artifactId>
     <groupId>org.apache.maven.plugins</groupId>
     <version>22</version>
-<!--     <relativePath>../maven-plugins/pom.xml</relativePath> -->
   </parent>
   
   <groupId>org.apache.lenya</groupId>
   <artifactId>maven-xpatch</artifactId>
   <packaging>maven-plugin</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>maven-xpatch-testdev Maven Mojo</name>
+  <name>Lenya Maven plugin patch xml files during building</name>
   <url>http://maven.apache.org</url>
   
-    <properties>
+  <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
- 	<mavenVersion>3.0.3</mavenVersion>
- 	<doxiaVersion>1.0</doxiaVersion>
- 	<pluginTestingVersion>2.0</pluginTestingVersion>
- 	<mavenPluginPluginVersion>3.1</mavenPluginPluginVersion>
+    <mavenVersion>3.0.3</mavenVersion>
+    <doxiaVersion>1.0</doxiaVersion>
+    <pluginTestingVersion>2.0</pluginTestingVersion>
+    <mavenPluginPluginVersion>3.1</mavenPluginPluginVersion>
   </properties>
-
+  
   <dependencies>
-<!--   	<dependency> -->
-<!--  		<groupId>org.apache.maven</groupId> -->
-<!--  		<artifactId>maven-artifact</artifactId> -->
-<!--  		<version>${mavenVersion}</version> -->
-<!--  	</dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.apache.maven</groupId> -->
-<!--       <artifactId>maven-plugin-api</artifactId> -->
-<!--       <version>${mavenVersion}</version> -->
-<!--     </dependency> -->
-<!--  	<dependency> -->
-<!--       <groupId>org.apache.maven.shared</groupId> -->
-<!--       <artifactId>maven-dependency-tree</artifactId> -->
-<!--       <version>2.0</version> -->
-<!--     </dependency> -->
- 	
-<!--     <dependency> -->
-<!--       <groupId>junit</groupId> -->
-<!--       <artifactId>junit</artifactId> -->
-<!--       <version>3.8.1</version> -->
-<!--       <scope>test</scope> -->
-<!--     </dependency> -->
-    <!-- dependencies to annotations -->
-<!--     <dependency> -->
-<!--       <groupId>org.apache.maven.plugin-tools</groupId> -->
-<!--       <artifactId>maven-plugin-annotations</artifactId> -->
-<!--       <version>${mavenPluginPluginVersion}</version> -->
-<!--       <scope>provided</scope> -->
-<!--     </dependency> -->
+    
     <!-- SEARCH BUG PART : TODO : REMOVE ALL when find the one needed -->
     <dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-compress</artifactId>
-			<version>1.4.1</version>
-		</dependency>
-    <!-- Xalan related dependency -->
-    <dependency>
-    	<groupId>xalan</groupId>
-    	<artifactId>xalan</artifactId>
-    	<version>2.7.1</version>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-compress</artifactId>
+      <version>1.4.1</version>
     </dependency>
     
-        <!-- maven -->
+    <!-- Xalan related dependency -->
+    <dependency>
+      <groupId>xalan</groupId>
+      <artifactId>xalan</artifactId>
+      <version>2.7.1</version>
+    </dependency>
+    
+    <!-- maven -->
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-artifact</artifactId>
@@ -78,11 +50,6 @@
       <artifactId>maven-plugin-api</artifactId>
       <version>${mavenVersion}</version>
     </dependency>
-<!--     <dependency> -->
-<!--       <groupId>org.apache.maven</groupId> -->
-<!--       <artifactId>maven-project</artifactId> -->
-<!--       <version>${mavenVersion}</version> -->
-<!--     </dependency> -->
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-model</artifactId>
@@ -93,107 +60,21 @@
       <artifactId>maven-core</artifactId>
       <version>${mavenVersion}</version>
     </dependency>
-<!--     <dependency> -->
-<!--       <groupId>org.apache.maven</groupId> -->
-<!--       <artifactId>maven-artifact-manager</artifactId> -->
-<!--       <version>${mavenVersion}</version> -->
-<!--     </dependency> -->
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-repository-metadata</artifactId>
       <version>${mavenVersion}</version>
     </dependency>
-
-    <!-- shared -->
-<!--     <dependency> -->
-<!--       <groupId>org.apache.maven.reporting</groupId> -->
-<!--       <artifactId>maven-reporting-api</artifactId> -->
-<!--       <version>3.0</version> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.apache.maven.reporting</groupId> -->
-<!--       <artifactId>maven-reporting-impl</artifactId> -->
-<!--       <version>2.0.5</version> -->
-<!--     </dependency> -->
-
-    <!-- doxia -->
-<!--     <dependency> -->
-<!--       <groupId>org.apache.maven.doxia</groupId> -->
-<!--       <artifactId>doxia-sink-api</artifactId> -->
-<!--       <version>${doxiaVersion}</version> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.apache.maven.doxia</groupId> -->
-<!--       <artifactId>doxia-site-renderer</artifactId> -->
-<!--       <version>${doxiaVersion}</version> -->
-<!--     </dependency> -->
-
-    <!-- plexus -->
-<!--     <dependency> -->
-<!--       <groupId>org.codehaus.plexus</groupId> -->
-<!--       <artifactId>plexus-archiver</artifactId> -->
-<!--       <version>2.1.1</version> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.codehaus.plexus</groupId> -->
-<!--       <artifactId>plexus-utils</artifactId> -->
-<!--       <version>3.0</version> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.apache.maven.shared</groupId> -->
-<!--       <artifactId>file-management</artifactId> -->
-<!--       <version>1.2.1</version> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.codehaus.plexus</groupId> -->
-<!--       <artifactId>plexus-container-default</artifactId> -->
-<!--       <version>1.0-alpha-9-stable-1</version> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.codehaus.plexus</groupId> -->
-<!--       <artifactId>plexus-io</artifactId> -->
-<!--       <version>2.0.3</version> -->
-<!--     </dependency> -->
-
-    <!-- shared -->
-<!--     <dependency> -->
-<!--       <groupId>org.apache.maven.shared</groupId> -->
-<!--       <artifactId>maven-dependency-analyzer</artifactId> -->
-<!--       <version>1.2</version> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.apache.maven.shared</groupId> -->
-<!--       <artifactId>maven-dependency-tree</artifactId> -->
-<!--       <version>2.0</version> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.apache.maven.shared</groupId> -->
-<!--       <artifactId>maven-common-artifact-filters</artifactId> -->
-<!--       <version>1.2</version> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.apache.maven.shared</groupId> -->
-<!--       <artifactId>maven-invoker</artifactId> -->
-<!--       <version>2.0.11</version> -->
-<!--     </dependency> -->
-
     <dependency>
       <groupId>commons-lang</groupId>
       <artifactId>commons-lang</artifactId>
       <version>2.6</version>
     </dependency>
-
     <dependency>
       <groupId>commons-collections</groupId>
       <artifactId>commons-collections</artifactId>
       <version>3.2.1</version>
     </dependency>
-
-<!--     <dependency> -->
-<!--       <groupId>classworlds</groupId> -->
-<!--       <artifactId>classworlds</artifactId> -->
-<!--       <version>1.1</version> -->
-<!--     </dependency> -->
 
     <!-- dependencies to annotations -->
     <dependency>
@@ -214,14 +95,12 @@
       <groupId>org.apache.maven.plugin-testing</groupId>
       <artifactId>maven-plugin-testing-tools</artifactId>
       <version>2.0</version>
-<!--       <version>${pluginTestingVersion}</version> -->
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.plugin-testing</groupId>
       <artifactId>maven-plugin-testing-harness</artifactId>
       <version>2.0</version>
-<!--       <version>${pluginTestingVersion}</version> -->
       <scope>test</scope>
     </dependency>
    <dependency>
@@ -231,18 +110,14 @@
       <scope>test</scope>
     </dependency>
 
-
-
-
-
    <dependency>
-   	<groupId>commons-io</groupId>
-   	<artifactId>commons-io</artifactId>
-   	<version>2.4</version>
+     <groupId>commons-io</groupId>
+     <artifactId>commons-io</artifactId>
+     <version>2.4</version>
    </dependency>
   </dependencies>
 
-	  <build>
+  <build>
     <pluginManagement>
       <plugins>
         <plugin>
@@ -284,9 +159,8 @@
       </plugin>
     </plugins>
   </build>
-
-	<!-- TODO : copie des profils pour débug  -->
-	 <reporting>
+  
+  <reporting>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -295,7 +169,7 @@
       </plugin>
     </plugins>
   </reporting>
-
+  
   <profiles>
     <profile>
       <id>run-its</id>

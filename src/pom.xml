@@ -1,93 +1,97 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-
-	<parent>
-	  <groupId>org.apache.lenya</groupId>
-	  <artifactId>parent</artifactId>
-	  <version>2.6-SNAPSHOT</version>
-	  <relativePath>../parent</relativePath>
-	</parent>
-	
-	<groupId>org.apache.lenya</groupId>
-	<artifactId>core-reactor</artifactId>
-	<packaging>pom</packaging>
-	<version>2.6-SNAPSHOT</version>
-	<name>Lenya core reactor</name>
-	<url>http://lenya.apache.org</url>
-
-	<properties>
-	  <cocoon.version>2.1.12-dev</cocoon.version>
-	</properties>
-	
-	<modules>
-	  <!--<module>maven-xpatch-plugin</module>-->
-	  <module>parent</module>
-          <module>core-api</module>
-          <module>core-impl</module>
-	  <module>modules-core/cache</module>
-	  <!-- linking : OK : BUT : restore TEST-CASE in test folder : this tests depends on AbstractAccessControlTest (loop dependency), but may only depends on LenyaTestCase -->
-	  <module>modules-core/linking</module>
-	  <!-- ac : OK : BUT : need to restore test as they all depends on org/apache/lenya/ac/impl/AbstractAccessControlTest.java witch depends on LenyaTestCase -->
-	  <module>modules-core/ac</module>
-	  <module>modules-core/usecase</module>
-	  <!-- acusecases : OK : BUT : need to restore lenyatestcase dependent tests -->
-	  <module>modules-core/acusecases</module>
-	  <!-- ldap : OK : BUT : TEST -->
-	  <module>modules-core/ldap</module>
-	  <module>modules-core/monitoring</module>
-	  <module>modules-core/administration</module>
-	  <module>modules-core/gui</module>
-	  <module>modules-core/i18n</module>
-	  <module>modules-core/janitor</module>
-	  <module>modules-core/properties</module>
-	  <module>modules-core/templating</module>
-	  <!-- notification : OK : BUT : TEST : !!Not dans module-core BUT required dependency for workflow !! ?? TODO : move this to module-core ??  -->
-	  <module>modules/notification</module>
-	  <!-- workflow : OK : BUT : TEST -->
-	  <module>modules-core/workflow</module>
-	  <module>modules-core/metadata</module>
-	  <!-- observation : OK : BUT : TEST -->
-	  <module>modules-core/observation</module>
-	  <!-- sitemanagement : OK : BUT : TEST -->
-	  <module>modules-core/sitemanagement</module>
-	  
-	  <!--publication related stuff -->
-	  <module>pubs/default</module>
-	  
-	  <!-- "optionnal" modules (some are not really optionnals) -->
-	  <module>modules/bxe</module>
-	  <module>modules/cforms</module>
-	  <module>modules/collection</module>
-	  <module>modules/contactform</module>
-	  <module>modules/development</module>
-	  <module>modules/editors</module>
-	  <module>modules/export</module>
-	  <module>modules/jquery</module>
-	  <module>modules/languageselector</module>
-	  <module>modules/lenyadoc</module>
-	  <module>modules/linkcheck</module>
-	  <module>modules/links</module>
-	  <module>modules/lucene</module>
-	  <module>modules/menubar</module>
-	  <module>modules/navigation</module>
-	  <module>modules/neutron</module>
-	  <module>modules/news</module>
-	  <module>modules/opendocument</module>
-	  <module>modules/prettyprinting</module>
-	  <module>modules/profiling</module>
-	  <module>modules/resource</module>
-	  <module>modules/sitetree</module>
-	  <module>modules/sourcerepository</module>
-	  <module>modules/svg</module>
-	  <module>modules/tinymce</module>
-	  <module>modules/usecasedocument</module>
-	  <module>modules/webdav</module>
-	  <module>modules/xhtml</module>	
-	  
-	  <!-- And finally.. THE Webapp !! -->
-	  <module>webapp-maven</module>
-	  
-	</modules>
-	
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>org.apache.lenya</groupId>
+    <artifactId>parent</artifactId>
+    <version>2.6-SNAPSHOT</version>
+    <relativePath>parent</relativePath>
+  </parent>
+  
+  <groupId>org.apache.lenya</groupId>
+  <artifactId>core-reactor</artifactId>
+  <packaging>pom</packaging>
+  <version>2.6-SNAPSHOT</version>
+  <name>Lenya core reactor</name>
+  <url>http://lenya.apache.org</url>
+  
+  <properties>
+    <cocoon.version>2.1.12-dev</cocoon.version>
+  </properties>
+  
+  <modules>
+    
+    <!-- Maven plugin for patch web.xml and cocoon.xconf -->
+    <module>maven-xpatch-plugin/maven-xpatch</module>
+    
+    <!-- Lenya modules -->
+    <module>parent</module>
+    <module>core-api</module>
+    <module>core-impl</module>
+    <module>modules-core/cache</module>
+    <!-- linking : OK : BUT : restore TEST-CASE in test folder : this tests depends on AbstractAccessControlTest (loop dependency), but may only depends on LenyaTestCase -->
+    <module>modules-core/linking</module>
+    <!-- ac : OK : BUT : need to restore test as they all depends on org/apache/lenya/ac/impl/AbstractAccessControlTest.java witch depends on LenyaTestCase -->
+    <module>modules-core/ac</module>
+    <module>modules-core/usecase</module>
+    <!-- acusecases : OK : BUT : need to restore lenyatestcase dependent tests -->
+    <module>modules-core/acusecases</module>
+    <!-- ldap : OK : BUT : TEST -->
+    <module>modules-core/ldap</module>
+    <module>modules-core/monitoring</module>
+    <module>modules-core/administration</module>
+    <module>modules-core/gui</module>
+    <module>modules-core/i18n</module>
+    <module>modules-core/janitor</module>
+    <module>modules-core/properties</module>
+    <module>modules-core/templating</module>
+    <!-- notification : OK : BUT : TEST : !!Not dans module-core BUT required dependency for workflow !! ?? TODO : move this to module-core ??  -->
+    <module>modules/notification</module>
+    <!-- workflow : OK : BUT : TEST -->
+    <module>modules-core/workflow</module>
+    <module>modules-core/metadata</module>
+    <!-- observation : OK : BUT : TEST -->
+    <module>modules-core/observation</module>
+    <!-- sitemanagement : OK : BUT : TEST -->
+    <module>modules-core/sitemanagement</module>
+    
+    <!--publication related stuff -->
+    <module>pubs/default</module>
+    
+    <!-- "optionnal" modules (some are not really optionnals) -->
+    <module>modules/bxe</module>
+    <module>modules/cforms</module>
+    <module>modules/collection</module>
+    <module>modules/contactform</module>
+    <module>modules/development</module>
+    <module>modules/editors</module>
+    <module>modules/export</module>
+    <module>modules/jquery</module>
+    <module>modules/languageselector</module>
+    <module>modules/lenyadoc</module>
+    <module>modules/linkcheck</module>
+    <module>modules/links</module>
+    <module>modules/lucene</module>
+    <module>modules/menubar</module>
+    <module>modules/navigation</module>
+    <module>modules/neutron</module>
+    <module>modules/news</module>
+    <module>modules/opendocument</module>
+    <module>modules/prettyprinting</module>
+    <module>modules/profiling</module>
+    <module>modules/resource</module>
+    <module>modules/sitetree</module>
+    <module>modules/sourcerepository</module>
+    <module>modules/svg</module>
+    <module>modules/tinymce</module>
+    <module>modules/usecasedocument</module>
+    <module>modules/webdav</module>
+    <module>modules/xhtml</module>	
+    
+    <!-- And finally.. THE Webapp !! -->
+    <module>webapp-maven</module>
+    
+  </modules>
+  
 </project>
