@@ -330,7 +330,6 @@
       <version>2.6-SNAPSHOT</version>
     </dependency>
 
-    
     <!-- runtime dependencies -->
     <dependency>
       <groupId>org.apache.excalibur.components</groupId>
@@ -370,20 +369,17 @@
       <version>2.1.12-dev</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>batik-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>cocoon-testcase</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.apache.cocoon</groupId>
@@ -398,13 +394,11 @@
       <version>2.1.12-dev</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>profiler-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.apache.cocoon</groupId>
@@ -412,13 +406,11 @@
       <version>2.1.12-dev</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>xsp-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.apache.cocoon</groupId>
@@ -426,13 +418,11 @@
       <version>2.1.12-dev</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>captcha-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.apache.cocoon</groupId>
@@ -440,13 +430,11 @@
       <version>2.1.12-dev</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>hsqldb-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.apache.cocoon</groupId>
@@ -454,13 +442,11 @@
       <version>2.1.12-dev</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>proxy-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.apache.cocoon</groupId>
@@ -468,13 +454,11 @@
       <version>2.1.12-dev</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>auth-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.apache.cocoon</groupId>
@@ -482,13 +466,11 @@
       <version>2.1.12-dev</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>deli-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.apache.cocoon</groupId>
@@ -496,13 +478,11 @@
       <version>2.1.12-dev</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>mail-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.apache.cocoon</groupId>
@@ -820,8 +800,6 @@
       <artifactId>jena</artifactId>
       <version>2.1</version>
     </dependency>
-    <!--<dependency> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> 
-		     <version>2.0</version> </dependency> -->
 
     <!-- dependency from local repository -->
     <dependency>
@@ -902,24 +880,18 @@
       <artifactId>xindice</artifactId>
       <version>1.1</version>
     </dependency>
-
-
-
-
-
+    
     <dependency>
       <groupId>lenyaDeps</groupId>
       <artifactId>wsdl4j</artifactId>
       <version>1.5.1</version>
     </dependency>
 
-
     <dependency>
       <groupId>lenyaDeps</groupId>
       <artifactId>websphinx</artifactId>
       <version>0.5</version>
     </dependency>
-
 
     <dependency>
       <groupId>lenyaDeps</groupId>
@@ -1020,7 +992,7 @@
 	    <id>default-resources</id>
 	    <phase>process-resources</phase>
 	    <goals>
-	      <!--<goal>touch</goal>-->
+	      <goal>touch</goal>
 	      <goal>webresources</goal>
 	    </goals>
 	  </execution>

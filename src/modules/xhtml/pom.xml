@@ -12,6 +12,7 @@
 	<artifactId>module.xhtml</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya xhtml module</name>
+	<description>XHTML-based resource type</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

@@ -1910,27 +1910,6 @@
     <format name="icon" uri="cocoon://modules/xhtml/icon"/>
     
   </component-instance>
-  
-
-
-  <component-instance class="org.apache.lenya.cms.publication.ResourceTypeImpl" logger="lenya.resourcetypes.homepage" name="homepage">
-    <schema namespace="http://relaxng.org/ns/structure/0.9" uri="fallback://lenya/modules/homepage/resources/schemas/homepage.rng"/>
-
-    <!-- Default time in seconds until the resource-type has expired -->  
-    <expires seconds="0"/>
-
-    <sample mime-type="application/xhtml+xml" uri="fallback://lenya/modules/homepage/samples/homepage.xml"/>
-    <link-attribute xpath="//*[namespace-uri() = 'http://www.w3.org/1999/xhtml']/@href"/>
-    <link-attribute xpath="//*[namespace-uri() = 'http://www.w3.org/1999/xhtml']/@data"/>
-    <link-attribute xpath="//*[namespace-uri() = 'http://www.w3.org/1999/xhtml']/@src"/>
-    <format name="xhtml" uri="cocoon://modules/homepage/xhtml.xml"/>
-    <format name="luceneIndex" uri="cocoon://modules/xhtml/lucene-index"/>
-    <format name="webdavGET" uri="cocoon://modules/xhtml/davget.xml"/>
-    <!-- "xslt-clean" format is used by webDAV (and other editors?) to "clean" xml content before it is validated/saved -->
-    <format name="xslt-clean" uri="fallback://lenya/modules/homepage/xslt/clean-homepage.xsl"/>
-  </component-instance>
-
-
 
   <component-instance class="org.apache.lenya.cms.publication.ResourceTypeImpl" logger="lenya.resourcetypes.quiz" name="quiz">
     <schema namespace="http://relaxng.org/ns/structure/0.9" uri="fallback://lenya/modules/quiz/resources/schemas/quiz.rng"/>

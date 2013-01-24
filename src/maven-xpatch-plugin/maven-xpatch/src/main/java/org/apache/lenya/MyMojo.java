@@ -84,7 +84,7 @@ public class MyMojo extends AbstractMojo {
     	
     	String fileNameRegexTwo = ".xconf";
     	String fileToPatchTwo = baseFile+"/cocoon.xconf";
-    	//end make this paramters configurable
+    	//end make this parameters configurable
     	
     	@SuppressWarnings("unchecked")
     	Set<Artifact> dal = mavenProject.getDependencyArtifacts();
@@ -92,74 +92,79 @@ public class MyMojo extends AbstractMojo {
     	for(Artifact da : dal){
     		//TODO : a filter procedure for artifact
     		File f = da.getFile();
+    		//sometimes file is null
+    		if(f != null){
+    			try{
+                	final InputStream is = new FileInputStream(f);
+    				ArchiveInputStream in = new ArchiveStreamFactory().createArchiveInputStream("jar", is);
+    				JarArchiveEntry entry = (JarArchiveEntry)in.getNextEntry();
+    				
+                	//get all files that are in the configured folder
+    				while(entry != null){
+    					if(entry.getName().startsWith(patchFolder)){
+                			
+    						File fileToPatch = null;
+    						if(entry.getName().endsWith(fileNameRegexOne)){
+    							fileToPatch = new File(fileToPatchOne);
+                			}
+    						if(entry.getName().endsWith(fileNameRegexTwo)){
+    							fileToPatch = new File(fileToPatchTwo);
+                			}
+    						
+    						
+    						if(fileToPatch != null){
+    							String fName = new File(entry.getName()).getName();
+                				
+                				//extract file from jar
+                				File resultFile = File.createTempFile("jarpatch", fName);
+                				OutputStream out = new FileOutputStream(resultFile);
+                				IOUtils.copy(in, out);
+                				out.close();
+                				
+                				//get dom representation of the document
+                				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+                		    	DocumentBuilder db = dbf.newDocumentBuilder();
+                		    	Document docToPatch = db.parse(fileToPatch);
+                				
+                				//TODO : put patch create on the top level
+                				Xpatch xp = new Xpatch();
+                				xp.patch(docToPatch, resultFile,mavenProject.getProperties());
+                				
+                				//save the patched document
+                				//TODO : extract this to do at the end
+                				TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                			    Transformer transformer = transformerFactory.newTransformer();
+                			    DOMSource source = new DOMSource(docToPatch);
+                			    StreamResult streamResult =  new StreamResult(fileToPatch);
+                			    transformer.transform(source, streamResult);
+    						}
+    						
+                		}
+                		
+                		entry = (JarArchiveEntry)in.getNextEntry();
+                	}
+                	
+    				//now close the archive input stream
+    				in.close();
+                	
+                	
+	                }catch ( IOException e ){
+	                    throw new MojoExecutionException( "Error accessing file "+da.toString(), e );
+	                } catch (ParserConfigurationException e) {
+	                	throw new MojoExecutionException( "Error during parsing of the document to patch", e );
+	    			} catch (DOMException e) {
+	    				throw new MojoExecutionException( "Error during parsing of the document to patch", e );
+	    			} catch (TransformerException e) {
+	    				throw new MojoExecutionException( "Error during parsing of the document to patch", e );
+	    			} catch (SAXException e) {
+	    				throw new MojoExecutionException( "Error during parsing of the document to patch", e );
+	    			} catch (ArchiveException e) {
+	    				throw new MojoExecutionException( "Error during reading the jar archive", e );
+	    			}
+    			
+    		}
             //then use jar file for exploring
-            try{
-            	final InputStream is = new FileInputStream(f);
-				ArchiveInputStream in = new ArchiveStreamFactory().createArchiveInputStream("jar", is);
-				JarArchiveEntry entry = (JarArchiveEntry)in.getNextEntry();
-				
-            	//get all files that are in the configured folder
-				while(entry != null){
-					if(entry.getName().startsWith(patchFolder)){
-            			
-						File fileToPatch = null;
-						if(entry.getName().endsWith(fileNameRegexOne)){
-							fileToPatch = new File(fileToPatchOne);
-            			}
-						if(entry.getName().endsWith(fileNameRegexTwo)){
-							fileToPatch = new File(fileToPatchTwo);
-            			}
-						
-						
-						if(fileToPatch != null){
-							String fName = new File(entry.getName()).getName();
-            				
-            				//extract file from jar
-            				File resultFile = File.createTempFile("jarpatch", fName);
-            				OutputStream out = new FileOutputStream(resultFile);
-            				IOUtils.copy(in, out);
-            				out.close();
-            				
-            				//get dom representation of the document
-            				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            		    	DocumentBuilder db = dbf.newDocumentBuilder();
-            		    	Document docToPatch = db.parse(fileToPatch);
-            				
-            				//TODO : put patch create on the top level
-            				Xpatch xp = new Xpatch();
-            				xp.patch(docToPatch, resultFile,mavenProject.getProperties());
-            				
-            				//save the patched document
-            				//TODO : extract this to do at the end
-            				TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            			    Transformer transformer = transformerFactory.newTransformer();
-            			    DOMSource source = new DOMSource(docToPatch);
-            			    StreamResult streamResult =  new StreamResult(fileToPatch);
-            			    transformer.transform(source, streamResult);
-						}
-						
-            		}
-            		
-            		entry = (JarArchiveEntry)in.getNextEntry();
-            	}
-            	
-				//now close the archive input stream
-				in.close();
-            	
-            	
-            }catch ( IOException e ){
-                throw new MojoExecutionException( "Error accessing file "+da.toString(), e );
-            } catch (ParserConfigurationException e) {
-            	throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-			} catch (DOMException e) {
-				throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-			} catch (TransformerException e) {
-				throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-			} catch (SAXException e) {
-				throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-			} catch (ArchiveException e) {
-				throw new MojoExecutionException( "Error during reading the jar archive", e );
-			}
+            
     	}
     	
     }
