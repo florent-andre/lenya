@@ -12,6 +12,9 @@
 	<artifactId>module.navigation</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya navigation module</name>
+	<description>
+    This module contains Java classes and resources to generate navigation widgets.
+  </description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

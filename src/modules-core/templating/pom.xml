@@ -12,6 +12,7 @@
 	<artifactId>core.module.templating</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya core templating module</name>
+	<description>Publication templating implementation</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

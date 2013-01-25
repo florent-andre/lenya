@@ -12,6 +12,11 @@
 	<artifactId>module.editors</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya editors module</name>
+	<description>
+	    Editor base and support classes,  
+	    generic insertLink, insertAsset and insertImage usecase implementations,
+	    Forms and Oneform editor implementations
+  	</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

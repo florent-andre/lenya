@@ -12,6 +12,7 @@
 	<artifactId>core.module.metadata</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya core metadata module</name>
+	<description>Meta data declaration and handling.</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

@@ -12,6 +12,7 @@
 	<artifactId>core.module.ldap</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya core ldap module</name>
+	<description>LDAP user implementation. Also see src/pubs/default/config/ac/passwd/ldap.properties.sample</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

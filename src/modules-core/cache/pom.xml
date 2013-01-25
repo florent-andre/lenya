@@ -12,6 +12,7 @@
 	<artifactId>core.module.cache</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya core cache module</name>
+	<description>Source cache</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

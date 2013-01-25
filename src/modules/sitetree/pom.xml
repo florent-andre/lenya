@@ -12,6 +12,7 @@
 	<artifactId>module.sitetree</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya sitetree module</name>
+	<description>Tree-based site manager implementation</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

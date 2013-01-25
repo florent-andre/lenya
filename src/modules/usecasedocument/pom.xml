@@ -12,6 +12,7 @@
 	<artifactId>module.usecasedocument</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya usecasedocument module</name>
+	<description>Resource type which allows to execute usecases in the context of a document.</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

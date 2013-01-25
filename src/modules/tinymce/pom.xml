@@ -12,6 +12,8 @@
 	<artifactId>module.tinymce</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya tinymce module</name>
+	<description>Module for the TinyMCE WYSIWYG XHTML editor. Work in
+  progress.</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

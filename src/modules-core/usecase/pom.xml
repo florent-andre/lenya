@@ -12,6 +12,7 @@
 	<artifactId>core.module.usecase</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya core usecase module</name>
+	<description>Usecase framework API</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

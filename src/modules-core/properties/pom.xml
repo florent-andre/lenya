@@ -12,6 +12,7 @@
 	<artifactId>core.module.properties</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya core properties module</name>
+	<description>Property system implementation</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

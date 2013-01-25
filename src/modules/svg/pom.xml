@@ -12,6 +12,9 @@
 	<artifactId>module.svg</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya svg module</name>
+	<description>The SVG module generates the rounded corners for
+  the Lenya dialogs, and re-scales pixel-based GIF, JPG and PNG images on the
+  fly, depending on height and width query parameters. It uses Batik.</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

@@ -12,6 +12,9 @@
 	<artifactId>module.profiling</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya profiling module</name>
+	<description>Makes the Cocoon profiling mechanism available to Lenya site
+administrators. See also
+http://cocoon.apache.org/2.1/userdocs/concepts/profiler.html</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>
@@ -21,12 +24,6 @@
 			<artifactId>core-api</artifactId>
 			<version>2.6-SNAPSHOT</version>
 		</dependency>
-		
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.lenya</groupId> -->
-<!-- 			<artifactId>core-impl</artifactId> -->
-<!-- 			<version>2.6-SNAPSHOT</version> -->
-<!-- 		</dependency> -->
 		
 		<dependency>
 			<groupId>org.apache.lenya</groupId>

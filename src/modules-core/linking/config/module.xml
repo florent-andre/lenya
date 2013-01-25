@@ -26,5 +26,5 @@
   <version>0.1-dev</version>
   <name>Linking</name>
   <lenya-version>@lenya.version@</lenya-version>
-  <description>Components to handle internal links.</description>
+  
 </module>

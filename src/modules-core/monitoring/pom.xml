@@ -12,6 +12,7 @@
 	<artifactId>core.module.monitoring</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya core monitoring module</name>
+	<description>Tools to monitor a Lenya application.</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

@@ -12,6 +12,7 @@
 	<artifactId>module.bxe</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya BXE module</name>
+	<description>http://bxe.oscom.org, now using generic editor usecases</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

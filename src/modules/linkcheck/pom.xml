@@ -12,6 +12,7 @@
 	<artifactId>module.linkcheck</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya linkcheck module</name>
+	<description>Link Checker</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

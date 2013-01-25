@@ -12,6 +12,7 @@
 	<artifactId>module.export</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya export module</name>
+	<description>Export and import documents</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

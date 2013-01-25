@@ -12,6 +12,8 @@
 	<artifactId>module.prettyprinting</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya prettyprinting module</name>
+	<description>This module contains an XML pretty printing stylesheet that
+  will behave correctly wrt whitespace in XHTML.</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

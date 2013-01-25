@@ -12,6 +12,7 @@
 	<artifactId>module.lenyadoc</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya lenyadoc module</name>
+	<description>lenyadoc:// protocol</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

@@ -12,6 +12,7 @@
 	<artifactId>module.resource</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya resource module</name>
+	<description>A module to manage arbitrary resources (PDF, GIF, ...)</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

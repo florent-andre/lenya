@@ -12,6 +12,7 @@
 	<artifactId>module.lucene</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya lucene module</name>
+	<description>Lucene Search Module in order to allow indexing and searching when content is being changed.</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

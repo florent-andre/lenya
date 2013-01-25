@@ -12,6 +12,7 @@
 	<artifactId>module.links</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya links module</name>
+	<description>Link list resource type</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

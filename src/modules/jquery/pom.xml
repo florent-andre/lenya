@@ -12,6 +12,7 @@
 	<artifactId>module.jquery</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya jquery module</name>
+	<description>jQuery JavaScript library</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>

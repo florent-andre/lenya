@@ -12,6 +12,7 @@
 	<artifactId>module.webdav</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya webdav module</name>
+	<description>The WebDAV module provides the ability to use WebDAV clients to edit your content in Lenya</description>
 	<url>http://lenya.apache.org</url>
 
 	<dependencies>
