@@ -30,18 +30,6 @@
     
     <dependency>
       <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.cache</artifactId>
-      <version>2.6-SNAPSHOT</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.linking</artifactId>
-      <version>2.6-SNAPSHOT</version>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
       <artifactId>module.lucene</artifactId>
       <version>2.6-SNAPSHOT</version>
     </dependency>
