@@ -432,6 +432,21 @@
     <url-pattern>*.html</url-pattern>
   </servlet-mapping>
 
+	<!-- configuration for jersey servlet -->
+	<servlet>
+    <servlet-name>Jersey REST Service</servlet-name>
+    <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+<!--     <init-param> -->
+<!--       <param-name>com.sun.jersey.config.property.packages</param-name> -->
+<!--       <param-value>de.vogella.jersey.first</param-value> -->
+<!--     </init-param> -->
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Jersey REST Service</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+
   <!-- various MIME type mappings ====================================== -->
 
   <mime-mapping>

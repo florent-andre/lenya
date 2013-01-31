@@ -47,25 +47,25 @@
     <!--dependencies to the jersey module -->
     <dependency>
       	<groupId>org.apache.lenya</groupId>
-	<artifactId>jersey.module</artifactId>
-	<version>2.6-SNAPSHOT</version>
+		<artifactId>jersey.module</artifactId>
+		<version>2.6-SNAPSHOT</version>
     </dependency>
     <!-- dependencies to the repository demo implementation-->
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>repository.api</artifactId>
-      <version>2.6-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>repository.web</artifactId>
-      <version>2.6-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>repository.simpleimpl</artifactId>
-      <version>2.6-SNAPSHOT</version>
-    </dependency>
+<!--     <dependency> -->
+<!--       <groupId>org.apache.lenya</groupId> -->
+<!--       <artifactId>repository.api</artifactId> -->
+<!--       <version>2.6-SNAPSHOT</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.apache.lenya</groupId> -->
+<!--       <artifactId>repository.web</artifactId> -->
+<!--       <version>2.6-SNAPSHOT</version> -->
+<!--     </dependency> -->
+<!--     <dependency> -->
+<!--       <groupId>org.apache.lenya</groupId> -->
+<!--       <artifactId>repository.simpleimpl</artifactId> -->
+<!--       <version>2.6-SNAPSHOT</version> -->
+<!--     </dependency> -->
     <!--TODO see if transitive deps are fetched. If yes : test if patch is 
 	     apply remove transitive deps from here -->
     <!-- Lenya deps -->
@@ -576,7 +576,20 @@
 
     <!-- Really all the dependencies : TODO : clean this when direct update 
 	 to tomcat is okay -->
-
+	
+	<!-- xerces dependencies -->
+	<!-- local dependencies cause : https://issues.apache.org/jira/browse/XERCESJ-1454 -->
+	<dependency>
+		<groupId>org.apache.xerces</groupId>
+      	<artifactId>xml-apis</artifactId>
+      	<version>1.4.01</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.xerces</groupId>
+      	<artifactId>xercesImpl</artifactId>
+      	<version>2.11.0</version>
+	</dependency>
+	
     <dependency>
       <groupId>cocoon-deps</groupId>
       <artifactId>avalon-framework-api</artifactId>
