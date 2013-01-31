@@ -1,0 +1,66 @@
+subject : new repository interface
+
+* nota : I will make affirmative phrases here... But I may miss things or misunderstand ones... please correct and comment ! :)
+
+* Actually there is no really repository api.
+* I mean repository in a sens of storing and providing documents api.
+
+* Main Repository related api that actually exist are :
+** core-api/src/main/java/org/apache/lenya/cms/repository/RepositoryManager.java
+** /core-api/src/main/java/org/apache/lenya/cms/repository/RepositoryItem.java
+
+This ones defines things around session, but nothing about storing or providing.
+
+The lenya:// protocole do all the business stuff about retriving
+??? about storing.
+
+
+This situation lead to really difficult ways for implementing other kind of repositories (sql like stores, git store,...).
+
+I would like to propose a really business centered api that contains something like :
+
+Document getDocument(Identifier id)
+
+Identifier storeDocument(Document docu)
+
+Document createNewRevision()
+
+Boolean deleteDocument()
+//How to manage "states" ? like archives, publicated, ... ?
+
+A question remain about the "pathMapper" : the link beetween the human browsable structure of documents and the way to retrive it in the repository implementation.
+Do we embede this pathMapper in the repository (ie add .set(pathMapper) .get() to the repository api) or we superseed the repository with the pathmapper ( repository.getDocument(pathMapper.getIdentifier(siteNode sn)) ?
+
+I think that the second option is better as with one same instance of repository we are able to propose different "views" on the content via different implementations of PathMapper.
+
+What do you think ?
+
+A really simple implementation of this repository proposal is done here //////
+
+
+=== Integration with existing code base 
+
+* A really simple jersey endpoint that can be call from ////
+* use generate src="http://.../.../../"
+* there is surely a better integration way. For now only for demonstration purpose. Any idea welcome
+
+===================================
+Document interface : 
+
+Avoir un document peut vouloir dire "disposer d'un objet qui réalise les transformation nécessaires sur les informations pour fournir un résultat".
+C'est à dire que l'on sérialize des objets, et que au call du .getInputStream(), un calcul est fait sur la donnée de base pour fournir une vue/mise en forme particulier des informations
+
+==> TODO : voir les formats de documents qui permettent la "pérénité des informations" 
+** http://avro.apache.org/docs/current/
+** lié... mais pas clair sur la doc : 
+*** http://thrift.apache.org/
+*** http://etch.apache.org/etch/
+*** http://code.google.com/p/protobuf/
+*** http://msgpack.org/
+
+==================================================
+Improve of document interface
+
+In fact what is store is informations.
+A document is an aggregation of informations : data + metadata
+* and also data can be an aggregation of informations

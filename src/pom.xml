@@ -93,6 +93,12 @@
     
     <!-- And finally.. THE Webapp !! -->
     <module>webapp-maven</module>
+
+    <!-- new repository implementation related modules -->
+    <module>repository</module>
+    
+    <!-- Jersey related modules -->
+    <module>jersey</module>
     
   </modules>
   

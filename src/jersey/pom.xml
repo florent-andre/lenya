@@ -1,0 +1,27 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <parent>
+    <groupId>org.apache.lenya</groupId>
+    <artifactId>parent</artifactId>
+    <version>2.6-SNAPSHOT</version>
+    <relativePath>../parent</relativePath>
+  </parent>
+  
+  <groupId>org.apache.lenya</groupId>
+  <artifactId>jersey-reactor</artifactId>
+  <packaging>pom</packaging>
+  <version>2.6-SNAPSHOT</version>
+  <name>Lenya Jersey reactor</name>
+  <description>Provide module related to the JAXRS specs</description>
+  <url>http://lenya.apache.org</url>
+  
+  <modules>
+    
+    <module>jerseymodule</module>
+    <module>webapp-jersey</module>
+    
+  </modules>
+  
+</project>

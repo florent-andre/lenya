@@ -1,3 +1,11 @@
+== GOAL : jersey and repository implementation ==
+
+* restart HERE : 
+** add the jersey web patch in jersey module + follow tutorial :
+*** pas mal, montre à un moment la sérialisation json jaxb : http://www.vogella.com/articles/REST/article.html
+*** retrouver le "vrai" tuto (chercher dans boite mail)
+** implement all repository related stuff (start with the web endpoint implementing post/get/delete)
+
 == Goal : maven migration ==
 
 * module name : maven-xpatch
