@@ -293,7 +293,6 @@
       <version>2.6-SNAPSHOT</version>
     </dependency>
     
-    
     <dependency>
       <groupId>org.apache.lenya</groupId>
       <artifactId>module.svg</artifactId>
@@ -386,8 +385,7 @@
       <artifactId>forms-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
-
+	
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>linkrewriter-block</artifactId>
@@ -489,28 +487,24 @@
       <artifactId>querybean-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
-
+	
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>validation-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
-
+	
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>axis-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
-
+	
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>cocoon</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.apache.cocoon</groupId>
@@ -518,13 +512,11 @@
       <version>2.1.12-dev</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>imageop-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.apache.cocoon</groupId>
@@ -532,13 +524,11 @@
       <version>2.1.12-dev</version>
     </dependency>
 
-
     <dependency>
       <groupId>org.apache.cocoon</groupId>
       <artifactId>serializers-block</artifactId>
       <version>2.1.12-dev</version>
     </dependency>
-
 
     <dependency>
       <groupId>org.apache.cocoon</groupId>
@@ -546,11 +536,21 @@
       <version>2.1.12-dev</version>
     </dependency>
 
-
-
-
     <!-- external dependencies -->
-
+	
+	<!-- xerces dependencies -->
+	<!-- local dependencies cause : https://issues.apache.org/jira/browse/XERCESJ-1454 -->
+	<dependency>
+		<groupId>org.apache.xerces</groupId>
+      	<artifactId>xml-apis</artifactId>
+      	<version>1.4.01</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.xerces</groupId>
+      	<artifactId>xercesImpl</artifactId>
+      	<version>2.11.0</version>
+	</dependency>
+	
     <!-- Really all the dependencies : TODO : clean this when direct update 
 	 to tomcat is okay -->
 
