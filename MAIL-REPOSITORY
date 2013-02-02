@@ -1,3 +1,25 @@
+
+== le modele : 
+
+1 document
+composé de 1 à N informations
+1 information
+Composée de 1 data et 1 metadata
+
+Le repository store des informations
+
+
+Un repository manager qui permet de register différents repositories avec un namespace (??début d'un path ou "vrai" namespace ? ==> en fait assez équivalent)
+* ce repositoryManager contient un repositorySelector qui permet justement de faire cette sélection
+
+==> plutot que document... pourquoi ne pas utiliser piece of knowledge ?
+* c'est le document qiu gère les différentes versions et langues du document
+
+
+Questions : 
+* quelle positionnement pour le contrôle d'accès
+
+== MAIL 
 subject : new repository interface
 
 * nota : I will make affirmative phrases here... But I may miss things or misunderstand ones... please correct and comment ! :)
@@ -30,6 +52,7 @@ Boolean deleteDocument()
 
 A question remain about the "pathMapper" : the link beetween the human browsable structure of documents and the way to retrive it in the repository implementation.
 Do we embede this pathMapper in the repository (ie add .set(pathMapper) .get() to the repository api) or we superseed the repository with the pathmapper ( repository.getDocument(pathMapper.getIdentifier(siteNode sn)) ?
+==> see autosend mail in florent@apache.org
 
 I think that the second option is better as with one same instance of repository we are able to propose different "views" on the content via different implementations of PathMapper.
 
