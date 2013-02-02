@@ -51,21 +51,21 @@
 		<version>2.6-SNAPSHOT</version>
     </dependency>
     <!-- dependencies to the repository demo implementation-->
-<!--     <dependency> -->
-<!--       <groupId>org.apache.lenya</groupId> -->
-<!--       <artifactId>repository.api</artifactId> -->
-<!--       <version>2.6-SNAPSHOT</version> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.apache.lenya</groupId> -->
-<!--       <artifactId>repository.web</artifactId> -->
-<!--       <version>2.6-SNAPSHOT</version> -->
-<!--     </dependency> -->
-<!--     <dependency> -->
-<!--       <groupId>org.apache.lenya</groupId> -->
-<!--       <artifactId>repository.simpleimpl</artifactId> -->
-<!--       <version>2.6-SNAPSHOT</version> -->
-<!--     </dependency> -->
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>repository.api</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>repository.web</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>repository.simpleimpl</artifactId>
+      <version>2.6-SNAPSHOT</version>
+    </dependency>
     <!--TODO see if transitive deps are fetched. If yes : test if patch is 
 	     apply remove transitive deps from here -->
     <!-- Lenya deps -->
@@ -852,13 +852,13 @@
 
     <!-- dependencies stack to get it working -->
     <dependency>
-      <groupId>axis</groupId>
+      <groupId>org.apache.axis</groupId>
       <artifactId>axis-jaxrpc</artifactId>
       <version>1.4</version>
     </dependency>
 
     <dependency>
-      <groupId>axis</groupId>
+      <groupId>org.apache.axis</groupId>
       <artifactId>axis-saaj</artifactId>
       <version>1.4</version>
     </dependency>
@@ -1062,6 +1062,7 @@
 	<groupId>org.apache.tomcat.maven</groupId>
 	<artifactId>tomcat7-maven-plugin</artifactId>
 	<version>2.0</version>
+	<!-- configuration for deploy -->
 	<configuration>
 	  <url>http://localhost:8080/manager/html</url>
 	  <username>tomcat</username>
@@ -1085,7 +1086,7 @@
             </goals>
             <phase>package</phase>
             <configuration>
-              <path>lenya</path>
+              <path>/lenya</path>
               <!-- optional only if you want to use a preconfigured server.xml file -->
               <!-- <serverXml>src/main/tomcatconf/server.xml</serverXml> -->
               <!-- optional values which can be configurable -->
