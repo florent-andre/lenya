@@ -11,12 +11,48 @@
 
 	<artifactId>repository.simpleimpl</artifactId>
 	<packaging>jar</packaging>
-	<version>2.6-SNAPSHOT</version>
 	<name>Lenya repository Simple implementation</name>
 	<description>This implementation is mainly for demonstration purpose may be remove during development process</description>
 	<url>http://lenya.apache.org</url>
 	
 	<dependencies>
-	  
+
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>repository.api</artifactId>
+			<version>2.6-SNAPSHOT</version>
+		</dependency>
+	
 	</dependencies>
+	
+	<properties>
+		<!-- define the default service implementation for Data service that is the Jar one -->
+		<!-- For use the FileSystem one (for development), add this maven property to your maven build : -Ddata.implementation=org.apache.lenya.repository.simpleImpl.FSDataImpl -->
+		<data.implementation>org.apache.lenya.repository.simpleImpl.JarDataImpl</data.implementation>
+	</properties>
+	<build>
+		<resources>
+			<!-- resource filtering block -->
+			<!-- when you don't want to filter every resource you need two separate runs, one with filtering, one without.
+				And what's included in one of the runs needs to be excluded in the other -->
+  			<resource>
+    			<directory>src/main/resources</directory>
+    			<filtering>true</filtering>
+			    <includes>
+			      <include>META-INF/services/org.apache.lenya.repository.api.Data</include>
+			      <include>dataFSpath.properties</include>
+			    </includes>
+			  </resource>
+			  <resource>
+			    <directory>src/main/resources</directory>
+			    <filtering>false</filtering>
+			    <excludes>
+			      <exclude>META-INF/services/org.apache.lenya.repository.api.Data</exclude>
+			      <exclude>dataFSpath.properties</exclude>
+			    </excludes>
+			  </resource>
+			  
+		</resources>
+	
+	</build>
 </project>
