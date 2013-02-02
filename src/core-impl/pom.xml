@@ -38,6 +38,12 @@
     <groupId>excalibur-logger</groupId>
     <artifactId>excalibur-logger</artifactId>
     <version>2.1</version>
+    <exclusions>
+    	<exclusion>
+      		<groupId>servletapi</groupId>
+      		<artifactId>servletapi</artifactId>
+    	</exclusion>
+    </exclusions>
 </dependency>
 
 <dependency>
