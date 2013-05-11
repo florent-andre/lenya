@@ -49,17 +49,22 @@ public class LenyaTestCase extends ContainerTestCase {
 
     protected void addContext(DefaultContext context) {
         super.addContext(context);
-
+        
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!! addContext to check !!!!!!");
+        String currentDir = this.getClass().getClassLoader().getResource("").getPath();
+        System.out.println("currentdir = " + currentDir);
+        
         this.context = context;
 
-        String tempPath = System.getProperty("tempDir", "build/lenya/temp");
-        String contextRoot = System.getProperty("contextRoot", "build/lenya/webapp");
+        String tempPath = System.getProperty("tempDir", currentDir + "build/lenya/temp");
+        String contextRoot = System.getProperty("contextRoot", currentDir + "build/lenya/webapp");
+
         getLogger().info("Adding context root entry [" + contextRoot + "]");
 
         File contextRootDir = new File(contextRoot);
         context.put("context-root", contextRootDir);
 
-        String testPath = System.getProperty("testPath", "build/test");
+        String testPath = System.getProperty("testPath", currentDir + "build/test");
         File testRootDir = new File(testPath);
         context.put("test-path", testRootDir);
 
@@ -93,6 +98,7 @@ public class LenyaTestCase extends ContainerTestCase {
     protected void prepare() throws Exception {
         final String resourceName = LenyaTestCase.class.getName().replace('.', '/') + ".xtest";
         URL resourceUrl = ClassLoader.getSystemResource(resourceName);
+        System.out.println("______ Emplacement de la resource URL : " + resourceUrl);
         prepare(resourceUrl.openStream());
         
         SourceResolver resolver = (SourceResolver) getManager().lookup(SourceResolver.ROLE);
@@ -139,6 +145,7 @@ public class LenyaTestCase extends ContainerTestCase {
      * @return a <code>String</code> value
      */
     protected String getClassPath(final String context) {
+    	System.out.println("!!!!!!!!!!!!!!!!!!!!!! Build classPath to check !!!!!!");
         StringBuffer buildClassPath = new StringBuffer();
 
         String classDir = context + "/WEB-INF/classes";
