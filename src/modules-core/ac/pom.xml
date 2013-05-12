@@ -59,6 +59,27 @@
 			<artifactId>core-tests</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- Required dependencies -->
+		<!-- TODO : see if we add them to the core-test's dependencies list -->
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core-impl</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+				<groupId>axis</groupId>
+				<artifactId>axis</artifactId>
+				<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+				<groupId>lenyaDeps</groupId>
+				<artifactId>commons-discovery</artifactId>
+				<scope>test</scope>
+			</dependency>
+		
 	</dependencies>
 
 </project>

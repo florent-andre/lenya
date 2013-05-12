@@ -168,7 +168,9 @@ public class LenyaTestCase extends ContainerTestCase {
         // Extra class path is necessary for non-classloader-aware java compilers to compile XSPs
         // buildClassPath.append(File.pathSeparatorChar)
         // .append(getExtraClassPath(context));
-
+        
+        System.out.println("final class path = " + buildClassPath.toString());
+        
         getLogger().info("Context classpath: " + buildClassPath);
         return buildClassPath.toString();
     }
