@@ -21,10 +21,10 @@
 			<artifactId>core-api</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.lenya</groupId>
-			<artifactId>core.module.ac</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.lenya</groupId> -->
+<!-- 			<artifactId>core.module.ac</artifactId> -->
+<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>org.apache.lenya</groupId>
@@ -59,6 +59,15 @@
 			<groupId>jcifs</groupId>
 			<artifactId>jcifs-mock</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.ac</artifactId>
+			<version>${lenya.version}</version>
+			<type>test-jar</type>
+			<scope>test</scope>
+		</dependency>
+		
 
 	</dependencies>
 	
