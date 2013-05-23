@@ -31,6 +31,7 @@ import org.apache.lenya.ac.Identity;
 import org.apache.lenya.ac.PolicyManager;
 import org.apache.lenya.ac.User;
 import org.apache.lenya.ac.file.FileAccreditableManager;
+import org.apache.lenya.ac.impl.DefaultAccessController;
 import org.apache.lenya.cms.LenyaTestCase;
 import org.apache.lenya.cms.ac.PublicationAccessControllerResolver;
 import org.apache.lenya.cms.publication.DocumentFactory;

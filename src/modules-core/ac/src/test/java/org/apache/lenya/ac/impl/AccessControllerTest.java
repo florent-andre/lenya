@@ -20,6 +20,7 @@
 
 package org.apache.lenya.ac.impl;
 
+
 /**
  * Access controller test
  */
