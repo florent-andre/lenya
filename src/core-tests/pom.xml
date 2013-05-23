@@ -19,6 +19,11 @@
 			<groupId>org.apache.lenya</groupId>
 			<artifactId>core-api</artifactId>
 		</dependency>
+		
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.lenya</groupId> -->
+<!-- 			<artifactId>core.module.ac</artifactId> -->
+<!-- 		</dependency> -->
 
 <!-- 		<dependency> -->
 <!-- 			<groupId>axis</groupId> -->
