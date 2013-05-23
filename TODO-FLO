@@ -1,32 +1,20 @@
 == Restart here ==
 
 restauration des tests : 
-* déplacement des fichiers de test pour le core-impl et le module ac
-* mais en fait le build du core-impl ne fonctionne pas, car le ant fait une génération de fichier .xtest qui n'est pas présente lors du build.
-* ce fichier xtest est généré par le fichier : lenya/src/targets/test-build.xml
-** voir comment ça fonctionne et comment remettre en place cette mécanique
-*** le fichier de base pour la génération est le fichier : src/resources/test/template-xtest.xml
-*** auquel est appliqué tous les xconf
-*** et les xroles
-==> faire l'application du xpath pour la génération de ce fichier de test, et le mettre dans le bon sous dossier
-
-** il faut aussi qu'un "webapp" complete soit présente.
-** Actuellement celle-ci est copié, mais il faudrait la récupérer d'une dépendance, ou créer une webapp de test
-
-====> en fait : 
-* actuellement le fichier de configuration (xtest) est bien récupéré, mais dans le jar de core-tests
-** pour que l'on puisse appliquer les xpatch il faudrait que : 
-1) les fichiers soient extrait du jar
-2) que le xpatch soit appliqué
-3) que ce soit le fichier patché qui soit utilisé pour le load ==> pas un problème avec le classLoader, c'est le premier trouvé qui est utilisé, donc si extrait dans le bon dossier, ce sera celui-là qui sera utilisé
-
-==> restart pour résoudre les tests du module-core/ac car les tests restants dans core-impl-TEST depend du abstractAccessTEst
-
+* le xpath maven plugin permet maintenant de gérer la création du fichier de configuration pour les tests.
+* mais, certains xpatch ne sont pas appliqués sur le fichiers, alors que d'autre c'est bon.
+** c'est par exemple le cas du /core-impl/src/main/resources/META-INF/patches/conf/misc/uuid-generator.xconf
+** et aussi d'autre dans le module core-impl (mais certains autres de ce module semblent s'appliquer) et d'autre d'autres modules s'appliquent aussi.
+** ==> voir pourquoi certains ne sont pas appliqués :: sans doute du au code d'application et de sérialisation/désérialisation lors des modifications.
+*** ==> faire les modifs dans la classe abstract : /maven-xpatch/src/main/java/org/apache/lenya/AbstractXpatchMojo.java
+===> repartir sur le module ac qui dispose de la configuration du pom qui va bien
 
 
 == Goal : maven migration ==
 
 * module name : maven-xpatch
+
+* TODO : use abstract implementation on build classes
 
 * From the xPatch ant : lenya/externals/cocoon_2_1_x/tools/src/anttasks/XConfToolTask.java
 * list the project dependencies
