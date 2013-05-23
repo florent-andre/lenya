@@ -39,12 +39,15 @@ import java.util.Set;
  *
  * @goal webresources
  * 
- * @phase process-sources
+ * @phase process-resources
  */
 public class WebResourceMojo extends AbstractMojo {
+	
+	//TODO : use the defined abstract class
+	
     /**
      * Location of the file.
-     * @parameter expression="${project.build.directory}"
+     * @parameter property="project.build.outputDirectory"
      * @required
      */
     private File outputDirectory;
@@ -57,7 +60,7 @@ public class WebResourceMojo extends AbstractMojo {
     	
     	//TODO : make this parameters configurable
     	resourcesFolder = "webresources";
-    	String baseFile = mavenProject.getBuild().getOutputDirectory() + "/webresources/"; 
+    	File baseFile = new File(outputDirectory, "/webresources/"); 
     	
     	//end make this parameters configurable
     	
@@ -82,11 +85,11 @@ public class WebResourceMojo extends AbstractMojo {
     						//TODO : how to deal with override ?
     						// ==> make a test case with another dependency that have same folder and same file
     						String entryPart = entry.getName().replaceFirst(resourcesFolder, "");
-            				String fName2 = baseFile+entryPart;
+            				File fName2 = new File(baseFile,entryPart);
             				//extract file from jar
             				//File resultFile = File.createTempFile("jarpatch", fName);
     						//File resultFile = new File(fName2);
-    						if(entry.isDirectory()) new File(fName2).mkdir();
+    						if(entry.isDirectory()) fName2.mkdir();
     						else{
     							OutputStream out = new FileOutputStream(fName2);
     	        				IOUtils.copy(in, out);
