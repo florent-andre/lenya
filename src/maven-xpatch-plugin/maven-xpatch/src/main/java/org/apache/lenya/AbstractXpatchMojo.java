@@ -79,15 +79,18 @@ public abstract class AbstractXpatchMojo extends AbstractMojo {
         				OutputStream out = new FileOutputStream(resultFile);
         				IOUtils.copy(in, out);
         				out.close();
+        				getLog().info("Temp file created");
         				
         				//get dom representation of the document
         				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         		    	DocumentBuilder db = dbf.newDocumentBuilder();
         		    	Document docToPatch = db.parse(fileToPatch);
-        				
+        		    	getLog().info("parsing the file to patch is okay");
+        		    	
         				//TODO : put patch create on the top level
         				Xpatch xp = new Xpatch();
         				xp.patch(docToPatch, resultFile,properties);
+        				getLog().info("Patching the document is okay");
         				
         				//save the patched document
         				//TODO : extract this to do at the end
@@ -96,6 +99,7 @@ public abstract class AbstractXpatchMojo extends AbstractMojo {
         			    DOMSource source = new DOMSource(docToPatch);
         			    StreamResult streamResult =  new StreamResult(fileToPatch);
         			    transformer.transform(source, streamResult);
+        			    getLog().info("Patched document is now saved");
 					}
 					
         		}

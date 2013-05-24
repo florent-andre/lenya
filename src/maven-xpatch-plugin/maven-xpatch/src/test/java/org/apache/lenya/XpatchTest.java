@@ -12,23 +12,23 @@ import javax.xml.transform.TransformerException;
 import org.apache.commons.io.FileUtils;
 import org.apache.lenya.xpatch.Xpatch;
 import org.apache.xpath.XPathAPI;
+import static org.junit.Assert.*;
+import org.junit.Test;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import junit.framework.TestCase;
-
-public class XpatchTest extends TestCase {
+public class XpatchTest {
 
 	//utility class
-	public Document getDomDocument(File f) throws ParserConfigurationException, SAXException, IOException{
+	public static Document getDomDocument(File f) throws ParserConfigurationException, SAXException, IOException{
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
     	DocumentBuilder db = dbf.newDocumentBuilder(); 
     	return db.parse(f);
 	}
 	
-	//@Test
+	@Test
 	public void testpatchWeb() throws TransformerException, DOMException, IOException, SAXException, ParserConfigurationException{
 		Xpatch xp = new Xpatch();
 		
@@ -53,7 +53,7 @@ public class XpatchTest extends TestCase {
 		assertEquals("After patching value is allow", "allow", modifiedVal);
 	}
 	
-	//@Test
+	@Test
 	public void testpatchCocoon() throws TransformerException, DOMException, IOException, SAXException, ParserConfigurationException{
 		Xpatch xp = new Xpatch();
 		

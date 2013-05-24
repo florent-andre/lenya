@@ -40,7 +40,7 @@ public class XpatchTestMojo extends AbstractXpatchMojo {
     private org.apache.maven.project.MavenProject mavenProject;
     
     public void execute() throws MojoExecutionException {
-    	
+    			
     	//TODO : make this parameters configurable
     	//folder that contains patches
     	String patchFolder = "META-INF/patches";
