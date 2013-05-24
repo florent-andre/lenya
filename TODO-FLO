@@ -10,6 +10,14 @@ restauration des tests :
 ===> repartir sur le module ac qui dispose de la configuration du pom qui va bien
 
 
+== Amélioration des tests de publication
+
+* mettre la publication de tests dans un module a part.
+* le module défault semble obligatoire pour les tests de ac, car le message d'erreur suivant apparait : 
+  testSave(org.apache.lenya.ac.file.FileUserTest): org.apache.lenya.ac.AccessControlException: Configuration directory [/home/florent/devel/dev-lenya/lenyaSources/GIT-MAVEN-OSGI/lenya/src/modules-core/ac/target/test-classes/lenya/webapp/lenya/pubs/default/config/access-control/passwd] does not exist!
+
+
+
 == Goal : maven migration ==
 
 * module name : maven-xpatch
