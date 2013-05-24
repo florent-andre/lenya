@@ -20,6 +20,12 @@
 			<artifactId>core-api</artifactId>
 		</dependency>
 		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>pubs.default</artifactId>
+		</dependency>
+		
+		
 <!-- 		<dependency> -->
 <!-- 			<groupId>org.apache.lenya</groupId> -->
 <!-- 			<artifactId>core.module.ac</artifactId> -->

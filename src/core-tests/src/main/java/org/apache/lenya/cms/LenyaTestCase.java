@@ -50,21 +50,19 @@ public class LenyaTestCase extends ContainerTestCase {
     protected void addContext(DefaultContext context) {
         super.addContext(context);
         
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!! addContext to check !!!!!!");
         String currentDir = this.getClass().getClassLoader().getResource("").getPath();
-        System.out.println("currentdir = " + currentDir);
         
         this.context = context;
 
-        String tempPath = System.getProperty("tempDir", currentDir + "build/lenya/temp");
-        String contextRoot = System.getProperty("contextRoot", currentDir + "build/lenya/webapp");
+        String tempPath = System.getProperty("tempDir", currentDir + "lenya/temp");
+        String contextRoot = System.getProperty("contextRoot", currentDir + "lenya/webapp");
 
         getLogger().info("Adding context root entry [" + contextRoot + "]");
 
         File contextRootDir = new File(contextRoot);
         context.put("context-root", contextRootDir);
 
-        String testPath = System.getProperty("testPath", currentDir + "build/test");
+        String testPath = System.getProperty("testPath", currentDir + "test");
         File testRootDir = new File(testPath);
         context.put("test-path", testRootDir);
 
@@ -85,7 +83,6 @@ public class LenyaTestCase extends ContainerTestCase {
 
         context.put(Constants.CONTEXT_CLASS_LOADER, LenyaTestCase.class.getClassLoader());
         context.put(Constants.CONTEXT_CLASSPATH, getClassPath(contextRoot));
-        // context.put(Constants.CONTEXT_CONFIG_URL, conf.toURL());
         context.put(Constants.CONTEXT_DEFAULT_ENCODING, "ISO-8859-1");
     }
 
@@ -98,7 +95,6 @@ public class LenyaTestCase extends ContainerTestCase {
     protected void prepare() throws Exception {
         final String resourceName = LenyaTestCase.class.getName().replace('.', '/') + ".xtest";
         URL resourceUrl = ClassLoader.getSystemResource(resourceName);
-        System.out.println("______ Emplacement de la resource URL : " + resourceUrl);
         prepare(resourceUrl.openStream());
         
         SourceResolver resolver = (SourceResolver) getManager().lookup(SourceResolver.ROLE);
@@ -141,35 +137,15 @@ public class LenyaTestCase extends ContainerTestCase {
      * Also, we add the files to the ClassLoader for the Cocoon system. In order to protect
      * ourselves from skitzofrantic classloaders, we need to work with a known one.
      * 
+     * TODO : remove this function as not still usefull
+     * 
      * @param context The context path
      * @return a <code>String</code> value
      */
     protected String getClassPath(final String context) {
-    	System.out.println("!!!!!!!!!!!!!!!!!!!!!! Build classPath to check !!!!!!");
         StringBuffer buildClassPath = new StringBuffer();
-
-        String classDir = context + "/WEB-INF/classes";
-        buildClassPath.append(classDir);
-
-        File root = new File(context + "/WEB-INF/lib");
-        if (root.isDirectory()) {
-            File[] libraries = root.listFiles();
-            Arrays.sort(libraries);
-            for (int i = 0; i < libraries.length; i++) {
-                if (libraries[i].getAbsolutePath().endsWith(".jar")) {
-                    buildClassPath.append(File.pathSeparatorChar)
-                            .append(IOUtils.getFullFilename(libraries[i]));
-                }
-            }
-        }
-
-        buildClassPath.append(File.pathSeparatorChar).append(SystemUtils.JAVA_CLASS_PATH);
-
-        // Extra class path is necessary for non-classloader-aware java compilers to compile XSPs
-        // buildClassPath.append(File.pathSeparatorChar)
-        // .append(getExtraClassPath(context));
         
-        System.out.println("final class path = " + buildClassPath.toString());
+        buildClassPath.append(SystemUtils.JAVA_CLASS_PATH);
         
         getLogger().info("Context classpath: " + buildClassPath);
         return buildClassPath.toString();
