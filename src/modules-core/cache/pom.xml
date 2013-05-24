@@ -21,12 +21,5 @@
 			<artifactId>core-api</artifactId>
 		</dependency>
 	</dependencies>
-
-
-
-	<build>
-		<sourceDirectory>${basedir}/java/src</sourceDirectory>
-		<testSourceDirectory>${basedir}/java/test</testSourceDirectory>
-	</build>
-
+	
 </project>
