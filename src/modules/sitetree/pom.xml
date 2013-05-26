@@ -75,11 +75,4 @@
 
 	</dependencies>
 
-
-
-	<build>
-		<sourceDirectory>${basedir}/java/src</sourceDirectory>
-		<testSourceDirectory>${basedir}/java/test</testSourceDirectory>
-	</build>
-
 </project>
