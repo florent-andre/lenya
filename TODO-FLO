@@ -1,0 +1,248 @@
+
+== This is a maven migration from the 2_0_X branch ==
+
+== Restart here ==
+
+restauration des tests : 
+* le xpath maven plugin permet maintenant de gérer la création du fichier de configuration pour les tests.
+* l'injection des tests dépendent de /core-tests/src/main/resources/webresources/org/apache/lenya/cms/LenyaTestCase.xtest
+** la verions -FULL est celle qui contient toutes les définitions
+** la version -WORKING fonctionne pour le module ac
+** la version -TO-RESTORE est la version a remettre au final lorsque tous les problèmes seront réglés
+
+* le module ac fonctionne, mais :
+** le module observation ne fonctionne pas, il dépend de
+*** du module sitetree qui en fonctione pas, dépend de :
+**** core-api : pas de tests
+**** usecase : pas de tests
+**** cache : pas de tests
+**** linking : !!! des tests à remettre en route pour voir
+
+* la dépendence to core-test permet maintenant d'embedded pas mal de dépendencies.
+
+
+* code du module maven
+** la version qui s'occupe du test est beaucoup plus avancée, la version du compile doit se baser sur cette implementation.
+
+== Amélioration des tests de publication
+
+* mettre la publication de tests dans un module a part.
+* la publicatoin défault semble obligatoire pour les tests de ac, car le message d'erreur suivant apparait : 
+  testSave(org.apache.lenya.ac.file.FileUserTest): org.apache.lenya.ac.AccessControlException: Configuration directory [/home/florent/devel/dev-lenya/lenyaSources/GIT-MAVEN-OSGI/lenya/src/modules-core/ac/target/test-classes/lenya/webapp/lenya/pubs/default/config/access-control/passwd] does not exist!
+
+== Gestion des lenya ROLES : 
+
+* mettre ces roles en xpatchable histoire d'avoir les roles automatiquement avec le module 
+** et permettre la création des tests et des publications de manière autonome et clean.
+
+== Goal : maven migration ==
+
+* module name : maven-xpatch
+
+* TODO : use abstract implementation on build classes
+
+* From the xPatch ant : lenya/externals/cocoon_2_1_x/tools/src/anttasks/XConfToolTask.java
+* list the project dependencies
+* and then list the content of the jars
+
+* create the patch pool with later application
+* move code to /src/java
+ 
+* add configuration to restrict patch application to some groupid/artifact ids
+
+
+* A FAIRE : 
+** ajouter le patching via le code ant xpatch
+** voir pour un moyen de configuration des "Xweb and Xconf"
+*** idée de structure de dossier : META-INF/xml-patch/{fileCode}/fileName.{fileCode} ???
+** mettre en place un "false project" :
+*** un module qui compile des xpatch (ie prendre le contenu de src/confpatch et le mettre dans un module maven)
+*** un module qui contient le web-inf par défault et sur lequel on fait les patchs.
+
+* TODO : appliquer les patchs
+** faire un projet de test contenant des fichiers de patchs
+** ajouter un webinf/cocoon. dans le projet de webapp
+** appliquer le patch trouver dans le projet de test à la webapp
+
+* as the goal war-resource can't be hooked (check this on the ml though), file to patch have to be in resources/webresources
+** inspired by : http://edeustace.wordpress.com/2010/07/08/processing-resources-with-the-maven-war-plugin/
+** example of execution that don't work :
+<execution>
+	<id>Patch webapp</id>
+	<phase>war</phase>
+	<goals>
+		<goal>war-resources</goal>
+	</goals>
+</execution>
+
+
+= RESTART HERE : 
+
+
+* check why someusecase missing (edit, create, etc...)
+** ==> mostly due to xpatch commented imo
+
+
+=====> for OSGI : try to "extract" (put it as an independant bundle the bundle that fail (xml related stuff) : just put the bundle outside the war, in the felix framework
+
+* OSGI implementation : 
+** use the servlet registration module to add the cocoon servlet registration like : 
+*** documentation : http://felix.apache.org/site/apache-felix-http-service.html#ApacheFelixHTTPService-UsingtheWhiteboard
+*** exemple : http://svn.apache.org/repos/asf/felix/trunk/http/samples/whiteboard/src/main/java/org/apache/felix/http/samples/whiteboard/Activator.java
+** TODO : from the one bundle export cocoon servlet and filter dependency
+
+== To reactivate : 
+
+=== Patch 
+
+* ==> reactivate xpatch module as it's now falling for some special case with dependency...
+
+* remove the copied root/sitemap.xmap and make the patches fully working
+** same for WEB-inf/logkit.xconf and log4j.xcon
+** same for WEB-INF/web.xml
+
+=== Scheduler 
+
+==> maybe solve with all the dependencies missing solved
+
+* error : Scheduler with name 'Cocoon' already exists.
+** may be due to diff with an already running instance
+*** ==> do the diff with a just compiled one
+
+
+=== others
+
+* see the User-roles configuration '/WEB-INF/classes/org/apache/lenya/lenya.roles' cannot be found.
+** why it's here web-inf/classes ? can be move ? 
+*** originally in impl/java/org/apache/lenya/lenya.roles (core-impl/src/main/java/org/apache/lenya/lenya.roles for maven impl)
+
+
+* restore the deli component, desactivate cause class initialisation
+
+
+
+= module migration
+
+* !!!!! test file in core-impl are temporarilly in core-impl-TEST. They are intended to be move to specifics modules when needed, because actuals test in core-impl tests things from all modules and not from core-impl !!!
+** Solve the LenyaTestCase things (in core-impl-TEST) : as it seems to be an integration test with a complete lenya ready.
+
+
+
+= code cleanning :
+
+* remove deprecated axis : core-impl/src/main/java/org/apache/lenya/cms/repository/AxisUUIDGenerator.java
+
+* use the cocoon-dep repository more than the local one (cp parent pom.xml and webapp-maven pom)
+
+= Copy de la webapp cocoon =
+
+
+* actually files are directly copied from the cocoon/src/webapp to the lenya webapp.
+** This was done by the target :   <target name="prepare-cocoon" depends="check-cocoon" unless="gump.skipcocoonbuild"> in init-build.xml
+* also this patches were applied, see to do the same with xpatch maven module :
+ <!-- patch logkit.xconf -->
+    <xpatch file="${build.webapp}/WEB-INF/logkit.xconf"
+        includes="src/confpatch/logkit-*.xconf"/> 
+    
+    <!-- patch log4j.xconf -->
+    <xpatch file="${build.webapp}/WEB-INF/log4j.xconf"
+        includes="src/confpatch/log4j-*.xconf"/> 
+    
+    <!-- patch web.xml -->
+    <echo>PATCH web.xml</echo>
+    <xpatch file="${build.webapp}/WEB-INF/web.xml" 
+            includes="src/confpatch/*.xweb"/> 
+
+
+= a classer =
+
+== Patch des sitemap et cocoon.xconf ==
+
+* dans le fichier : src/targets/webapp-build.xml
+* regroupe l'ensemble des fichiers de patch dans le dossier de build puis fait tourner xpatch
+** <!-- Patch sitemap.xmap -->
+    <xpatch file="${build.webapp}/sitemap.xmap"
+      srcdir="${build.patch}/sitemap" 
+      includes="**/*.xmap"
+      addComments="false"/>
+    
+    <!-- Patch cocoon.xconf -->
+    <property name="patch.webapp" value="true"/>
+    <xpatch file="${build.webapp}/WEB-INF/cocoon.xconf"
+      srcdir="${build.patch}/cocoon-xconf" 
+      includes="prepare/*.xconf"
+      addComments="true"/>
+    <xpatch file="${build.webapp}/WEB-INF/cocoon.xconf"
+      srcdir="${build.patch}/cocoon-xconf" 
+      includes="**/*.xconf"
+      excludes="prepare/*.xconf"
+      addComments="false"/>
+
+==> voir pour faire un truc dans la phase de "process-resources"
+cf : http://stackoverflow.com/a/2247645
+
+==> voir aussi le "patch plugin" : https://maven.apache.org/plugins/maven-patch-plugin/
+
+
+* pour le dev d'un plug maven : http://maven.apache.org/guides/plugin/guide-java-plugin-development.html
+
+* une méthode consistant à exploser les jar des dépendences et à faire un filtre : 
+** http://stackoverflow.com/a/6448530
+
+=======================================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+==> idée finale : 
+* les patchs dans un dossier resources/patches/(xconf|xweb|...) qui sont compilés avec le module par défault
+* lors de la construction de la webapp : 
+** dans la phase "generate-resources" 
+** 1) faire le explode (à la mode http://stackoverflow.com/a/6448530)
+** 2) appliquer le module perso maven qui se base sur le xpatch
+
+= fin a classer =
+
+
+== History ==
+
+* après de nombreux test l'appel de ant par amven estt abandonné car ne fonctionne pas
+
+
+* maven-archetype for creating a plugin/mojo (see the diff between)
+** 211: remote -> org.apache.maven.archetypes:maven-archetype-mojo (An archetype which contains a sample a sample Maven plugin.)
+**212: remote -> org.apache.maven.archetypes:maven-archetype-plugin (An archetype which contains a sample Maven plugin.)
+
+==> actuellement teste le 212
+
+* 1) comment récupérer les infos de patch ?
+* A) unpack
+* voir pour utiliser le unpack 
+** http://svn.apache.org/viewvc/maven/plugins/tags/maven-dependency-plugin-2.5/src/main/java/org/apache/maven/plugin/dependency/UnpackDependenciesMojo.java?view=markup
+* B) get information directly from jar
+
+== Root webapp sitemap / cocoon imported sitemap ==
+
+* actually use the directly from cocoon one, but there is some diff between this one and the from build one :
+* diff externals/cocoon_2_1_x/src/webapp/sitemap.xmap build/lenya/webapp/sitemap.xmap
+
+== Architecture idea ==
+
+* Rendering
+    /\
+* templating
+    /\
+* Transforming
+    /\
+* Data sources
+
+== documentation: ==
+
+* guide java : http://maven.apache.org/guides/plugin/guide-java-plugin-development.html
+** l'api : http://maven.apache.org/developers/mojo-api-specification.html
+* pour les tests : http://maven.apache.org/plugin-testing/maven-plugin-testing-harness/
+* les problèmes communs : http://maven.apache.org/plugin-developers/common-bugs.html
+
+* les librairies partagés de maven : http://maven.apache.org/shared/index.html
+
+
+
+
+
+

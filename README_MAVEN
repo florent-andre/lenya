@@ -1,0 +1,10 @@
+
+* For install :
+
+cd src
+mvn clean install
+
+
+* For import in eclipse :
+ just open Eclipse and import existing maven project
+
