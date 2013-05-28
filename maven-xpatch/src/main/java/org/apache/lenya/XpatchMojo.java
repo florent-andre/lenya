@@ -53,7 +53,7 @@ import javax.xml.transform.stream.StreamResult;
  * 
  * @phase process-sources
  * 
- * @requiresDependencyResolution test
+ * @requiresDependencyResolution compile
  */
 public class XpatchMojo extends AbstractMojo {
 	

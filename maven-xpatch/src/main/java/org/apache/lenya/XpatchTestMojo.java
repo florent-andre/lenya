@@ -34,7 +34,7 @@ import java.util.Set;
  * 
  * @phase process-test-resources
  * 
- * @requiresDependencyResolution compile
+ * @requiresDependencyResolution test
  */
 public class XpatchTestMojo extends AbstractXpatchMojo {
 	/**
@@ -86,7 +86,7 @@ public class XpatchTestMojo extends AbstractXpatchMojo {
 					fileToPatchTwo, mavenProject.getProperties());
 		}
 
-		getLog().info("Start processing local files");
+		getLog().info("Xpatch : processing local files");
 
 		// TODO : make it configurable : only the test resources or the normal
 		// resources, or both
@@ -112,6 +112,10 @@ public class XpatchTestMojo extends AbstractXpatchMojo {
 
 			}
 		}
+		
+		///now run the patches on the project
+		runXpatch(resourceFilesList, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo, fileToPatchTwo, mavenProject.getProperties());
+
 
 	}
 

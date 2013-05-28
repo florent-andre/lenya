@@ -155,9 +155,9 @@ protected void runXpatch(Collection<File> f,
 			Xpatch xp = new Xpatch();
 			boolean result = xp.patch(docToPatch, patch,properties);
 			if(result){
-				getLog().info("--> " +patch.getAbsolutePath()+ " : OK");
+				getLog().debug("--> " +patch.getAbsolutePath()+ " : OK");
 			}else{
-				getLog().warn("--> " +patch.getAbsolutePath()+ " : not applied");
+				getLog().debug("--> " +patch.getAbsolutePath()+ " : not applied");
 			}
 			
 			
