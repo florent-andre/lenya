@@ -28,8 +28,9 @@
     <!-- Lenya modules -->
     <module>parent</module>
     <module>core-api</module>
-    <!-- <module>core-impl</module> -->
-    <!-- <module>core-tests</module> -->
+    <module>core-tests</module>
+    <!-- TODO : restore anteater and webtest -->
+    <module>core-impl</module>    
     <!-- <module>modules-core/cache</module> -->
     <!-- linking : OK : BUT : restore TEST-CASE in test folder : this tests depends on AbstractAccessControlTest (loop dependency), but may only depends on LenyaTestCase -->
     <!-- <module>modules-core/linking</module> -->

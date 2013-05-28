@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.apache.lenya</groupId>
+		<artifactId>parent</artifactId>
+		<version>2.6-SNAPSHOT</version>
+		<relativePath>../parent/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>core-tests</artifactId>
+	<packaging>jar</packaging>
+	<name>Lenya core base classes and resources for tests</name>
+	<url>http://lenya.apache.org</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core-api</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>pubs.default</artifactId>
+		</dependency>
+
+		<!-- Transitive dependency for cocoon-component -->
+		<dependency>
+			<groupId>excalibur-component</groupId>
+			<artifactId>excalibur-component</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>excalibur-logger</groupId>
+			<artifactId>excalibur-logger</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>servletapi</groupId>
+					<artifactId>servletapi</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>excalibur-instrument</groupId>
+			<artifactId>excalibur-instrument-api</artifactId>
+		</dependency>
+
+		<!-- tests -->
+		<dependency>
+			<groupId>org.apache.cocoon</groupId>
+			<artifactId>cocoon-testcase</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>excalibur</groupId>
+			<artifactId>excalibur-testcase</artifactId>
+		</dependency>
+		
+		<!-- required dependencies for tests to run -->
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core-impl</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>module.svg</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.templating</artifactId>
+		</dependency>
+		
+		<dependency>
+				<groupId>concurrent</groupId>
+				<artifactId>concurrent</artifactId>
+			</dependency>
+
+
+<!-- Others dependencies -->
+<!-- 		<dependency> -->
+<!-- 				<groupId>axis</groupId> -->
+<!-- 				<artifactId>axis</artifactId> -->
+<!-- 		</dependency> -->
+		
+		<dependency>
+				<groupId>lenyaDeps</groupId>
+				<artifactId>commons-discovery</artifactId>
+			</dependency>
+			
+			<dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>serializers-block</artifactId>
+    </dependency>
+    
+    <!-- TODO : see if the 3 of pool are really required -->
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-pool-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-pool-impl</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-pool-instrumented</artifactId>
+    </dependency>
+    
+
+	</dependencies>
+
+</project>

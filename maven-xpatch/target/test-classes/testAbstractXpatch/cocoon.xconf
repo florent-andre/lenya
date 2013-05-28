@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+<?xml version="1.0" encoding="UTF-8"?><!--
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
   this work for additional information regarding copyright ownership.
@@ -14,14 +13,101 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
--->
-<cocoon version="2.1">
+--><cocoon user-roles="/WEB-INF/classes/org/apache/lenya/lenya.roles" version="2.1">
 
   <source-factories>
   
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.source.ZipSourceFactory" logger="lenya.source.zip" name="zip"/>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.source.LenyaSourceFactory" logger="lenya.source.lenya" name="lenya" scheme="context:"/>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.source.FallbackSourceFactory" logger="lenya.source.fallback" name="fallback"/>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.source.SiteSourceFactory" logger="lenya.source.site" name="site" scheme="site:"/>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.source.TemplateFallbackSourceFactory" logger="lenya.source.templatefallback" name="template-fallback"/>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.source.AggregatingFallbackSourceFactory" logger="lenya.source.aggregatefallback" name="aggregate-fallback"/>
   </source-factories>
 
-	<input-modules/>
-	<store-janitor/>
+	<input-modules>
+    <component-instance class="org.apache.lenya.cms.cocoon.components.modules.input.PageEnvelopeModule" logger="sitemap.modules.input.page-envelope" name="page-envelope"/>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.components.modules.input.FallbackModule" logger="core.modules.input.fallback" name="fallback">
+      <parameter name="protocol" value="fallback"/>
+    </component-instance>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.components.modules.input.ResourceTypeModule" logger="sitemap.modules.input.resource-type" name="resource-type"/>
+  
+    <component-instance class="org.apache.cocoon.components.modules.input.DateInputModule" logger="core.modules.input" name="date-i18n">
+      <format>yyyy-MM-dd HH:mm:ss Z</format>
+    </component-instance>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.components.modules.input.LastModifiedModule" logger="core.modules.input" name="last-modified"/>
+  
+    <component-instance class="org.apache.cocoon.components.modules.input.DefaultsModule" name="defaults">
+      <values>
+        <skin>lenya-site</skin>
+      </values>
+    </component-instance>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.components.modules.input.ResourceExistsModule" logger="core.modules.input.resourceexists" name="resource-exists"/>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.components.modules.input.DocumentURLModule" logger="core.modules.input.document-url" name="document-url"/>
+  
+    <component-instance class="org.apache.cocoon.components.modules.input.ChainMetaModule" logger="core.modules.input" name="forrest">
+      <input-module name="request-param"/>
+      <input-module name="request-attr"/>
+      <input-module name="session-attr"/>
+      <input-module name="defaults"/>
+      <input-module name="page-envelope"/>
+      <input-module name="access-control"/>
+    </component-instance>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.components.modules.input.DateConverterModule" logger="core.modules.input" name="date-iso8601-rfc822">
+      <src-pattern>yyyy-MM-dd HH:mm:ss Z</src-pattern>
+      <pattern>EEE, d MMM yyyy HH:mm:ss Z</pattern>
+      <locale>en_US</locale>
+    </component-instance>
+  
+    <component-instance class="org.apache.cocoon.components.modules.input.RealPathModule" logger="core.modules.input" name="realpath"/>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.components.modules.input.DocumentInfoModule" logger="sitemap.modules.input.doc-info" name="doc-info"/>
+  </input-modules>
+	<store-janitor>
+    <parameter name="freememory" value="10000000"/>
+  </store-janitor>
 	<usecases/>
-</cocoon>
+
+
+    <component class="org.apache.lenya.cms.cluster.impl.ClusterManagerImpl" logger="lenya.cluster" role="org.apache.lenya.cms.cluster.ClusterManager"/>
+
+  
+
+    <component class="org.apache.lenya.cms.cluster.impl.RsyncRepositoryListenerImpl" logger="lenya.cluster" role="org.apache.lenya.cms.cluster.RsyncRepositoryListener"/>
+
+  
+    <template-instantiators/>
+  
+    <meta-data/>
+  
+    <resource-types/>
+  
+    <site-managers/>
+  
+    <component class="org.apache.lenya.cms.cocoon.components.context.ContextUtility" logger="lenya.cocoon.components" role="org.apache.lenya.cms.cocoon.components.context.ContextUtility"/>
+  
+    <component class="org.apache.lenya.cms.publication.DocumentFactoryBuilderImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.publication.DocumentFactoryBuilder"/>
+  
+    <component class="org.apache.lenya.cms.metadata.MetaDataRegistryImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.metadata.MetaDataRegistry"/>
+  
+    <component class="org.apache.lenya.cms.repository.RandomUuidGenerator" logger="lenya.cocoon.components" role="org.apache.lenya.cms.repository.UUIDGenerator"/>
+  
+    <document-builders>
+      <component-instance class="org.apache.lenya.cms.publication.DefaultDocumentBuilder" logger="lenya.publication" name="default"/>
+      <component-instance class="org.apache.lenya.cms.publication.DefaultDocumentBuilder" logger="lenya.publication" name="no-extension">
+        <parameter name="extension" value=""/>
+      </component-instance>
+    </document-builders>
+  </cocoon>

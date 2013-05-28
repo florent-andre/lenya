@@ -1,0 +1,77 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.apache.lenya</groupId>
+		<artifactId>parent</artifactId>
+		<version>2.6-SNAPSHOT</version>
+		<relativePath>../parent/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>core-impl</artifactId>
+	<packaging>jar</packaging>
+	<name>Lenya core implementation</name>
+	<url>http://lenya.apache.org</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis</artifactId>
+		</dependency>
+
+		<!-- Transitive dependency for cocoon-component -->
+		<dependency>
+			<groupId>excalibur-component</groupId>
+			<artifactId>excalibur-component</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>excalibur-logger</groupId>
+			<artifactId>excalibur-logger</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>servletapi</groupId>
+					<artifactId>servletapi</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>excalibur-instrument</groupId>
+			<artifactId>excalibur-instrument-api</artifactId>
+		</dependency>
+
+		<!-- tests -->
+		<dependency>
+			<groupId>org.apache.cocoon</groupId>
+			<artifactId>cocoon-testcase</artifactId>
+			<!-- Do not put test scope here, as this breack the transitivity -->
+			<!-- TODO ?? : create a "test" project will solve this ?? -->
+<!-- 			<scope>test</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>excalibur</groupId>
+			<artifactId>excalibur-testcase</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+
+	</build>
+
+</project>

@@ -20,7 +20,7 @@ Call mvn xpatch:help -Ddetail=true -Dgoal=&lt;goal-name&gt; to display parameter
       <aggregator>false</aggregator>
       <requiresOnline>false</requiresOnline>
       <inheritedByDefault>true</inheritedByDefault>
-      <implementation>HelpMojo</implementation>
+      <implementation>org.apache.lenya.HelpMojo</implementation>
       <language>java</language>
       <instantiationStrategy>per-lookup</instantiationStrategy>
       <executionStrategy>once-per-session</executionStrategy>
