@@ -24,17 +24,6 @@
 			<groupId>org.apache.lenya</groupId>
 			<artifactId>pubs.default</artifactId>
 		</dependency>
-		
-		
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.lenya</groupId> -->
-<!-- 			<artifactId>core.module.ac</artifactId> -->
-<!-- 		</dependency> -->
-
-<!-- 		<dependency> -->
-<!-- 			<groupId>axis</groupId> -->
-<!-- 			<artifactId>axis</artifactId> -->
-<!-- 		</dependency> -->
 
 		<!-- Transitive dependency for cocoon-component -->
 		<dependency>
@@ -68,6 +57,61 @@
 			<groupId>excalibur</groupId>
 			<artifactId>excalibur-testcase</artifactId>
 		</dependency>
+		
+		<!-- required dependencies for tests to run -->
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core-impl</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>module.svg</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.templating</artifactId>
+		</dependency>
+		
+		<dependency>
+				<groupId>concurrent</groupId>
+				<artifactId>concurrent</artifactId>
+			</dependency>
+
+
+<!-- Others dependencies -->
+<!-- 		<dependency> -->
+<!-- 				<groupId>axis</groupId> -->
+<!-- 				<artifactId>axis</artifactId> -->
+<!-- 		</dependency> -->
+		
+		<dependency>
+				<groupId>lenyaDeps</groupId>
+				<artifactId>commons-discovery</artifactId>
+			</dependency>
+			
+			<dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>serializers-block</artifactId>
+    </dependency>
+    
+    <!-- TODO : see if the 3 of pool are really required -->
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-pool-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-pool-impl</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>cocoon-deps</groupId>
+      <artifactId>excalibur-pool-instrumented</artifactId>
+    </dependency>
+    
 
 	</dependencies>
 

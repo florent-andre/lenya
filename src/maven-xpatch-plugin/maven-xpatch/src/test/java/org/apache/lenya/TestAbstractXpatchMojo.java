@@ -4,11 +4,16 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.lenya.filter.ResourcesFilter;
+import org.apache.maven.artifact.Artifact;
+import org.apache.maven.artifact.DefaultArtifact;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.xpath.XPathAPI;
@@ -19,8 +24,8 @@ import org.xml.sax.SAXException;
 
 public class TestAbstractXpatchMojo extends AbstractXpatchMojo {
 
-	public void execute() throws MojoExecutionException, MojoFailureException {
-		// Implement nothing, extends only to access protected void runXpatch
+	public void execute() throws MojoExecutionException{
+		super.execute();
 	}
 	
 	public void testNodes(Document patched, String xpath, int number) throws TransformerException{
@@ -34,9 +39,15 @@ public class TestAbstractXpatchMojo extends AbstractXpatchMojo {
 		String basePath = "/"+resourcesFolder+"/";
 		String archiveName = "core-impl-2.6-SNAPSHOT.jar";
 		String cocoonFileName = "cocoon.xconf";
-		File archive = new File(this.getClass().getResource(basePath+archiveName).getFile());;
+		
+		Artifact archive = new DefaultArtifact("test", "test", "0.0", "compile", "jar", "", null);
+		archive.setFile(new File(this.getClass().getResource(basePath+archiveName).getFile()));
+		
+		//List<File> archive = new ArrayList<File>();
+		//archive.add());
 		
 		String patchFolder = "META-INF/patches";
+		resourcesFilter = new ResourcesFilter(patchFolder);
 		
 		File cocoonXconf = new File(this.getClass().getResource(basePath + cocoonFileName).getFile());
 		
@@ -47,7 +58,7 @@ public class TestAbstractXpatchMojo extends AbstractXpatchMojo {
     	String fileNameRegexTwo = ".DISABLED";
     	File fileToPatchTwo = new File(".");
     	
-		runXpatch(archive, patchFolder, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo, fileToPatchTwo, null);
+		runXpatch(archive, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo, fileToPatchTwo, null);
 		
 		Document patched = XpatchTest.getDomDocument(cocoonXconf);
 		

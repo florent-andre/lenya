@@ -57,6 +57,11 @@
 
   <component-instance class="org.apache.lenya.cms.cocoon.source.DocumentSourceFactory" logger="" name="lenya-document"/>
   
+
+<!--
+  <component-instance class="org.apache.lenya.cms.cocoon.source.LenyaDocSourceFactory" logger="" name="lenyadoc"/>
+  -->
+  
 </source-factories><source-resolver class="org.apache.excalibur.source.impl.SourceResolverImpl"/><runnable-manager logger="core.runnable"><thread-factory>org.apache.cocoon.components.thread.DefaultThreadFactory</thread-factory><thread-pools><thread-pool><name>default</name><priority>NORM</priority><daemon>false</daemon><queue-size>-1</queue-size><max-pool-size>5</max-pool-size><min-pool-size>5</min-pool-size><keep-alive-time-ms>60000</keep-alive-time-ms><block-policy>ABORT</block-policy><shutdown-graceful>false</shutdown-graceful><shutdown-wait-time-ms>-1</shutdown-wait-time-ms></thread-pool><thread-pool><name>daemon</name><priority>NORM</priority><daemon>true</daemon><queue-size>0</queue-size><max-pool-size>-1</max-pool-size><min-pool-size>1</min-pool-size><keep-alive-time-ms>60000</keep-alive-time-ms><block-policy>ABORT</block-policy><shutdown-graceful>false</shutdown-graceful><shutdown-wait-time-ms>-1</shutdown-wait-time-ms></thread-pool></thread-pools></runnable-manager><entity-resolver logger="core.resolver"><parameter name="catalog" value="WEB-INF/entities/catalog"/><parameter name="verbosity" value="1"/></entity-resolver><meta-data>
   <component-instance class="org.apache.lenya.cms.metadata.ConfigurableElementSet" name="http://apache.org/lenya/metadata/site/1.0">
     <element editable="true" multiple="false" name="folderNode"/>
@@ -437,6 +442,8 @@
     <parameter name="protocol" value="lenya-document"/>
   </component>
     
+   <component class="org.apache.lenya.cms.repository.SourceNodeFactory" logger="lenya.nodefactory.source" role="org.apache.lenya.cms.repository.NodeFactory"/>
+   
   <component class="org.apache.lenya.cms.site.tree2.SiteTreeRevisionVerifier" logger="content-janitor" role="org.apache.lenya.cms.site.tree2.SiteTreeRevisionVerifier"/>
 
   <component class="org.apache.lenya.cms.site.tree2.SaxTreeBuilder" logger="lenya.site" role="org.apache.lenya.cms.site.tree2.TreeBuilder"/>

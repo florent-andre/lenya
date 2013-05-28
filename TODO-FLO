@@ -2,21 +2,35 @@
 
 restauration des tests : 
 * le xpath maven plugin permet maintenant de gérer la création du fichier de configuration pour les tests.
-* mais, certains xpatch ne sont pas appliqués sur le fichiers, alors que d'autre c'est bon.
-** c'est par exemple le cas du /core-impl/src/main/resources/META-INF/patches/conf/misc/uuid-generator.xconf
-** et aussi d'autre dans le module core-impl (mais certains autres de ce module semblent s'appliquer) et d'autre d'autres modules s'appliquent aussi.
-** ==> voir pourquoi certains ne sont pas appliqués :: sans doute du au code d'application et de sérialisation/désérialisation lors des modifications.
-*** ==> faire les modifs dans la classe abstract : /maven-xpatch/src/main/java/org/apache/lenya/AbstractXpatchMojo.java
-===> repartir sur le module ac qui dispose de la configuration du pom qui va bien
+* l'injection des tests dépendent de /core-tests/src/main/resources/webresources/org/apache/lenya/cms/LenyaTestCase.xtest
+** la verions -FULL est celle qui contient toutes les définitions
+** la version -WORKING fonctionne pour le module ac
+** la version -TO-RESTORE est la version a remettre au final lorsque tous les problèmes seront réglés
 
+* le module ac fonctionne, mais :
+** le module observation ne fonctionne pas, il dépend de
+*** du module sitetree qui en fonctione pas, dépend de :
+**** core-api : pas de tests
+**** usecase : pas de tests
+**** cache : pas de tests
+**** linking : !!! des tests à remettre en route pour voir
+
+* la dépendence to core-test permet maintenant d'embedded pas mal de dépendencies.
+
+
+* code du module maven
+** la version qui s'occupe du test est beaucoup plus avancée, la version du compile doit se baser sur cette implementation.
 
 == Amélioration des tests de publication
 
 * mettre la publication de tests dans un module a part.
-* le module défault semble obligatoire pour les tests de ac, car le message d'erreur suivant apparait : 
+* la publicatoin défault semble obligatoire pour les tests de ac, car le message d'erreur suivant apparait : 
   testSave(org.apache.lenya.ac.file.FileUserTest): org.apache.lenya.ac.AccessControlException: Configuration directory [/home/florent/devel/dev-lenya/lenyaSources/GIT-MAVEN-OSGI/lenya/src/modules-core/ac/target/test-classes/lenya/webapp/lenya/pubs/default/config/access-control/passwd] does not exist!
 
+== Gestion des lenya ROLES : 
 
+* mettre ces roles en xpatchable histoire d'avoir les roles automatiquement avec le module 
+** et permettre la création des tests et des publications de manière autonome et clean.
 
 == Goal : maven migration ==
 

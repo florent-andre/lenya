@@ -30,6 +30,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.apache.commons.lang.NotImplementedException;
+import org.apache.maven.plugin.logging.Log;
+import org.apache.maven.plugin.logging.SystemStreamLog;
 //import org.apache.tools.ant.BuildException;
 //import org.apache.tools.ant.DirectoryScanner;
 //import org.apache.tools.ant.Project;
@@ -73,7 +75,7 @@ public final class Xpatch {//extends MatchingTask {
 
     private static final String NL=System.getProperty("line.separator");
     private static final String FSEP=System.getProperty("file.separator");
-    
+    private Log log = new SystemStreamLog();
     private File file;
     //private File directory;
     private File srcdir;
@@ -258,8 +260,9 @@ public final class Xpatch {//extends MatchingTask {
         }
         NodeList nodes = XPathAPI.selectNodeList(configuration, xpath);
 
-        // Suspend, because the xpath returned not one node
+        // Suspend, because the xpath returned no node
         if (nodes.getLength() !=1 ) {
+        	log.warn("Xpath for path return no node");
             //log("Suspending: "+filename, Project.MSG_DEBUG);
             return false;
         }
@@ -282,12 +285,15 @@ public final class Xpatch {//extends MatchingTask {
 
         if (ifProp != null && ifProp.length() > 0 && !ifValue ) {
             //log("Skipping: " + filename, Project.MSG_DEBUG);
+        	log.warn("---> Path not applied, see case 1");
             return false;
         } else if (testPath != null && testPath.length() > 0 &&
             XPathAPI.eval(root, testPath).bool()) {
             //log("Skipping: " + filename, Project.MSG_DEBUG);
+        	log.warn("---> Path not applied, see case 2");
             return false;
         } else {
+        	log.info("Start applying the patch");
             // Test if component wants us to remove a list of nodes first
             xpath = getAttribute(elem, "remove", replaceProperties);
 
@@ -384,6 +390,7 @@ public final class Xpatch {//extends MatchingTask {
                 root.appendChild(configuration.createComment("..... End configuration from '"+basename+"' "));
                 root.appendChild(configuration.createTextNode(NL));
             }
+            log.info("Patch applied !!!");
             return true;
         }
     }

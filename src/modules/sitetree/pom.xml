@@ -72,7 +72,47 @@
 			<groupId>jcifs</groupId>
 			<artifactId>jcifs-mock</artifactId>
 		</dependency>
+		
+		<!-- Test related dependencies -->
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core-tests</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		<groupId>org.apache.lenya</groupId>
+		<artifactId>core.module.ac</artifactId>
+		<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		<groupId>org.apache.lenya</groupId>
+		<artifactId>module.sourcerepository</artifactId>
+		<scope>test</scope>
+		</dependency>
+		
 
 	</dependencies>
-
+	
+	<build>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>maven-xpatch</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<executions>
+				<execution>
+					<id>default-resources</id>
+					<phase>process-test-resources</phase>
+					<goals>
+						<goal>testwebresources</goal>
+						<goal>testxpatch</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
+	</build>
+	
 </project>

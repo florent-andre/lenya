@@ -181,9 +181,8 @@
 
   <component-instance class="org.apache.lenya.cms.publication.ResourceTypeImpl" logger="lenya.resourcetypes.links" name="links">
     <schema namespace="http://relaxng.org/ns/structure/0.9" uri="fallback://lenya/modules/links/resources/schema/links.rng"/>
-    <sample mime-type="application/lenya-links+xml" uri="fallback://lenya/modules/links/samples/links.xml"/>
+    <sample mime-type="application/xml" uri="fallback://lenya/modules/links/samples/links.xml"/>
     <format name="xhtml" uri="cocoon://modules/links/xhtml.xml"/>
-    <format name="xhtml.xsl" uri="/modules/links/xslt/links2xhtml.xsl"/>
     <format name="luceneIndex" uri="cocoon://modules/xhtml/lucene-index"/>
     <format name="webdavGET" uri="cocoon://modules/xhtml/davget.xml"/>
   </component-instance>
@@ -229,86 +228,61 @@
     <format name="xslt-clean" uri="fallback://lenya/modules/homepage/xslt/clean-homepage.xsl"/>
   </component-instance>
 
-
-
-  <component-instance class="org.apache.lenya.cms.publication.ResourceTypeImpl" logger="lenya.resourcetypes.quiz" name="quiz">
-    <schema namespace="http://relaxng.org/ns/structure/0.9" uri="fallback://lenya/modules/quiz/resources/schemas/quiz.rng"/>
-    
-    <!-- Default time in seconds until the resource-type has expired -->
-    <expires seconds="3600"/>
-
-    <samples uri="fallback://lenya/modules/quiz/samples/samples.xml"/>
-<!--
-    <link-attribute xpath="//*[namespace-uri() = 'http://www.w3.org/1999/xhtml']/@href"/>
-    <link-attribute xpath="//*[namespace-uri() = 'http://www.w3.org/1999/xhtml']/@data"/>
-    <link-attribute xpath="//*[namespace-uri() = 'http://www.w3.org/1999/xhtml']/@src"/>  -->
-    <format name="xhtml" uri="cocoon://modules/quiz/xhtml.xml"/>
-    <format name="luceneIndex" uri="cocoon://modules/xhtml/lucene-index"/>
-<!-- "xslt-clean" format is used by webDAV (and other editors?) to "clean" xml content before it is validated/saved -->
-    <format name="xslt-clean" uri="fallback://lenya/modules/xhtml/xslt/clean-xhtml.xsl"/>
-    <format name="icon" uri="cocoon://modules/xhtml/icon"/>
-<!--		
-    <format name="xhtml.xsl" uri="/modules/quiz/xslt/firedocs_exam2xhtml.xsl"/>
-    <format name="firedocsInserts" uri="fallback://lenya/modules/quiz/resources/firedocs/inserts.xml"/>
--->
-  </component-instance>
-
-</resource-types><template-instantiators><component-instance class="org.apache.lenya.defaultpub.cms.publication.templating.Instantiator" logger="lenya.publication.templating" name="default"><parameter name="shareAccreditables" value="false"/></component-instance></template-instantiators><component class="org.apache.lenya.cms.cluster.impl.RsyncRepositoryListenerImpl" logger="lenya.cluster" role="org.apache.lenya.cms.cluster.RsyncRepositoryListener"/><component class="org.apache.lenya.cms.cluster.impl.ClusterManagerImpl" logger="lenya.cluster" role="org.apache.lenya.cms.cluster.ClusterManager"/><component class="org.apache.lenya.cms.cocoon.components.context.ContextUtility" logger="lenya.cocoon.components" role="org.apache.lenya.cms.cocoon.components.context.ContextUtility"/><document-builders><component-instance class="org.apache.lenya.cms.publication.DefaultDocumentBuilder" logger="lenya.publication" name="default"/></document-builders><component class="org.apache.lenya.cms.publication.DocumentFactoryBuilderImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.publication.DocumentFactoryBuilder"/><component class="org.apache.lenya.cms.metadata.MetaDataRegistryImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.metadata.MetaDataRegistry"/><site-managers>
+</resource-types><template-instantiators><component-instance class="org.apache.lenya.defaultpub.cms.publication.templating.Instantiator" logger="lenya.publication.templating" name="default"><parameter name="shareAccreditables" value="false"/></component-instance></template-instantiators><component class="org.apache.lenya.cms.cocoon.components.context.ContextUtility" logger="lenya.cocoon.components" role="org.apache.lenya.cms.cocoon.components.context.ContextUtility"/><document-builders><component-instance class="org.apache.lenya.cms.publication.DefaultDocumentBuilder" logger="lenya.publication" name="default"/></document-builders><component class="org.apache.lenya.cms.publication.DocumentFactoryBuilderImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.publication.DocumentFactoryBuilder"/><component class="org.apache.lenya.cms.metadata.MetaDataRegistryImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.metadata.MetaDataRegistry"/><component class="org.apache.lenya.cms.repository.SharedItemStoreImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.repository.SharedItemStore"/><site-managers>
 
   <component-instance class="org.apache.lenya.cms.site.tree2.TreeSiteManager" logger="lenya.site" name="tree"/>
   
-</site-managers><component class="org.apache.lenya.cms.repository.RandomUuidGenerator" logger="lenya.cocoon.components" role="org.apache.lenya.cms.repository.UUIDGenerator"/>
+</site-managers><component class="org.apache.lenya.cms.repository.AxisUUIDGenerator" logger="lenya.cocoon.components" role="org.apache.lenya.cms.repository.UUIDGenerator"/>
 <component class="org.apache.lenya.cms.module.ModuleManagerImpl" role="org.apache.lenya.cms.module.ModuleManager">
 <modules copy="true">
-<module shortcut="navigation" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/navigation"/>
-<module shortcut="prettyprinting" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/prettyprinting"/>
-<module shortcut="contactform" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/contactform"/>
-<module shortcut="notification" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/notification"/>
-<module shortcut="languageselector" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/languageselector"/>
-<module shortcut="neutron" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/neutron"/>
-<module shortcut="svg" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/svg"/>
-<module shortcut="menubar" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/menubar"/>
-<module shortcut="webdav" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/webdav"/>
-<module shortcut="profiling" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/profiling"/>
-<module shortcut="tinymce" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/tinymce"/>
-<module shortcut="opendocument" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/opendocument"/>
-<module shortcut="lenyadoc" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/lenyadoc"/>
-<module shortcut="usecasedocument" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/usecasedocument"/>
-<module shortcut="sitetree" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/sitetree"/>
-<module shortcut="lucene" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/lucene"/>
-<module shortcut="jquery" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/jquery"/>
-<module shortcut="lenyaDocWriting" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/lenyaDocWriting"/>
-<module shortcut="news" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/news"/>
-<module shortcut="export" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/export"/>
-<module shortcut="collection" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/collection"/>
-<module shortcut="linkcheck" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/linkcheck"/>
-<module shortcut="cforms" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/cforms"/>
-<module shortcut="development" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/development"/>
-<module shortcut="sourcerepository" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/sourcerepository"/>
-<module shortcut="resource" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/resource"/>
-<module shortcut="links" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/links"/>
-<module shortcut="bxe" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/bxe"/>
-<module shortcut="xhtml" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/xhtml"/>
-<module shortcut="editors" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules/editors"/>
-<module shortcut="workflow" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/workflow"/>
-<module shortcut="monitoring" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/monitoring"/>
-<module shortcut="cache" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/cache"/>
-<module shortcut="usecase" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/usecase"/>
-<module shortcut="observation" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/observation"/>
-<module shortcut="gui" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/gui"/>
-<module shortcut="ac" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/ac"/>
-<module shortcut="acusecases" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/acusecases"/>
-<module shortcut="linking" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/linking"/>
-<module shortcut="i18n" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/i18n"/>
-<module shortcut="templating" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/templating"/>
-<module shortcut="administration" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/administration"/>
-<module shortcut="properties" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/properties"/>
-<module shortcut="janitor" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/janitor"/>
-<module shortcut="sitemanagement" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/sitemanagement"/>
-<module shortcut="ldap" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/ldap"/>
-<module shortcut="metadata" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-core/metadata"/>
-<module shortcut="homepage" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/pubs/default/modules/homepage"/>
-<module shortcut="quiz" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_1_X/src/modules-forms/quiz"/>
+<module shortcut="navigation" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/navigation"/>
+<module shortcut="prettyprinting" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/prettyprinting"/>
+<module shortcut="contactform" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/contactform"/>
+<module shortcut="notification" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/notification"/>
+<module shortcut="languageselector" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/languageselector"/>
+<module shortcut="neutron" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/neutron"/>
+<module shortcut="svg" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/svg"/>
+<module shortcut="menubar" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/menubar"/>
+<module shortcut="fckeditor" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/fckeditor"/>
+<module shortcut="webdav" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/webdav"/>
+<module shortcut="profiling" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/profiling"/>
+<module shortcut="tinymce" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/tinymce"/>
+<module shortcut="opendocument" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/opendocument"/>
+<module shortcut="lenyadoc" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/lenyadoc"/>
+<module shortcut="usecasedocument" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/usecasedocument"/>
+<module shortcut="sitetree" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/sitetree"/>
+<module shortcut="lucene" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/lucene"/>
+<module shortcut="kupu" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/kupu"/>
+<module shortcut="news" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/news"/>
+<module shortcut="export" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/export"/>
+<module shortcut="collection" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/collection"/>
+<module shortcut="linkcheck" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/linkcheck"/>
+<module shortcut="cforms" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/cforms"/>
+<module shortcut="development" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/development"/>
+<module shortcut="sourcerepository" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/sourcerepository"/>
+<module shortcut="resource" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/resource"/>
+<module shortcut="links" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/links"/>
+<module shortcut="bxe" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/bxe"/>
+<module shortcut="xhtml" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/xhtml"/>
+<module shortcut="editors" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/editors"/>
+<module shortcut="workflow" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/workflow"/>
+<module shortcut="monitoring" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/monitoring"/>
+<module shortcut="cache" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/cache"/>
+<module shortcut="usecase" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/usecase"/>
+<module shortcut="observation" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/observation"/>
+<module shortcut="gui" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/gui"/>
+<module shortcut="ac" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/ac"/>
+<module shortcut="acusecases" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/acusecases"/>
+<module shortcut="linking" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/linking"/>
+<module shortcut="i18n" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/i18n"/>
+<module shortcut="templating" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/templating"/>
+<module shortcut="administration" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/administration"/>
+<module shortcut="properties" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/properties"/>
+<module shortcut="janitor" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/janitor"/>
+<module shortcut="sitemanagement" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/sitemanagement"/>
+<module shortcut="ldap" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/ldap"/>
+<module shortcut="metadata" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/metadata"/>
+<module shortcut="homepage" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/pubs/default/modules/homepage"/>
 </modules>
 </component>
 
@@ -930,6 +904,16 @@
     </component-instance>
   
 
+  <component-instance class="org.apache.lenya.cms.editors.fckeditor.Fckeditor" logger="lenya.publication" name="fckeditor.edit">
+    <transaction policy="pessimistic"/>
+    <parameter name="tidyConfig" value="fallback://lenya/modules/fckeditor/config/jtidy.properties"/> 
+    <view menu="false" uri="/modules/fckeditor/fckeditor.open"/>
+    <event id="edit"/>
+    <parameter name="checkoutRestrictedToSession" value="false"/>
+  </component-instance>
+    
+
+
     <component-instance class="org.apache.lenya.cms.site.usecases.Delete" logger="lenya.usecases.delete" name="webdav.delete">
     </component-instance>
 
@@ -982,13 +966,18 @@
     <view menu="false" uri="modules/resource/usecases/create-resource.jx"/>
   </component-instance>
 
+    <component-instance class="org.apache.lenya.cms.editors.forms.FormsEditor" logger="lenya.publication" name="editors.forms">
+      <transaction policy="pessimistic"/>
+      <view menu="false" uri="modules/editors/usecases/forms/forms.jx"/>
+    </component-instance>
+  
     <component-instance class="org.apache.lenya.cms.editors.forms.OneFormEditor" logger="lenya.publication" name="editors.oneform">
       <transaction policy="pessimistic"/>
       <view menu="false" uri="modules/editors/usecases/forms/oneform.jx"/>
     </component-instance>
   
 
-  <component-instance class="org.apache.lenya.cms.editors.InsertLink" logger="lenya.publication" name="editors.insertAsset">
+  <component-instance class="org.apache.lenya.cms.editors.InsertAsset" logger="lenya.publication" name="editors.insertAsset">
     <view createContinuation="false" menu="false" template="modules/editors/usecases/insertAsset.jx"/>
     <parameter name="mode" value="Asset"/>
     <parameter name="asset-usecase" value="tab.asset"/>
@@ -996,7 +985,7 @@
 
 
 
-  <component-instance class="org.apache.lenya.cms.editors.InsertLink" logger="lenya.publication" name="editors.insertImage">
+  <component-instance class="org.apache.lenya.cms.editors.InsertAsset" logger="lenya.publication" name="editors.insertImage">
     <view createContinuation="false" menu="false" template="modules/editors/usecases/insertAsset.jx"/>
     <parameter name="mode" value="Image"/>
     <parameter name="asset-usecase" value="tab.asset"/>
@@ -1073,6 +1062,15 @@
     </component-instance>
 
 
+    
+    <component-instance class="org.apache.lenya.cms.workflow.usecases.InvokeWorkflow" logger="lenya.publication" name="kupu.edit">
+      <view createContinuation="false" menu="false" uri="modules/kupu/usecases/kupu.jx"/>
+      <transaction policy="pessimistic"/>
+      <event id="edit"/>
+      <parameter name="checkoutRestrictedToSession" value="false"/>
+    </component-instance>
+    
+  
     
     <component-instance class="org.apache.lenya.modules.news.usecases.Edit" logger="lenya.news" name="news.edit">
       <view menu="false" uri="modules/news/usecases/edit.jx"/>
@@ -1163,10 +1161,6 @@
   </component>
   
 
-
-  <component class="org.apache.lenya.cms.site.tree2.SiteTreeMonitorImpl" logger="lenya.site" role="org.apache.lenya.cms.site.tree2.SiteTreeMonitor"/>
-  
-
   
   <component class="org.apache.lenya.cms.site.tree2.SiteTreeRevisionVerifier" logger="content-janitor" role="org.apache.lenya.cms.site.tree2.SiteTreeRevisionVerifier"/>
 	
@@ -1188,7 +1182,6 @@
 
 	<analyzer_manager logger="core.search.analyzer_manager">
 		<analyzer class="org.apache.lucene.analysis.standard.StandardAnalyzer" id="standard"/>
-	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Arabic_ar.xml" id="stopword_ar"/>
 	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Danish_da.xml" id="stopword_da"/>
 	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Dutch_nl.xml" id="stopword_nl"/>
 	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/English_en.xml" id="stopword_en"/>
@@ -1199,7 +1192,9 @@
 	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Norwegian_no.xml" id="stopword_no"/>
 	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Polish_pl.xml" id="stopword_pl"/>
 	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Portuguese_pt.xml" id="stopword_pt"/>
-	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Russian_ru.xml" id="stopword_ru"/>
+	  <!--
+	  <analyzer id="stopword_ru" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Russian_ru.xml" checkupdate="true"/>
+	  -->
 	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Spanish_es.xml" id="stopword_es"/>
 	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Swedish_sv.xml" id="stopword_sv"/>
 	  <analyzer checkupdate="false" class="org.apache.cocoon.components.search.analyzer.ConfigurablePerFieldAnalyzer" configfile="context://WEB-INF/analyzer/perfieldconf.xml" id="analyzer_research"/>
@@ -1241,8 +1236,6 @@
 
   <component class="org.apache.lenya.cms.repository.SourceNodeFactory" logger="lenya.nodefactory.source" role="org.apache.lenya.cms.repository.NodeFactory"/>
 
-  <component class="org.apache.lenya.cms.repository.impl.SourceNodeRcmlFactoryImpl" logger="lenya.nodefactory.source" role="org.apache.lenya.cms.repository.SourceNodeRcmlFactory"/>
-
     <component class="org.apache.lenya.cms.observation.ObservationManager" logger="lenya.observation.registry" role="org.apache.lenya.cms.observation.ObservationRegistry"/>
   
     <component class="org.apache.lenya.cms.observation.RepositoryLogger" logger="lenya.observation.repositorylogger" role="org.apache.lenya.cms.observation.RepositoryLogger"/>
@@ -1257,8 +1250,6 @@
   <component class="org.apache.excalibur.store.impl.MRUMemoryStore" logger="lenya.metadata.cache" role="org.apache.lenya.cms.metadata.MetaDataCacheStore">
     <parameter name="maxobjects" value="10000"/>
   </component>
-
-  <component class="org.apache.lenya.cms.repository.impl.SourceNodeRcmlFactoryImpl" logger="lenya.nodefactory.source" role="org.apache.lenya.cms.repository.SourceNodeRcmlFactory"/>
 </components>
   
 </testcase>

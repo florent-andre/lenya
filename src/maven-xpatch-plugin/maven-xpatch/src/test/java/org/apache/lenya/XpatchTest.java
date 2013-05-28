@@ -2,14 +2,13 @@ package org.apache.lenya;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.io.StringReader;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.lenya.xpatch.Xpatch;
 import org.apache.xpath.XPathAPI;
 import static org.junit.Assert.*;
@@ -17,6 +16,8 @@ import org.junit.Test;
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+import org.xml.sax.EntityResolver;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 public class XpatchTest {
@@ -24,7 +25,18 @@ public class XpatchTest {
 	//utility class
 	public static Document getDomDocument(File f) throws ParserConfigurationException, SAXException, IOException{
 		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-    	DocumentBuilder db = dbf.newDocumentBuilder(); 
+    	DocumentBuilder db = dbf.newDocumentBuilder();
+    	
+    	//for not validating schema (usefull when out of internet)
+    	//TODO : create a "non connected mode"
+    	db.setEntityResolver(new EntityResolver() {
+			
+			public InputSource resolveEntity(String arg0, String arg1)
+					throws SAXException, IOException {
+				return new InputSource(new StringReader(""));
+			}
+		});
+    	
     	return db.parse(f);
 	}
 	

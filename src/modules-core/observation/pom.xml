@@ -21,10 +21,10 @@
 			<artifactId>core-api</artifactId>
 		</dependency>
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.lenya</groupId> -->
-<!-- 			<artifactId>core.module.ac</artifactId> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.apache.lenya</groupId> -->
+		<!-- <artifactId>core.module.ac</artifactId> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>org.apache.lenya</groupId>
@@ -52,6 +52,8 @@
 			<groupId>org.apache.cocoon</groupId>
 			<artifactId>cocoon</artifactId>
 		</dependency>
+		
+		
 
 		<!-- jcifs-mock dependency... don't find it on the web, even on http://jcifs.samba.org/ -->
 		<!-- installed in the local repository -->
@@ -59,16 +61,143 @@
 			<groupId>jcifs</groupId>
 			<artifactId>jcifs-mock</artifactId>
 		</dependency>
+
+	<!-- test related dependencies -->
+	
+	
 		
 		<dependency>
 			<groupId>org.apache.lenya</groupId>
-			<artifactId>core.module.ac</artifactId>
-			<version>${lenya.version}</version>
-			<type>test-jar</type>
+			<artifactId>core-tests</artifactId>
 			<scope>test</scope>
 		</dependency>
 		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core-impl</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+		<groupId>org.apache.lenya</groupId>
+		<artifactId>core.module.ac</artifactId>
+		<version>${lenya.version}</version>
+		<type>test-jar</type>
+		<scope>test</scope>
+		</dependency>
+
+
+		<dependency>
+		<groupId>org.apache.lenya</groupId>
+		<artifactId>module.sitetree</artifactId>
+		<scope>test</scope>
+		</dependency>
+
+
+<dependency>
+		<groupId>org.apache.lenya</groupId>
+		<artifactId>core.module.ac</artifactId>
+		<scope>test</scope>
+		</dependency>
+		
+		<!-- dependencies for the test running -->
+		<!-- TODO : see where they come from and why they are required -->
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.usecase</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.notification</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>module.svg</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>module.sitetree</artifactId>
+			 <scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>pubs.default</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.templating</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>module.sourcerepository</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.janitor</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>module.lenyadoc</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		
+		<dependency>
+				<groupId>concurrent</groupId>
+				<artifactId>concurrent</artifactId>
+				<scope>test</scope>
+			</dependency>
+		
+		
+		<!-- Others dependencies -->
+		<dependency>
+				<groupId>axis</groupId>
+				<artifactId>axis</artifactId>
+				<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+				<groupId>lenyaDeps</groupId>
+				<artifactId>commons-discovery</artifactId>
+				<scope>test</scope>
+			</dependency>
 
 	</dependencies>
 	
+	<!-- built a test jar for sharing the abstract tests -->
+	<build>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>maven-xpatch</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<executions>
+				<execution>
+					<id>default-resources</id>
+					<phase>process-test-resources</phase>
+					<goals>
+						<goal>testwebresources</goal>
+						<goal>testxpatch</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
+	</build>
+
 </project>

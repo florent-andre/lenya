@@ -52,10 +52,15 @@ import javax.xml.transform.stream.StreamResult;
  * @goal war-resources
  * 
  * @phase process-sources
+ * 
+ * @requiresDependencyResolution test
  */
 public class XpatchMojo extends AbstractMojo {
 	
-	//TODO : use defined abstract class
+	//TODO : use defined abstract class and xpatchTestMojo implementation
+	
+	//TODO : see to use java5 annotations : 
+    //http://maven.apache.org/plugin-tools/maven-plugin-plugin/examples/using-annotations.html
 	
     /**
      * Location of the file.
