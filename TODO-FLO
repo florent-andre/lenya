@@ -3,6 +3,10 @@
 
 == Restart here ==
 
+
+* Reprendre dans la partie test le patch des xroles et du cocoon.xconf pour faire un truc identique
+
+
 restauration des tests : 
 * le xpath maven plugin permet maintenant de gérer la création du fichier de configuration pour les tests.
 * l'injection des tests dépendent de /core-tests/src/main/resources/webresources/org/apache/lenya/cms/LenyaTestCase.xtest

@@ -13,45 +13,13 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
--->
-<cocoon>
+--><testcase>
   
   <annotation>
     Test Cases
   </annotation>
   
-  <roles>
-  	<role default-class="org.apache.avalon.excalibur.component.ExcaliburComponentSelector" name="org.apache.excalibur.source.SourceFactorySelector" shorthand="source-factories"/><role default-class="org.apache.excalibur.source.impl.SourceResolverImpl" name="org.apache.excalibur.source.SourceResolver" shorthand="source-resolver"/><role default-class="org.apache.cocoon.components.search.SimpleLuceneCocoonSearcherImpl" name="org.apache.cocoon.components.search.LuceneCocoonSearcher" shorthand="cocoon-searcher"/><role default-class="org.apache.cocoon.components.store.impl.CocoonStoreJanitor" name="org.apache.excalibur.store.StoreJanitor" shorthand="store-janitor"/><role default-class="org.apache.cocoon.components.thread.DefaultRunnableManager" name="org.apache.cocoon.components.thread.RunnableManager" shorthand="runnable-manager"/><role default-class="org.apache.cocoon.components.resolver.DefaultResolver" name="org.apache.excalibur.xml.EntityResolver" shorthand="entity-resolver"/><role default-class="org.apache.cocoon.components.treeprocessor.TreeProcessor" name="org.apache.cocoon.Processor" shorthand="sitemap"/><role default-class="org.apache.excalibur.xmlizer.DefaultXMLizer" name="org.apache.excalibur.xmlizer.XMLizer" shorthand="xmlizer"/><role default-class="org.apache.excalibur.xml.impl.JaxpParser" name="org.apache.excalibur.xml.sax.SAXParser" shorthand="xml-parser"/><role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.ac.AuthorizerSelector" shorthand="authorizers"><hint class="org.apache.lenya.ac.impl.PolicyAuthorizer" shorthand="policy"/><hint class="org.apache.lenya.cms.ac.workflow.WorkflowAuthorizer" shorthand="workflow"/><hint class="org.apache.lenya.cms.ac.usecase.UsecaseAuthorizer" shorthand="usecase"/></role><role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.ac.PolicyManagerSelector" shorthand="policy-managers"><hint class="org.apache.lenya.ac.file.FilePolicyManager" shorthand="file"/><hint class="org.apache.lenya.cms.ac.sitemap.SitemapPolicyManager" shorthand="sitemap"/></role>
-  	<role default-class="org.apache.lenya.ac.impl.BypassableAccessController" name="org.apache.lenya.ac.AccessController" shorthand="access-controller"/>
-  	<role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.ac.AccessControllerResolverSelector" shorthand="access-controller-resolvers">
-  		<hint class="org.apache.lenya.ac.ComposableAccessControllerResolver" shorthand="composable"/><hint class="org.apache.lenya.ac.ConfigurableAccessControllerResolver" shorthand="configurable"/>
-  		<hint class="org.apache.lenya.cms.ac.PublicationAccessControllerResolver" shorthand="publication"/>
-  	</role>
-  	<role default-class="org.apache.lenya.ac.impl.UserAuthenticator" name="org.apache.lenya.ac.Authenticator" shorthand="authenticator"/>
-  	<role default-class="org.apache.lenya.ac.cache.SourceCacheImpl" name="org.apache.lenya.ac.cache.SourceCache" shorthand="sourcecache"/>
-  	<role default-class="org.apache.lenya.cms.publication.templating.PublicationTemplateManagerImpl" name="org.apache.lenya.cms.publication.templating.PublicationTemplateManager" shorthand="publication-template-manager"/>
-  	<role default-class="org.apache.lenya.cms.usecase.AbstractOperation" name="org.apache.lenya.cms.usecase.Operation" shorthand="operation"/>
-  	<role default-class="org.apache.lenya.cms.usecase.impl.UsecaseSelector" name="org.apache.lenya.cms.usecase.UsecaseSelector" shorthand="usecases"/>
-  	<role default-class="org.apache.lenya.cms.cocoon.flow.FlowHelperImpl" name="org.apache.lenya.cms.cocoon.flow.FlowHelper" shorthand="flowhelper"/>
-  	<role default-class="org.apache.lenya.workflow.impl.WorkflowManagerImpl" name="org.apache.lenya.workflow.WorkflowManager" shorthand="workflow-manager"/>
-  	<role default-class="org.apache.lenya.cms.site.usecases.LinkRewriterImpl" name="org.apache.lenya.cms.site.usecases.LinkRewriter" shorthand="link-rewriter"/>
-  	<role default-class="org.apache.lenya.cms.publication.DocumentManagerImpl" name="org.apache.lenya.cms.publication.DocumentManager" shorthand="document-manager"/>
-  	<role default-class="org.apache.lenya.cms.publication.DocumentTypeBuilderImpl" name="org.apache.lenya.cms.publication.DocumentTypeBuilder" shorthand="document-type-builder"/>
-  	<role default-class="org.apache.lenya.cms.publication.DefaultResourcesManager" name="org.apache.lenya.cms.publication.ResourcesManager" shorthand="resources-manager"/>
-  	<role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.cms.site.SiteManagerSelector" shorthand="site-managers"/>
-  	<role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.cms.publication.DocumentBuilderSelector" shorthand="document-builders"/>
-  	<role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.cms.publication.templating.InstantiatorSelector" shorthand="template-instantiators"/>
-  	<role default-class="org.apache.lenya.cms.usecase.gui.impl.GUIManagerImpl" name="org.apache.lenya.cms.usecase.gui.GUIManager" shorthand="gui-manager"/>
-  	<role default-class="org.apache.lenya.cms.publication.ResourceTypeSelector" name="org.apache.lenya.cms.publication.ResourceTypeSelector" shorthand="resource-types"/>
-  	<role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.cms.metadata.ElementSetSelector" shorthand="meta-data"/>
-  	<role default-class="org.apache.lenya.cms.repository.RepositoryManagerImpl" name="org.apache.lenya.cms.repository.RepositoryManager" shorthand="repository-manager"/>
-  	<role default-class="org.apache.lenya.cms.publication.PublicationManagerImpl" name="org.apache.lenya.cms.publication.PublicationManager" shorthand="publication-manager"/>
-  	<role default-class="org.apache.lenya.cms.repo.avalon.RepositoryFactoryImpl" name="org.apache.lenya.cms.repo.avalon.RepositoryFactory" shorthand="repository-factory"/>
-  	<role default-class="org.apache.cocoon.components.search.components.impl.DefaultIndexerImpl" name="org.apache.cocoon.components.search.components.Indexer/default" shorthand="default_indexer"/>
-  	<role default-class="org.apache.cocoon.components.search.components.impl.ParallelIndexerImpl" name="org.apache.cocoon.components.search.components.Indexer/parallel" shorthand="parallel_indexer"/>
-  	<role default-class="org.apache.cocoon.components.search.components.impl.AnalyzerManagerImpl" name="org.apache.cocoon.components.search.components.AnalyzerManager" shorthand="analyzer_manager"/>
-  	<role default-class="org.apache.cocoon.components.search.components.impl.IndexManagerImpl" name="org.apache.cocoon.components.search.components.IndexManager" shorthand="index_manager"/>
-  </roles>
+  <roles><role default-class="org.apache.avalon.excalibur.component.ExcaliburComponentSelector" name="org.apache.excalibur.source.SourceFactorySelector" shorthand="source-factories"/><role default-class="org.apache.excalibur.source.impl.SourceResolverImpl" name="org.apache.excalibur.source.SourceResolver" shorthand="source-resolver"/><role default-class="org.apache.cocoon.components.search.SimpleLuceneCocoonSearcherImpl" name="org.apache.cocoon.components.search.LuceneCocoonSearcher" shorthand="cocoon-searcher"/><role default-class="org.apache.cocoon.components.store.impl.CocoonStoreJanitor" name="org.apache.excalibur.store.StoreJanitor" shorthand="store-janitor"/><role default-class="org.apache.cocoon.components.thread.DefaultRunnableManager" name="org.apache.cocoon.components.thread.RunnableManager" shorthand="runnable-manager"/><role default-class="org.apache.cocoon.components.resolver.DefaultResolver" name="org.apache.excalibur.xml.EntityResolver" shorthand="entity-resolver"/><role default-class="org.apache.cocoon.components.treeprocessor.TreeProcessor" name="org.apache.cocoon.Processor" shorthand="sitemap"/><role default-class="org.apache.excalibur.xmlizer.DefaultXMLizer" name="org.apache.excalibur.xmlizer.XMLizer" shorthand="xmlizer"/><role default-class="org.apache.excalibur.xml.impl.JaxpParser" name="org.apache.excalibur.xml.sax.SAXParser" shorthand="xml-parser"/><role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.ac.AuthorizerSelector" shorthand="authorizers"><hint class="org.apache.lenya.ac.impl.PolicyAuthorizer" shorthand="policy"/><hint class="org.apache.lenya.cms.ac.workflow.WorkflowAuthorizer" shorthand="workflow"/><hint class="org.apache.lenya.cms.ac.usecase.UsecaseAuthorizer" shorthand="usecase"/></role><role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.ac.PolicyManagerSelector" shorthand="policy-managers"><hint class="org.apache.lenya.ac.file.FilePolicyManager" shorthand="file"/><hint class="org.apache.lenya.cms.ac.sitemap.SitemapPolicyManager" shorthand="sitemap"/></role><role default-class="org.apache.lenya.ac.impl.BypassableAccessController" name="org.apache.lenya.ac.AccessController" shorthand="access-controller"/><role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.ac.AccessControllerResolverSelector" shorthand="access-controller-resolvers"><hint class="org.apache.lenya.ac.ComposableAccessControllerResolver" shorthand="composable"/><hint class="org.apache.lenya.ac.ConfigurableAccessControllerResolver" shorthand="configurable"/><hint class="org.apache.lenya.cms.ac.PublicationAccessControllerResolver" shorthand="publication"/></role><role default-class="org.apache.lenya.ac.impl.UserAuthenticator" name="org.apache.lenya.ac.Authenticator" shorthand="authenticator"/><role default-class="org.apache.lenya.ac.cache.SourceCacheImpl" name="org.apache.lenya.ac.cache.SourceCache" shorthand="sourcecache"/><role default-class="org.apache.lenya.cms.publication.templating.PublicationTemplateManagerImpl" name="org.apache.lenya.cms.publication.templating.PublicationTemplateManager" shorthand="publication-template-manager"/><role default-class="org.apache.lenya.cms.usecase.AbstractOperation" name="org.apache.lenya.cms.usecase.Operation" shorthand="operation"/><role default-class="org.apache.lenya.cms.usecase.impl.UsecaseSelector" name="org.apache.lenya.cms.usecase.UsecaseSelector" shorthand="usecases"/><role default-class="org.apache.lenya.cms.cocoon.flow.FlowHelperImpl" name="org.apache.lenya.cms.cocoon.flow.FlowHelper" shorthand="flowhelper"/><role default-class="org.apache.lenya.workflow.impl.WorkflowManagerImpl" name="org.apache.lenya.workflow.WorkflowManager" shorthand="workflow-manager"/><role default-class="org.apache.lenya.cms.site.usecases.LinkRewriterImpl" name="org.apache.lenya.cms.site.usecases.LinkRewriter" shorthand="link-rewriter"/><role default-class="org.apache.lenya.cms.publication.DocumentManagerImpl" name="org.apache.lenya.cms.publication.DocumentManager" shorthand="document-manager"/><role default-class="org.apache.lenya.cms.publication.DocumentTypeBuilderImpl" name="org.apache.lenya.cms.publication.DocumentTypeBuilder" shorthand="document-type-builder"/><role default-class="org.apache.lenya.cms.publication.DefaultResourcesManager" name="org.apache.lenya.cms.publication.ResourcesManager" shorthand="resources-manager"/><role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.cms.site.SiteManagerSelector" shorthand="site-managers"/><role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.cms.publication.DocumentBuilderSelector" shorthand="document-builders"/><role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.cms.publication.templating.InstantiatorSelector" shorthand="template-instantiators"/><role default-class="org.apache.lenya.cms.usecase.gui.impl.GUIManagerImpl" name="org.apache.lenya.cms.usecase.gui.GUIManager" shorthand="gui-manager"/><role default-class="org.apache.lenya.cms.publication.ResourceTypeSelector" name="org.apache.lenya.cms.publication.ResourceTypeSelector" shorthand="resource-types"/><role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.cms.metadata.ElementSetSelector" shorthand="meta-data"/><role default-class="org.apache.lenya.cms.repository.RepositoryManagerImpl" name="org.apache.lenya.cms.repository.RepositoryManager" shorthand="repository-manager"/><role default-class="org.apache.lenya.cms.publication.PublicationManagerImpl" name="org.apache.lenya.cms.publication.PublicationManager" shorthand="publication-manager"/><role default-class="org.apache.lenya.cms.repo.avalon.RepositoryFactoryImpl" name="org.apache.lenya.cms.repo.avalon.RepositoryFactory" shorthand="repository-factory"/><role default-class="org.apache.cocoon.components.search.components.impl.DefaultIndexerImpl" name="org.apache.cocoon.components.search.components.Indexer/default" shorthand="default_indexer"/><role default-class="org.apache.cocoon.components.search.components.impl.ParallelIndexerImpl" name="org.apache.cocoon.components.search.components.Indexer/parallel" shorthand="parallel_indexer"/><role default-class="org.apache.cocoon.components.search.components.impl.AnalyzerManagerImpl" name="org.apache.cocoon.components.search.components.AnalyzerManager" shorthand="analyzer_manager"/><role default-class="org.apache.cocoon.components.search.components.impl.IndexManagerImpl" name="org.apache.cocoon.components.search.components.IndexManager" shorthand="index_manager"/></roles>
   
   <components><source-factories><component-instance class="org.apache.excalibur.source.impl.ResourceSourceFactory" name="resource"/><component-instance class="org.apache.cocoon.components.source.impl.ContextSourceFactory" name="context"/><component-instance class="org.apache.excalibur.source.impl.URLSourceFactory" name="*"/><component-instance class="org.apache.lenya.cms.cocoon.source.AggregatingFallbackSourceFactory" logger="lenya.source.aggregatefallback" name="aggregate-fallback"/><component-instance class="org.apache.lenya.cms.cocoon.source.FallbackSourceFactory" logger="lenya.source.fallback" name="fallback"/><component-instance class="org.apache.lenya.cms.cocoon.source.LenyaSourceFactory" logger="lenya.source.lenya" name="lenya" scheme="context:"/><component-instance class="org.apache.lenya.cms.cocoon.source.SiteSourceFactory" logger="lenya.source.site" name="site" scheme="site:"/><component-instance class="org.apache.lenya.cms.cocoon.source.TemplateFallbackSourceFactory" logger="lenya.source.templatefallback" name="template-fallback"/><component-instance class="org.apache.lenya.cms.cocoon.source.ZipSourceFactory" logger="lenya.source.zip" name="zip"/>
 
@@ -260,79 +228,61 @@
     <format name="xslt-clean" uri="fallback://lenya/modules/homepage/xslt/clean-homepage.xsl"/>
   </component-instance>
 
-</resource-types>
-	<template-instantiators>
-		<component-instance class="org.apache.lenya.defaultpub.cms.publication.templating.Instantiator" logger="lenya.publication.templating" name="default">
-			<parameter name="shareAccreditables" value="false"/>
-		</component-instance>
-	</template-instantiators>
-	
-	<component class="org.apache.lenya.cms.cocoon.components.context.ContextUtility" logger="lenya.cocoon.components" role="org.apache.lenya.cms.cocoon.components.context.ContextUtility"/>
-	
-	<document-builders>
-		<component-instance class="org.apache.lenya.cms.publication.DefaultDocumentBuilder" logger="lenya.publication" name="default"/>
-	</document-builders>
-	
-	<component class="org.apache.lenya.cms.publication.DocumentFactoryBuilderImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.publication.DocumentFactoryBuilder"/>
-	<component class="org.apache.lenya.cms.metadata.MetaDataRegistryImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.metadata.MetaDataRegistry"/>
-	<!--<component class="org.apache.lenya.cms.repository.SharedItemStoreImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.repository.SharedItemStore"/>-->
-	
-	<site-managers>
+</resource-types><template-instantiators><component-instance class="org.apache.lenya.defaultpub.cms.publication.templating.Instantiator" logger="lenya.publication.templating" name="default"><parameter name="shareAccreditables" value="false"/></component-instance></template-instantiators><component class="org.apache.lenya.cms.cocoon.components.context.ContextUtility" logger="lenya.cocoon.components" role="org.apache.lenya.cms.cocoon.components.context.ContextUtility"/><document-builders><component-instance class="org.apache.lenya.cms.publication.DefaultDocumentBuilder" logger="lenya.publication" name="default"/></document-builders><component class="org.apache.lenya.cms.publication.DocumentFactoryBuilderImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.publication.DocumentFactoryBuilder"/><component class="org.apache.lenya.cms.metadata.MetaDataRegistryImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.metadata.MetaDataRegistry"/><component class="org.apache.lenya.cms.repository.SharedItemStoreImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.repository.SharedItemStore"/><site-managers>
 
   <component-instance class="org.apache.lenya.cms.site.tree2.TreeSiteManager" logger="lenya.site" name="tree"/>
   
-</site-managers>
-<component class="org.apache.lenya.cms.repository.AxisUUIDGenerator" logger="lenya.cocoon.components" role="org.apache.lenya.cms.repository.UUIDGenerator"/>
+</site-managers><component class="org.apache.lenya.cms.repository.AxisUUIDGenerator" logger="lenya.cocoon.components" role="org.apache.lenya.cms.repository.UUIDGenerator"/>
 <component class="org.apache.lenya.cms.module.ModuleManagerImpl" role="org.apache.lenya.cms.module.ModuleManager">
 <modules copy="true">
-<module shortcut="navigation" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/navigation"/>
-<module shortcut="prettyprinting" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/prettyprinting"/>
-<module shortcut="contactform" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/contactform"/>
-<module shortcut="notification" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/notification"/>
-<module shortcut="languageselector" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/languageselector"/>
-<module shortcut="neutron" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/neutron"/>
-<module shortcut="svg" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/svg"/>
-<module shortcut="menubar" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/menubar"/>
-<module shortcut="fckeditor" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/fckeditor"/>
-<module shortcut="webdav" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/webdav"/>
-<module shortcut="profiling" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/profiling"/>
-<module shortcut="tinymce" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/tinymce"/>
-<module shortcut="opendocument" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/opendocument"/>
-<module shortcut="lenyadoc" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/lenyadoc"/>
-<module shortcut="usecasedocument" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/usecasedocument"/>
-<module shortcut="sitetree" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/sitetree"/>
-<module shortcut="lucene" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/lucene"/>
-<module shortcut="kupu" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/kupu"/>
-<module shortcut="news" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/news"/>
-<module shortcut="export" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/export"/>
-<module shortcut="collection" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/collection"/>
-<module shortcut="linkcheck" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/linkcheck"/>
-<module shortcut="cforms" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/cforms"/>
-<module shortcut="development" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/development"/>
-<module shortcut="sourcerepository" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/sourcerepository"/>
-<module shortcut="resource" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/resource"/>
-<module shortcut="links" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/links"/>
-<module shortcut="bxe" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/bxe"/>
-<module shortcut="xhtml" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/xhtml"/>
-<module shortcut="editors" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules/editors"/>
-<module shortcut="workflow" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/workflow"/>
-<module shortcut="monitoring" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/monitoring"/>
-<module shortcut="cache" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/cache"/>
-<module shortcut="usecase" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/usecase"/>
-<module shortcut="observation" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/observation"/>
-<module shortcut="gui" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/gui"/>
-<module shortcut="ac" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/ac"/>
-<module shortcut="acusecases" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/acusecases"/>
-<module shortcut="linking" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/linking"/>
-<module shortcut="i18n" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/i18n"/>
-<module shortcut="templating" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/templating"/>
-<module shortcut="administration" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/administration"/>
-<module shortcut="properties" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/properties"/>
-<module shortcut="janitor" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/janitor"/>
-<module shortcut="sitemanagement" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/sitemanagement"/>
-<module shortcut="ldap" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/ldap"/>
-<module shortcut="metadata" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/modules-core/metadata"/>
-<module shortcut="homepage" src="/home/florent/devel/dev-lenya/lenyaSources/RELEASE_2_0_3/src/pubs/default/modules/homepage"/>
+<module shortcut="navigation" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/navigation"/>
+<module shortcut="prettyprinting" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/prettyprinting"/>
+<module shortcut="contactform" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/contactform"/>
+<module shortcut="notification" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/notification"/>
+<module shortcut="languageselector" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/languageselector"/>
+<module shortcut="neutron" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/neutron"/>
+<module shortcut="svg" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/svg"/>
+<module shortcut="menubar" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/menubar"/>
+<module shortcut="fckeditor" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/fckeditor"/>
+<module shortcut="webdav" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/webdav"/>
+<module shortcut="profiling" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/profiling"/>
+<module shortcut="tinymce" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/tinymce"/>
+<module shortcut="opendocument" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/opendocument"/>
+<module shortcut="lenyadoc" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/lenyadoc"/>
+<module shortcut="usecasedocument" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/usecasedocument"/>
+<module shortcut="sitetree" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/sitetree"/>
+<module shortcut="lucene" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/lucene"/>
+<module shortcut="kupu" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/kupu"/>
+<module shortcut="news" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/news"/>
+<module shortcut="export" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/export"/>
+<module shortcut="collection" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/collection"/>
+<module shortcut="linkcheck" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/linkcheck"/>
+<module shortcut="cforms" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/cforms"/>
+<module shortcut="development" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/development"/>
+<module shortcut="sourcerepository" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/sourcerepository"/>
+<module shortcut="resource" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/resource"/>
+<module shortcut="links" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/links"/>
+<module shortcut="bxe" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/bxe"/>
+<module shortcut="xhtml" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/xhtml"/>
+<module shortcut="editors" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/editors"/>
+<module shortcut="workflow" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/workflow"/>
+<module shortcut="monitoring" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/monitoring"/>
+<module shortcut="cache" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/cache"/>
+<module shortcut="usecase" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/usecase"/>
+<module shortcut="observation" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/observation"/>
+<module shortcut="gui" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/gui"/>
+<module shortcut="ac" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/ac"/>
+<module shortcut="acusecases" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/acusecases"/>
+<module shortcut="linking" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/linking"/>
+<module shortcut="i18n" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/i18n"/>
+<module shortcut="templating" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/templating"/>
+<module shortcut="administration" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/administration"/>
+<module shortcut="properties" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/properties"/>
+<module shortcut="janitor" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/janitor"/>
+<module shortcut="sitemanagement" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/sitemanagement"/>
+<module shortcut="ldap" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/ldap"/>
+<module shortcut="metadata" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/metadata"/>
+<module shortcut="homepage" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/pubs/default/modules/homepage"/>
 </modules>
 </component>
 
@@ -345,17 +295,20 @@
     The example setting below describes a test setup that corresponds to the example 
     in src/pubs/default/config/publication.xml.
   -->
-<!--  <component class="org.apache.lenya.cms.linking.impl.GlobalProxiesImpl" logger="lenya.proxy" role="org.apache.lenya.cms.linking.GlobalProxies">
-
-  </component>-->
+  <component class="org.apache.lenya.cms.linking.impl.GlobalProxiesImpl" logger="lenya.proxy" role="org.apache.lenya.cms.linking.GlobalProxies">
+<!--
+    <proxy ssl="false" url="http://www.example.com/lenya"/>
+    <proxy ssl="true" url="https://www.example.com/lenya"/>
+-->
+  </component>
   
 
 
-  <!--<component class="org.apache.lenya.cms.linking.ContentLinkManager" logger="" role="org.apache.lenya.cms.linking.LinkManager"/>-->
+  <component class="org.apache.lenya.cms.linking.ContentLinkManager" logger="" role="org.apache.lenya.cms.linking.LinkManager"/>
   
 
 
-  <!--<component class="org.apache.lenya.cms.linking.LinkResolverImpl" logger="" role="org.apache.lenya.cms.linking.LinkResolver"/>-->
+  <component class="org.apache.lenya.cms.linking.LinkResolverImpl" logger="" role="org.apache.lenya.cms.linking.LinkResolver"/>
   
 
   <component class="org.apache.excalibur.store.impl.MRUMemoryStore" logger="lenya.source.navigation.store" role="org.apache.lenya.modules.navigation.SiteMetaDataTransformerStore">
@@ -1299,4 +1252,4 @@
   </component>
 </components>
   
-</cocoon>
+</testcase>
