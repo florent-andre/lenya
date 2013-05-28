@@ -13,6 +13,51 @@
   <inheritedByDefault>true</inheritedByDefault>
   <mojos>
     <mojo>
+      <goal>testxpatch</goal>
+      <description>Goal which patch the file for the tests</description>
+      <requiresDependencyResolution>compile</requiresDependencyResolution>
+      <requiresDirectInvocation>false</requiresDirectInvocation>
+      <requiresProject>true</requiresProject>
+      <requiresReports>false</requiresReports>
+      <aggregator>false</aggregator>
+      <requiresOnline>false</requiresOnline>
+      <inheritedByDefault>true</inheritedByDefault>
+      <phase>process-test-resources</phase>
+      <implementation>org.apache.lenya.XpatchTestMojo</implementation>
+      <language>java</language>
+      <instantiationStrategy>per-lookup</instantiationStrategy>
+      <executionStrategy>once-per-session</executionStrategy>
+      <threadSafe>false</threadSafe>
+      <parameters>
+        <parameter>
+          <name>mavenProject</name>
+          <type>org.apache.maven.project.MavenProject</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description></description>
+        </parameter>
+        <parameter>
+          <name>outputDirectory</name>
+          <type>java.io.File</type>
+          <required>true</required>
+          <editable>true</editable>
+          <description>Location of the file.</description>
+        </parameter>
+        <parameter>
+          <name>patchFolder</name>
+          <type>java.lang.String</type>
+          <required>true</required>
+          <editable>true</editable>
+          <description></description>
+        </parameter>
+      </parameters>
+      <configuration>
+        <mavenProject implementation="org.apache.maven.project.MavenProject" default-value="${project}"/>
+        <outputDirectory implementation="java.io.File">${project.build.testOutputDirectory}</outputDirectory>
+        <patchFolder implementation="java.lang.String" default-value="META-INF/patches"/>
+      </configuration>
+    </mojo>
+    <mojo>
       <goal>help</goal>
       <description>Display help information on maven-xpatch.&lt;br/&gt;
 Call &lt;code&gt;mvn xpatch:help -Ddetail=true -Dgoal=&amp;lt;goal-name&amp;gt;&lt;/code&gt; to display parameter details.</description>
@@ -65,52 +110,7 @@ Call &lt;code&gt;mvn xpatch:help -Ddetail=true -Dgoal=&amp;lt;goal-name&amp;gt;&
       </configuration>
     </mojo>
     <mojo>
-      <goal>testxpatch</goal>
-      <description>Goal which patch the file for the tests</description>
-      <requiresDependencyResolution>compile</requiresDependencyResolution>
-      <requiresDirectInvocation>false</requiresDirectInvocation>
-      <requiresProject>true</requiresProject>
-      <requiresReports>false</requiresReports>
-      <aggregator>false</aggregator>
-      <requiresOnline>false</requiresOnline>
-      <inheritedByDefault>true</inheritedByDefault>
-      <phase>process-test-resources</phase>
-      <implementation>org.apache.lenya.XpatchTestMojo</implementation>
-      <language>java</language>
-      <instantiationStrategy>per-lookup</instantiationStrategy>
-      <executionStrategy>once-per-session</executionStrategy>
-      <threadSafe>false</threadSafe>
-      <parameters>
-        <parameter>
-          <name>mavenProject</name>
-          <type>org.apache.maven.project.MavenProject</type>
-          <required>false</required>
-          <editable>true</editable>
-          <description></description>
-        </parameter>
-        <parameter>
-          <name>outputDirectory</name>
-          <type>java.io.File</type>
-          <required>true</required>
-          <editable>true</editable>
-          <description>Location of the file.</description>
-        </parameter>
-        <parameter>
-          <name>patchFolder</name>
-          <type>java.lang.String</type>
-          <required>true</required>
-          <editable>true</editable>
-          <description></description>
-        </parameter>
-      </parameters>
-      <configuration>
-        <mavenProject implementation="org.apache.maven.project.MavenProject" default-value="${project}"/>
-        <outputDirectory implementation="java.io.File">${project.build.testOutputDirectory}</outputDirectory>
-        <patchFolder implementation="java.lang.String" default-value="META-INF/patches"/>
-      </configuration>
-    </mojo>
-    <mojo>
-      <goal>testwebresources</goal>
+      <goal>webresources</goal>
       <description>Goal that export content of the webresources folder into webapp</description>
       <requiresDirectInvocation>false</requiresDirectInvocation>
       <requiresProject>true</requiresProject>
@@ -118,8 +118,8 @@ Call &lt;code&gt;mvn xpatch:help -Ddetail=true -Dgoal=&amp;lt;goal-name&amp;gt;&
       <aggregator>false</aggregator>
       <requiresOnline>false</requiresOnline>
       <inheritedByDefault>true</inheritedByDefault>
-      <phase>process-test-resources</phase>
-      <implementation>org.apache.lenya.WebResourceTestMojo</implementation>
+      <phase>process-resources</phase>
+      <implementation>org.apache.lenya.WebResourceMojo</implementation>
       <language>java</language>
       <instantiationStrategy>per-lookup</instantiationStrategy>
       <executionStrategy>once-per-session</executionStrategy>
@@ -142,7 +142,7 @@ Call &lt;code&gt;mvn xpatch:help -Ddetail=true -Dgoal=&amp;lt;goal-name&amp;gt;&
       </parameters>
       <configuration>
         <mavenProject implementation="org.apache.maven.project.MavenProject" default-value="${project}"/>
-        <outputDirectory implementation="java.io.File">${project.build.testOutputDirectory}</outputDirectory>
+        <outputDirectory implementation="java.io.File">${project.build.outputDirectory}</outputDirectory>
       </configuration>
     </mojo>
     <mojo>
@@ -183,7 +183,7 @@ Call &lt;code&gt;mvn xpatch:help -Ddetail=true -Dgoal=&amp;lt;goal-name&amp;gt;&
       </configuration>
     </mojo>
     <mojo>
-      <goal>webresources</goal>
+      <goal>testwebresources</goal>
       <description>Goal that export content of the webresources folder into webapp</description>
       <requiresDirectInvocation>false</requiresDirectInvocation>
       <requiresProject>true</requiresProject>
@@ -191,8 +191,8 @@ Call &lt;code&gt;mvn xpatch:help -Ddetail=true -Dgoal=&amp;lt;goal-name&amp;gt;&
       <aggregator>false</aggregator>
       <requiresOnline>false</requiresOnline>
       <inheritedByDefault>true</inheritedByDefault>
-      <phase>process-resources</phase>
-      <implementation>org.apache.lenya.WebResourceMojo</implementation>
+      <phase>process-test-resources</phase>
+      <implementation>org.apache.lenya.WebResourceTestMojo</implementation>
       <language>java</language>
       <instantiationStrategy>per-lookup</instantiationStrategy>
       <executionStrategy>once-per-session</executionStrategy>
@@ -215,7 +215,7 @@ Call &lt;code&gt;mvn xpatch:help -Ddetail=true -Dgoal=&amp;lt;goal-name&amp;gt;&
       </parameters>
       <configuration>
         <mavenProject implementation="org.apache.maven.project.MavenProject" default-value="${project}"/>
-        <outputDirectory implementation="java.io.File">${project.build.outputDirectory}</outputDirectory>
+        <outputDirectory implementation="java.io.File">${project.build.testOutputDirectory}</outputDirectory>
       </configuration>
     </mojo>
   </mojos>
