@@ -26,8 +26,8 @@
     <module>maven-xpatch</module>
     
     <!-- Lenya modules -->
-    <!-- <module>parent</module> -->
-    <!-- <module>core-api</module> -->
+    <module>parent</module>
+    <module>core-api</module>
     <!-- <module>core-impl</module> -->
     <!-- <module>core-tests</module> -->
     <!-- <module>modules-core/cache</module> -->
