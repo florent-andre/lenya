@@ -34,7 +34,7 @@
     <module>core-impl</module>    
     <module>modules-core/cache</module>
     <!-- linking : OK : BUT : restore TEST-CASE in test folder : this tests depends on AbstractAccessControlTest (loop dependency), but may only depends on LenyaTestCase -->
-    <!-- <module>modules-core/linking</module> -->
+    <module>modules-core/linking</module>
     <!-- ac : OK : BUT : need to restore test as they all depends on org/apache/lenya/ac/impl/AbstractAccessControlTest.java witch depends on LenyaTestCase -->
     <module>modules-core/ac</module>
     <!-- <module>modules-core/usecase</module> -->

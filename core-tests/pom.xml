@@ -81,7 +81,11 @@
 
 
 		<!-- Others dependencies -->
-
+		<dependency>
+				<groupId>axis</groupId>
+				<artifactId>axis</artifactId>
+		</dependency>
+		
 		<dependency>
 			<groupId>lenyaDeps</groupId>
 			<artifactId>commons-discovery</artifactId>

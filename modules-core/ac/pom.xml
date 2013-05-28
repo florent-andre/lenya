@@ -62,55 +62,55 @@
 		
 		<!-- Required dependencies -->
 		<!-- TODO : see if we add them to the core-test's dependencies list -->
-		<dependency>
-			<groupId>org.apache.lenya</groupId>
-			<artifactId>core-impl</artifactId>
-			<scope>test</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.lenya</groupId> -->
+<!-- 			<artifactId>core-impl</artifactId> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency> -->
 		
 		<!-- dependencies for the test running -->
 		<!-- TODO : see where they come from and why they are required -->
-		<dependency>
-			<groupId>org.apache.lenya</groupId>
-			<artifactId>core.module.usecase</artifactId>
-			<scope>test</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.lenya</groupId> -->
+<!-- 			<artifactId>core.module.usecase</artifactId> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency> -->
 		
-		<dependency>
-			<groupId>org.apache.lenya</groupId>
-			<artifactId>core.module.notification</artifactId>
-			<scope>test</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.lenya</groupId> -->
+<!-- 			<artifactId>core.module.notification</artifactId> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency> -->
 		
-		<dependency>
-			<groupId>org.apache.lenya</groupId>
-			<artifactId>module.svg</artifactId>
-			<scope>test</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.lenya</groupId> -->
+<!-- 			<artifactId>module.svg</artifactId> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency> -->
 		
-		<dependency>
-			<groupId>org.apache.lenya</groupId>
-			<artifactId>module.sitetree</artifactId>
-			<!--  <scope>test</scope>-->
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.lenya</groupId> -->
+<!-- 			<artifactId>module.sitetree</artifactId> -->
+<!-- 			 <scope>test</scope> -->
+<!-- 		</dependency> -->
 		
-		<dependency>
-			<groupId>org.apache.lenya</groupId>
-			<artifactId>pubs.default</artifactId>
-			<scope>test</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.lenya</groupId> -->
+<!-- 			<artifactId>pubs.default</artifactId> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency> -->
 		
-		<dependency>
-			<groupId>org.apache.lenya</groupId>
-			<artifactId>core.module.templating</artifactId>
-			<scope>test</scope>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.lenya</groupId> -->
+<!-- 			<artifactId>core.module.templating</artifactId> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency> -->
 		
-		<dependency>
-				<groupId>concurrent</groupId>
-				<artifactId>concurrent</artifactId>
-				<scope>test</scope>
-			</dependency>
+<!-- 		<dependency> -->
+<!-- 				<groupId>concurrent</groupId> -->
+<!-- 				<artifactId>concurrent</artifactId> -->
+<!-- 				<scope>test</scope> -->
+<!-- 			</dependency> -->
 		
 		
 		<!-- Others dependencies -->
@@ -180,8 +180,8 @@
 										[1.0-SNAPSHOT,)
 									</versionRange>
 									<goals>
-										<goal>webresources</goal>
-										<goal>touch</goal>
+										<goal>testwebresources</goal>
+										<goal>testxpatch</goal>
 									</goals>
 								</pluginExecutionFilter>
 								<action>
