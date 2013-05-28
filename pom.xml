@@ -29,13 +29,14 @@
     <module>parent</module>
     <module>core-api</module>
     <module>core-tests</module>
-    <!-- TODO : restore anteater and webtest -->
+    <!-- TODO : RESTORE JAVA TESTS : need to import related modules before -->
+    <!--restore anteater and webtest -->
     <module>core-impl</module>    
-    <!-- <module>modules-core/cache</module> -->
+    <module>modules-core/cache</module>
     <!-- linking : OK : BUT : restore TEST-CASE in test folder : this tests depends on AbstractAccessControlTest (loop dependency), but may only depends on LenyaTestCase -->
     <!-- <module>modules-core/linking</module> -->
     <!-- ac : OK : BUT : need to restore test as they all depends on org/apache/lenya/ac/impl/AbstractAccessControlTest.java witch depends on LenyaTestCase -->
-    <!-- <module>modules-core/ac</module> -->
+    <module>modules-core/ac</module>
     <!-- <module>modules-core/usecase</module> -->
     <!-- acusecases : OK : BUT : need to restore lenyatestcase dependent tests -->
     <!-- <module>modules-core/acusecases</module> -->

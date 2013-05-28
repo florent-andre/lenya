@@ -3,7 +3,15 @@
 
 == Restart here ==
 
+* Passage sur la branche 2.0.X
+** continuer la migration des modules
 
+!!!!!!!!!!!!!! Pour le test du AC, le problème viens d'un xpath qui n'est pas appliqué alors qu'il est dans le module core-impl.
+**** il semble que le module maven en xpath ne résoud pas les dépendences transitives (ni même les "tests" qui sont présents dasn le module)
+
+** dans un premier temps les modules nécessaires pour sortir les classes de test qui ne compilent pas du module core-impl
+
+* restauration des tests
 * Reprendre dans la partie test le patch des xroles et du cocoon.xconf pour faire un truc identique
 
 
