@@ -159,10 +159,14 @@
   <message key="User Documentation">Benutzerdokumentation</message>
   <message key="About Apache Lenya">Über Apache Lenya</message>
   <message key="Apache Lenya Homepage">Apache Lenya Startseite</message>
+  <message key="With Kupu">
+    <xhtml:abbr title="What&#160;You&#160;See&#160;Is&#160;What&#160;You&#160;Get">WYSIWYG</xhtml:abbr>-Editor&#160;(Kupu)
+  </message>
   <message key="With BXE">
     <xhtml:abbr title="What&#160;You&#160;See&#160;Is&#160;What&#160;You&#160;Get">WYSIWYG</xhtml:abbr>-Editor&#160;(BXE)
   </message>
   <message key="With one Form">Mit Formulareditor</message>
+  <message key="With Forms">Mit Formwizard</message>
   <message key="Edit Metadata">Metadaten bearbeiten</message>
   <message key="Edit Navigation Title">Navigationstitel bearbeiten</message>
   <message key="Visible in Navigation">Sichtbar in Navigation</message>
@@ -411,9 +415,6 @@
   
   <message key="publication-does-not-exist">Die Publikation existiert nicht</message>
   <message key="publication-...-does-not-exist">Die Publikation mit der ID "{0}" existiert nicht.</message>
-
-  <message key="cluster-authoring-disabled">Bearbeitung deaktiviert</message>
-  <message key="cluster-authoring-disabled-explanation">Lenya-Instanz läuft als Slave im Cluster-Modus. Bearbeitung ist deaktiviert für diese Instanz. Bitte benutzen Sie eine Master-Instanz für die Bearbeitung.</message>
   
   <message key="configure-content-repository">
     <xhtml:strong>Hinweis:</xhtml:strong> Überprüfen Sie, ob das Content-Repository

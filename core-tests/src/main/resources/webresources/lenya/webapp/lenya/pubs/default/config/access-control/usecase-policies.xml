@@ -50,6 +50,10 @@
     <role id="sitemanager" method="grant"/>
     <role id="edit" method="grant"/>
   </usecase>
+  <usecase id="fckeditor.edit">
+    <role id="sitemanager" method="grant"/>
+    <role id="edit" method="grant"/>
+  </usecase>
   <usecase id="linkcheck.getLinks">
     <role id="sitemanager" method="grant"/>
     <role id="edit" method="grant"/>
@@ -298,6 +302,10 @@
   <usecase id="admin.reports">
     <role id="admin" method="grant"/>
   </usecase>
+  <usecase id="editors.forms">
+    <role id="sitemanager" method="grant"/>
+    <role id="edit" method="grant"/>
+  </usecase>
   <usecase id="editors.oneform">
     <role id="sitemanager" method="grant"/>
     <role id="edit" method="grant"/>
@@ -335,6 +343,10 @@
   <usecase id="workflow.multiWorkflowInvoke">
     <role id="sitemanager" method="grant"/>
     <role id="review" method="grant"/>
+    <role id="edit" method="grant"/>
+  </usecase>
+  <usecase id="kupu.edit">
+    <role id="sitemanager" method="grant"/>
     <role id="edit" method="grant"/>
   </usecase>
   <usecase id="resource.upload">
@@ -398,6 +410,10 @@
     <role id="edit" method="grant"/>
   </usecase>
   <usecase id="tinymce.edit">
+    <role id="sitemanager" method="grant"/>
+    <role id="edit" method="grant"/>
+  </usecase>
+  <usecase id="fckeditor.edit">
     <role id="sitemanager" method="grant"/>
     <role id="edit" method="grant"/>
   </usecase>
