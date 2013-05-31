@@ -4,10 +4,27 @@
 == Restart here ==
 
 * Passage sur la branche 2.0.X
-** continuer la migration des modules
+** continuer la migration des modules (les prendre dans le src et les remonter en maven)
 
-!!!!!!!!!!!!!! Pour le test du AC, le problème viens d'un xpath qui n'est pas appliqué alors qu'il est dans le module core-impl.
-**** il semble que le module maven en xpath ne résoud pas les dépendences transitives (ni même les "tests" qui sont présents dasn le module)
+!!!!!!! ajout du xpathModifier pour prendre en compte les différences entre le xconf de test et le vrai cocoon.xconf !!!!!
+===> actuellement pour faire marcher le module ac
+/core-tests/src/main/resources/webresources/org/apache/lenya/cms/LenyaTestCase-PRESQUE-MIN-WORK.xtest
+==> c'est celui qui contient la version presque minimale pour que ça marche
+
+
+==> faire une modif sur xpatch pour prendre en compte aussi les .xmap en tant que patches 
+
+==> prendre en compte les xroles et modifier le /core-tests/src/main/resources/webresources/lenya/webapp/WEB-INF/classes/org/apache/lenya/lenya.roles
+pour que les patchs lui soient passé en direct
+====> puis supprimer les ajouts manuels dans le fichier source test
+===> exemple de xroles : src/modules/notification/config/lenya-roles/notifier.xroles
+
+Note :: désactivation de ces deux xconf car pas sous forme de patches:
+** /core-impl/src/main/resources/META-INF/patches/config/rc/revision-controller.xconf
+** /core-impl/src/main/resources/META-INF/patches/config/scheduler/scheduler.xconf
+
+==> remettre un log potable dans le xpatch pour savoir quel est le fichier qui est patché (remettre un debug en info je pense)
+
 
 ** dans un premier temps les modules nécessaires pour sortir les classes de test qui ne compilent pas du module core-impl
 

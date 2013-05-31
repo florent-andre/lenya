@@ -42,7 +42,8 @@
 			default-class="org.apache.excalibur.xmlizer.DefaultXMLizer" />
 		<role name="org.apache.excalibur.xml.sax.SAXParser" shorthand="xml-parser"
 			default-class="org.apache.excalibur.xml.impl.JaxpParser" />
-			
+		
+		<!-- ************************************************************ -->
 		<!-- TODO : remove them from this files when xrole patch is okay and this one are transformed into xpatch -->
 		<role default-class="org.apache.cocoon.components.ExtendedComponentSelector"
 			name="org.apache.lenya.ac.AccessControllerResolverSelector"
@@ -84,6 +85,7 @@
 
 	<components>
 	
+	<!-- ************************************************************ -->
 	<!-- TODO : see how to extract it from here -->
 	<authorizers>
 			<component-instance

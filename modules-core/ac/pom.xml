@@ -60,6 +60,18 @@
 			<scope>test</scope>
 		</dependency>
 		
+				<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.observation</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.lenya</groupId> -->
+<!-- 			<artifactId>core.module.usecase</artifactId> -->
+<!-- 			<scope>test</scope> -->
+<!-- 		</dependency> -->
+
 		<!-- Required dependencies -->
 		<!-- TODO : see if we add them to the core-test's dependencies list -->
 <!-- 		<dependency> -->

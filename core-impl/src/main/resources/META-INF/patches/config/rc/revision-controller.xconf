@@ -18,7 +18,12 @@
 
 <!-- $Id$ -->
 
+<!-- Patch commented as not valid -->
+<xconf xpath="/cocoon" unless="/cocoon">
+  </xconf>
+<!-- 
 <rcml>
   <rcmlDirectory href="content/rcml"/>
   <backupDirectory href="content/rcbak"/>
 </rcml>
+ -->

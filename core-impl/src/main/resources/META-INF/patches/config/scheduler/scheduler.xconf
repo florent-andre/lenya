@@ -18,6 +18,10 @@
 
 <!-- $Id$ -->
 
+<!-- Patch commented as not valid -->
+<xconf xpath="/cocoon" unless="/cocoon">
+  </xconf>
+<!-- 
 <scheduler>
 
   <jobs>
@@ -42,3 +46,4 @@
   </triggers>
   
 </scheduler>
+ -->
