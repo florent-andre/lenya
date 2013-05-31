@@ -61,6 +61,11 @@ public class XpatchTestMojo extends AbstractXpatchMojo {
 
 		String fileNameRegexTwo = ".xconf";
 		File fileToPatchTwo = xtestFile;
+		
+		
+		XpathModifier xpathModifier = new XpathModifier();
+		xpathModifier.addModifier("/cocoon", "/cocoon/components");
+		//TODO : add the same for xroles : from role-list to cocoon/roles
 		// end make this parameters configurable
 
 		// TODO : make it configurable
@@ -83,7 +88,7 @@ public class XpatchTestMojo extends AbstractXpatchMojo {
 		for (Artifact da : dal) {
 			getLog().info("Xpatch : processing Artifact : " + da.toString());
 			runXpatch(da, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo,
-					fileToPatchTwo, mavenProject.getProperties());
+					fileToPatchTwo, mavenProject.getProperties(),xpathModifier);
 		}
 
 		getLog().info("Xpatch : processing local files");
@@ -114,7 +119,7 @@ public class XpatchTestMojo extends AbstractXpatchMojo {
 		}
 		
 		///now run the patches on the project
-		runXpatch(resourceFilesList, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo, fileToPatchTwo, mavenProject.getProperties());
+		runXpatch(resourceFilesList, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo, fileToPatchTwo, mavenProject.getProperties(),xpathModifier);
 
 
 	}

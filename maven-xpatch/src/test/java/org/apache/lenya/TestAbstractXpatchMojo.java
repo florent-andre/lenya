@@ -58,7 +58,7 @@ public class TestAbstractXpatchMojo extends AbstractXpatchMojo {
     	String fileNameRegexTwo = ".DISABLED";
     	File fileToPatchTwo = new File(".");
     	
-		runXpatch(archive, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo, fileToPatchTwo, null);
+		runXpatch(archive, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo, fileToPatchTwo, null,null);
 		
 		Document patched = XpatchTest.getDomDocument(cocoonXconf);
 		

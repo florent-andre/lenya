@@ -70,7 +70,8 @@ public abstract class AbstractXpatchMojo extends AbstractMojo {
 	protected void runXpatch(Artifact dependency,
     		String fileNameRegexOne, File fileToPatchOne,
     		String fileNameRegexTwo, File fileToPatchTwo,
-    		Properties properties
+    		Properties properties,
+    		XpathModifier xpathModifier
     	) throws MojoExecutionException {
     	
 		if(dependency.getFile() != null){
@@ -116,7 +117,7 @@ public abstract class AbstractXpatchMojo extends AbstractMojo {
 					throw new MojoExecutionException( "Error during reading the jar archive", e );
 				}
 			
-			runXpatch(patchFiles, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo, fileToPatchTwo, properties);
+			runXpatch(patchFiles, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo, fileToPatchTwo, properties,xpathModifier);
 			
 		}
     	
@@ -127,13 +128,14 @@ public abstract class AbstractXpatchMojo extends AbstractMojo {
 protected void runXpatch(Collection<File> f,
 		String fileNameRegexOne, File fileToPatchOne,
 		String fileNameRegexTwo, File fileToPatchTwo,
-		Properties properties
+		Properties properties,
+		XpathModifier xpathModifier
 	) throws MojoExecutionException {
 	
 	
 	try{
 		
-	
+	//log.info("Start patching from list for files");
 	for(File patch : f){
 		File fileToPatch = null;
 		if(patch.getName().endsWith(fileNameRegexOne)){
@@ -153,11 +155,12 @@ protected void runXpatch(Collection<File> f,
 	    	
 			//TODO : put patch create on the top level
 			Xpatch xp = new Xpatch();
+			xp.setXpathModifier(xpathModifier);
 			boolean result = xp.patch(docToPatch, patch,properties);
 			if(result){
-				getLog().debug("--> " +patch.getAbsolutePath()+ " : OK");
+				getLog().info("--> " +patch.getAbsolutePath()+ " : OK");
 			}else{
-				getLog().debug("--> " +patch.getAbsolutePath()+ " : not applied");
+				getLog().info("--> " +patch.getAbsolutePath()+ " : not applied");
 			}
 			
 			
@@ -168,7 +171,7 @@ protected void runXpatch(Collection<File> f,
 		    DOMSource source = new DOMSource(docToPatch);
 		    StreamResult streamResult =  new StreamResult(fileToPatch);
 		    transformer.transform(source, streamResult);
-		    getLog().info("Patched document is now saved");
+		    //getLog().info("Patched document is now saved");
 		}
 		
 	}

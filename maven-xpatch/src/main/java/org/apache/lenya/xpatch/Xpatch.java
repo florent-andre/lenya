@@ -30,6 +30,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.apache.commons.lang.NotImplementedException;
+import org.apache.lenya.XpathModifier;
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugin.logging.SystemStreamLog;
 //import org.apache.tools.ant.BuildException;
@@ -80,6 +81,7 @@ public final class Xpatch {//extends MatchingTask {
     //private File directory;
     private File srcdir;
     private boolean addComments;
+    private XpathModifier xpathModifier = null;
     /** for resolving entities such as dtds */
 //    private XMLCatalog xmlCatalog = new XMLCatalog();
 
@@ -258,6 +260,12 @@ public final class Xpatch {//extends MatchingTask {
         if ( xpath == null ) {
             throw new IOException("Attribute 'xpath' is required.");    
         }
+        //apply xpath modifications on xpath if defined
+        if(xpathModifier != null){
+        	String origin = xpath;
+        	xpath = xpathModifier.process(xpath);
+        	log.info("Xpath is modified from : " + origin + " to :" + xpath);
+        }
         NodeList nodes = XPathAPI.selectNodeList(configuration, xpath);
 
         // Suspend, because the xpath returned no node
@@ -274,6 +282,14 @@ public final class Xpatch {//extends MatchingTask {
             // only look for old "unless" attr if unless-path is not present
             testPath = getAttribute(elem, "unless", replaceProperties);
         }
+        
+        //apply xpath modifications on testPath if defined
+        if(xpathModifier != null && testPath != null){
+        	String origin = testPath;
+        	testPath = xpathModifier.process(testPath);
+        	log.info("Xpath for 'unless' is modified from : " + origin + " to :" + testPath);
+        }
+        
         // Is if-path needed?
         String ifProp = getAttribute(elem, "if-prop", replaceProperties);
         boolean ifValue = false;
@@ -293,7 +309,7 @@ public final class Xpatch {//extends MatchingTask {
         	log.warn("---> Path not applied, see case 2");
             return false;
         } else {
-        	log.info("Start applying the patch");
+        	//log.info("Start applying the patch");
             // Test if component wants us to remove a list of nodes first
             xpath = getAttribute(elem, "remove", replaceProperties);
 
@@ -450,4 +466,12 @@ public final class Xpatch {//extends MatchingTask {
         }
         return fileName.substring(start, end);
     }
+
+	public XpathModifier getXpathModifier() {
+		return xpathModifier;
+	}
+
+	public void setXpathModifier(XpathModifier xpathModifier) {
+		this.xpathModifier = xpathModifier;
+	}
 }
