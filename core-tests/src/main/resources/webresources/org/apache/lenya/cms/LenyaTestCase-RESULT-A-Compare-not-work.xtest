@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Licensed to the Apache Software 
+	Foundation (ASF) under one or more contributor license agreements. See the 
+	NOTICE file distributed with this work for additional information regarding 
+	copyright ownership. The ASF licenses this file to You under the Apache License, 
+	Version 2.0 (the "License"); you may not use this file except in compliance 
+	with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+	Unless required by applicable law or agreed to in writing, software distributed 
+	under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+	OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+	the specific language governing permissions and limitations under the License. --><cocoon>
+
+	<annotation>
+		Test Cases
+	</annotation>
+
+	<roles>
+	<role default-class="org.apache.avalon.excalibur.component.ExcaliburComponentSelector" name="org.apache.excalibur.source.SourceFactorySelector" shorthand="source-factories"/>
+    <role default-class="org.apache.excalibur.source.impl.SourceResolverImpl" name="org.apache.excalibur.source.SourceResolver" shorthand="source-resolver"/>
+      
+    <role default-class="org.apache.cocoon.components.search.SimpleLuceneCocoonSearcherImpl" name="org.apache.cocoon.components.search.LuceneCocoonSearcher" shorthand="cocoon-searcher"/>
+    
+    <role default-class="org.apache.cocoon.components.store.impl.CocoonStoreJanitor" name="org.apache.excalibur.store.StoreJanitor" shorthand="store-janitor"/>
+    <role default-class="org.apache.cocoon.components.thread.DefaultRunnableManager" name="org.apache.cocoon.components.thread.RunnableManager" shorthand="runnable-manager"/>
+    <role default-class="org.apache.cocoon.components.resolver.DefaultResolver" name="org.apache.excalibur.xml.EntityResolver" shorthand="entity-resolver"/>
+    <role default-class="org.apache.cocoon.components.treeprocessor.TreeProcessor" name="org.apache.cocoon.Processor" shorthand="sitemap"/>
+    <role default-class="org.apache.excalibur.xmlizer.DefaultXMLizer" name="org.apache.excalibur.xmlizer.XMLizer" shorthand="xmlizer"/>
+    <role default-class="org.apache.excalibur.xml.impl.JaxpParser" name="org.apache.excalibur.xml.sax.SAXParser" shorthand="xml-parser"/>
+    
+    <!-- **************************************************** -->
+    <!-- A rajouter dans le fichier généré -->
+    <role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.ac.AccessControllerResolverSelector" shorthand="access-controller-resolvers">
+			<hint class="org.apache.lenya.ac.ComposableAccessControllerResolver" shorthand="composable"/>
+			<hint class="org.apache.lenya.ac.ConfigurableAccessControllerResolver" shorthand="configurable"/>
+			<hint class="org.apache.lenya.cms.ac.PublicationAccessControllerResolver" shorthand="publication"/>
+		</role>
+	
+	<role default-class="org.apache.lenya.cms.publication.PublicationManagerImpl" name="org.apache.lenya.cms.publication.PublicationManager" shorthand="publication-manager"/>
+			
+	<role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.ac.AuthorizerSelector" shorthand="authorizers">
+			<hint class="org.apache.lenya.ac.impl.PolicyAuthorizer" shorthand="policy"/>
+			<hint class="org.apache.lenya.cms.ac.workflow.WorkflowAuthorizer" shorthand="workflow"/>
+			<hint class="org.apache.lenya.cms.ac.usecase.UsecaseAuthorizer" shorthand="usecase"/>
+		</role>
+		
+		<role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.ac.PolicyManagerSelector" shorthand="policy-managers">
+			<hint class="org.apache.lenya.ac.file.FilePolicyManager" shorthand="file"/>
+			<hint class="org.apache.lenya.cms.ac.sitemap.SitemapPolicyManager" shorthand="sitemap"/>
+		</role>
+		
+		<role default-class="org.apache.cocoon.components.ExtendedComponentSelector" name="org.apache.lenya.cms.publication.DocumentBuilderSelector" shorthand="document-builders"/>
+			
+	<!-- FIN a rajouter dans fichier généré -->
+	</roles>
+
+	<components user-roles="/WEB-INF/classes/org/apache/lenya/lenya.roles">
+		<source-factories>
+			<component-instance class="org.apache.excalibur.source.impl.ResourceSourceFactory" name="resource"/>
+			<component-instance class="org.apache.cocoon.components.source.impl.ContextSourceFactory" name="context"/>
+			<component-instance class="org.apache.excalibur.source.impl.URLSourceFactory" name="*"/>
+			<component-instance class="org.apache.lenya.cms.cocoon.source.AggregatingFallbackSourceFactory" logger="lenya.source.aggregatefallback" name="aggregate-fallback"/>
+			<component-instance class="org.apache.lenya.cms.cocoon.source.FallbackSourceFactory" logger="lenya.source.fallback" name="fallback"/>
+			<component-instance class="org.apache.lenya.cms.cocoon.source.LenyaSourceFactory" logger="lenya.source.lenya" name="lenya" scheme="context:"/>
+			<component-instance class="org.apache.lenya.cms.cocoon.source.SiteSourceFactory" logger="lenya.source.site" name="site" scheme="site:"/>
+			<component-instance class="org.apache.lenya.cms.cocoon.source.TemplateFallbackSourceFactory" logger="lenya.source.templatefallback" name="template-fallback"/>
+			<component-instance class="org.apache.lenya.cms.cocoon.source.ZipSourceFactory" logger="lenya.source.zip" name="zip"/>
+
+			<component-instance class="org.apache.lenya.cms.cocoon.source.DocumentSourceFactory" logger="" name="lenya-document"/>
+
+
+			<!-- <component-instance class="org.apache.lenya.cms.cocoon.source.LenyaDocSourceFactory" 
+				logger="" name="lenyadoc"/> -->
+		
+
+  <component-instance class="org.apache.lenya.cms.cocoon.source.DocumentSourceFactory" logger="" name="lenya-document"/>
+  
+
+    <component-instance class="org.apache.lenya.cms.cocoon.source.ZipSourceFactory" logger="lenya.source.zip" name="zip"/>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.source.LenyaSourceFactory" logger="lenya.source.lenya" name="lenya" scheme="context:"/>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.source.FallbackSourceFactory" logger="lenya.source.fallback" name="fallback"/>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.source.SiteSourceFactory" logger="lenya.source.site" name="site" scheme="site:"/>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.source.TemplateFallbackSourceFactory" logger="lenya.source.templatefallback" name="template-fallback"/>
+  
+    <component-instance class="org.apache.lenya.cms.cocoon.source.AggregatingFallbackSourceFactory" logger="lenya.source.aggregatefallback" name="aggregate-fallback"/>
+  </source-factories>
+		<source-resolver class="org.apache.excalibur.source.impl.SourceResolverImpl"/>
+		<runnable-manager logger="core.runnable">
+			<thread-factory>org.apache.cocoon.components.thread.DefaultThreadFactory
+			</thread-factory>
+			<thread-pools>
+				<thread-pool>
+					<name>default</name>
+					<priority>NORM</priority>
+					<daemon>false</daemon>
+					<queue-size>-1</queue-size>
+					<max-pool-size>5</max-pool-size>
+					<min-pool-size>5</min-pool-size>
+					<keep-alive-time-ms>60000</keep-alive-time-ms>
+					<block-policy>ABORT</block-policy>
+					<shutdown-graceful>false</shutdown-graceful>
+					<shutdown-wait-time-ms>-1</shutdown-wait-time-ms>
+				</thread-pool>
+				<thread-pool>
+					<name>daemon</name>
+					<priority>NORM</priority>
+					<daemon>true</daemon>
+					<queue-size>0</queue-size>
+					<max-pool-size>-1</max-pool-size>
+					<min-pool-size>1</min-pool-size>
+					<keep-alive-time-ms>60000</keep-alive-time-ms>
+					<block-policy>ABORT</block-policy>
+					<shutdown-graceful>false</shutdown-graceful>
+					<shutdown-wait-time-ms>-1</shutdown-wait-time-ms>
+				</thread-pool>
+			</thread-pools>
+		</runnable-manager>
+		<entity-resolver logger="core.resolver">
+			<parameter name="catalog" value="WEB-INF/entities/catalog"/>
+			<parameter name="verbosity" value="1"/>
+		</entity-resolver>
+		<meta-data>
+			<component-instance class="org.apache.lenya.cms.metadata.ConfigurableElementSet" name="http://apache.org/lenya/metadata/site/1.0">
+				<element editable="true" multiple="false" name="folderNode"/>
+				<element editable="true" multiple="false" name="externalLink"/>
+			</component-instance>
+
+			<component-instance class="org.apache.lenya.cms.metadata.ConfigurableElementSet" name="http://apache.org/lenya/metadata/workflow/1.0">
+				<element multiple="true" name="workflowVersion" onCopy="delete"/>
+			</component-instance>
+
+			<component-instance class="org.apache.lenya.cms.metadata.ConfigurableElementSet" name="http://apache.org/lenya/metadata/media/1.0">
+				<element multiple="false" name="filename"/>
+				<element multiple="false" name="width"/>
+				<element multiple="false" name="height"/>
+			</component-instance>
+
+			<component-instance class="org.apache.lenya.cms.metadata.ConfigurableElementSet" name="http://purl.org/dc/elements/1.1/">
+				<element editable="true" multiple="false" name="title" searchable="true"/>
+				<element editable="true" multiple="false" name="creator"/>
+				<element editable="true" multiple="false" name="subject" searchable="true"/>
+				<element editable="true" multiple="false" name="description" searchable="true"/>
+				<element editable="true" multiple="false" name="publisher"/>
+				<element editable="true" multiple="false" name="contributor"/>
+				<element editable="true" multiple="false" name="date"/>
+				<element editable="true" multiple="false" name="type"/>
+				<element editable="true" multiple="false" name="format"/>
+				<element editable="true" multiple="false" name="identifier"/>
+				<element editable="true" multiple="false" name="source"/>
+				<element editable="true" multiple="false" name="language"/>
+				<element editable="true" multiple="false" name="relation"/>
+				<element editable="true" multiple="false" name="coverage"/>
+				<element editable="true" multiple="false" name="rights"/>
+			</component-instance>
+
+			<component-instance class="org.apache.lenya.cms.metadata.ConfigurableElementSet" name="http://purl.org/dc/terms/">
+				<element editable="true" multiple="false" name="abstract" searchable="true"/>
+				<element editable="true" multiple="false" name="accessRights"/>
+				<element editable="true" multiple="false" name="alternative"/>
+				<element editable="true" multiple="false" name="audience"/>
+				<element editable="true" multiple="false" name="available"/>
+				<element editable="true" multiple="false" name="bibliographicCitation"/>
+				<element editable="true" multiple="false" name="conformsTo"/>
+				<element editable="true" multiple="false" name="created"/>
+				<element editable="true" multiple="false" name="dateAccepted"/>
+				<element editable="true" multiple="false" name="dateCopyrighted"/>
+				<element editable="true" multiple="false" name="dateSubmitted"/>
+				<element editable="true" multiple="false" name="educationLevel"/>
+				<element editable="true" multiple="false" name="extent"/>
+				<element editable="true" multiple="false" name="hasFormat"/>
+				<element editable="true" multiple="false" name="hasPart"/>
+				<element editable="true" multiple="false" name="hasVersion"/>
+				<element editable="true" multiple="false" name="isFormatOf"/>
+				<element editable="true" multiple="false" name="isPartOf"/>
+				<element editable="true" multiple="false" name="isReferencedBy"/>
+				<element editable="true" multiple="false" name="isReplacedBy"/>
+				<element editable="true" multiple="false" name="isRequiredBy"/>
+				<element editable="true" multiple="false" name="issued"/>
+				<element editable="true" multiple="false" name="isVersionOf"/>
+				<element editable="true" multiple="false" name="license"/>
+				<element editable="true" multiple="false" name="mediator"/>
+				<element editable="true" multiple="false" name="medium"/>
+				<element editable="true" multiple="false" name="modified"/>
+				<element editable="true" multiple="false" name="references"/>
+				<element editable="true" multiple="false" name="replaces"/>
+				<element editable="true" multiple="false" name="requires"/>
+				<element editable="true" multiple="false" name="rightsHolder"/>
+				<element editable="true" multiple="false" name="spatial"/>
+				<element editable="true" multiple="false" name="tableOfContents"/>
+				<element editable="true" multiple="false" name="temporal"/>
+				<element editable="true" multiple="false" name="valid"/>
+			</component-instance>
+
+			<component-instance class="org.apache.lenya.cms.metadata.ConfigurableElementSet" name="http://apache.org/lenya/metadata/document/1.0">
+				<element multiple="false" name="resourceType"/>
+				<element multiple="false" name="contentType"/>
+				<element multiple="false" name="mimeType"/>
+				<element multiple="false" name="expires"/>
+				<element multiple="false" name="extension"/>
+			</component-instance>
+		</meta-data>
+		<resource-types>
+
+			<component-instance class="org.apache.lenya.cms.publication.ResourceTypeImpl" logger="lenya.resourcetypes.resource" name="resource">
+				<schema namespace="http://relaxng.org/ns/structure/0.9" uri="fallback://lenya/modules/resource/resources/schemas/resource.rng"/>
+				<sample mime-type="application/xml" uri="fallback://lenya/modules/resource/samples/resource.xml"/>
+				<format name="xhtml" uri="cocoon://modules/resource/xhtml.xml"/>
+				<format name="downloadLink" uri="cocoon://modules/resource/downloadLink.xml"/>
+				<format name="icon" uri="cocoon://modules/resource/icon"/>
+				<format name="luceneIndex" uri="cocoon://modules/resource/lucene-index"/>
+				<supports>
+					<mime-type>application/pdf</mime-type>
+					<mime-type>image/gif</mime-type>
+					<mime-type>image/jpeg</mime-type>
+					<mime-type>image/png</mime-type>
+				</supports>
+			</component-instance>
+
+
+
+			<component-instance class="org.apache.lenya.cms.publication.ResourceTypeImpl" logger="lenya.resourcetypes.opendocument" name="opendocument">
+				<sample mime-type="application/vnd.oasis.opendocument.text" uri="fallback://lenya/modules/opendocument/samples/helloworld.odt"/>
+				<!-- NOTE: Will be matched within sitemap of this module (modules/opendocument/sitemap.xmap) -->
+				<format name="xhtml" uri="cocoon://modules/opendocument/xhtml.xml"/>
+				<format name="webdavGET" uri="cocoon://modules/opendocument/davget.xml"/>
+			</component-instance>
+
+
+
+			<component-instance class="org.apache.lenya.cms.publication.ResourceTypeImpl" logger="lenya.resourcetypes.usecase" name="usecase">
+				<schema namespace="http://relaxng.org/ns/structure/0.9" uri="fallback://lenya/modules/usecasedocument/resources/schemas/usecase.rng"/>
+				<sample mime-type="application/xml" uri="fallback://lenya/modules/usecasedocument/samples/usecase.xml"/>
+				<format name="xhtml" uri="cocoon://modules/usecasedocument/usecase.xml"/>
+			</component-instance>
+
+
+
+			<component-instance class="org.apache.lenya.cms.publication.ResourceTypeImpl" logger="lenya.resourcetypes.collection" name="collection">
+				<schema namespace="http://relaxng.org/ns/structure/0.9" uri="fallback://lenya/modules/collection/resources/schemas/collection.rng"/>
+				<sample mime-type="application/xml" name="Manual" uri="fallback://lenya/modules/collection/samples/collection.xml"/>
+				<sample mime-type="application/xml" name="Children" uri="fallback://lenya/modules/collection/samples/children.xml"/>
+				<format name="collection" uri="cocoon://modules/collection/collection.xml"/>
+			</component-instance>
+
+
+
+			<component-instance class="org.apache.lenya.cms.publication.ResourceTypeImpl" logger="lenya.resourcetypes.news" name="news">
+
+				<!-- Default time in seconds until the resource-type has expired -->
+				<expires seconds="3600"/>
+
+				<schema namespace="http://relaxng.org/ns/structure/0.9" uri="fallback://lenya/modules/collection/resources/schemas/collection.rng"/>
+
+				<sample mime-type="application/xml" uri="fallback://lenya/modules/news/samples/news.xml"/>
+				<format name="xhtml" uri="cocoon://modules/news/xhtml.xml"/>
+				<format name="include" uri="cocoon://modules/news/include.xml"/>
+				<format name="rss" uri="cocoon://modules/news/rss.xml"/>
+				<format name="header" uri="cocoon://modules/news/header.xml"/>
+
+			</component-instance>
+
+
+
+			<component-instance class="org.apache.lenya.cms.publication.ResourceTypeImpl" logger="lenya.resourcetypes.cforms" name="cforms">
+				<schema namespace="http://relaxng.org/ns/structure/0.9" uri="fallback://lenya/modules/cforms/schemas/cforms.rng"/>
+				<sample mime-type="application/xml" uri="fallback://lenya/modules/cforms/samples/cforms.xml"/>
+				<link-attribute xpath="//*[namespace-uri() = 'http://www.w3.org/1999/xhtml']/@href"/>
+				<format name="xhtml" uri="cocoon://modules/cforms/xhtml.xml"/>
+			</component-instance>
+
+
+
+			<component-instance class="org.apache.lenya.cms.publication.ResourceTypeImpl" logger="lenya.resourcetypes.links" name="links">
+				<schema namespace="http://relaxng.org/ns/structure/0.9" uri="fallback://lenya/modules/links/resources/schema/links.rng"/>
+				<sample mime-type="application/xml" uri="fallback://lenya/modules/links/samples/links.xml"/>
+				<format name="xhtml" uri="cocoon://modules/links/xhtml.xml"/>
+				<format name="luceneIndex" uri="cocoon://modules/xhtml/lucene-index"/>
+				<format name="webdavGET" uri="cocoon://modules/xhtml/davget.xml"/>
+			</component-instance>
+
+
+
+			<component-instance class="org.apache.lenya.cms.publication.ResourceTypeImpl" logger="lenya.resourcetypes.xhtml" name="xhtml">
+				<schema namespace="http://relaxng.org/ns/structure/0.9" uri="fallback://lenya/modules/xhtml/resources/schemas/xhtml.rng"/>
+
+				<!-- Default time in seconds until the resource-type has expired -->
+				<expires seconds="3600"/>
+
+				<samples uri="fallback://lenya/modules/xhtml/samples/samples.xml"/>
+
+				<link-attribute xpath="//*[namespace-uri() = 'http://www.w3.org/1999/xhtml']/@href"/>
+				<link-attribute xpath="//*[namespace-uri() = 'http://www.w3.org/1999/xhtml']/@data"/>
+				<link-attribute xpath="//*[namespace-uri() = 'http://www.w3.org/1999/xhtml']/@src"/>
+				<format name="xhtml" uri="cocoon://modules/xhtml/xhtml.xml"/>
+				<format name="webdavGET" uri="cocoon://modules/xhtml/davget.xml"/>
+				<format name="luceneIndex" uri="cocoon://modules/xhtml/lucene-index"/>
+				<!-- "xslt-clean" format is used by webDAV (and other editors?) to "clean" 
+					xml content before it is validated/saved -->
+				<format name="xslt-clean" uri="fallback://lenya/modules/xhtml/xslt/clean-xhtml.xsl"/>
+				<format name="icon" uri="cocoon://modules/xhtml/icon"/>
+
+			</component-instance>
+
+
+
+			<component-instance class="org.apache.lenya.cms.publication.ResourceTypeImpl" logger="lenya.resourcetypes.homepage" name="homepage">
+				<schema namespace="http://relaxng.org/ns/structure/0.9" uri="fallback://lenya/modules/homepage/resources/schemas/homepage.rng"/>
+
+				<!-- Default time in seconds until the resource-type has expired -->
+				<expires seconds="0"/>
+
+				<sample mime-type="application/xhtml+xml" uri="fallback://lenya/modules/homepage/samples/homepage.xml"/>
+				<link-attribute xpath="//*[namespace-uri() = 'http://www.w3.org/1999/xhtml']/@href"/>
+				<link-attribute xpath="//*[namespace-uri() = 'http://www.w3.org/1999/xhtml']/@data"/>
+				<link-attribute xpath="//*[namespace-uri() = 'http://www.w3.org/1999/xhtml']/@src"/>
+				<format name="xhtml" uri="cocoon://modules/homepage/xhtml.xml"/>
+				<format name="luceneIndex" uri="cocoon://modules/xhtml/lucene-index"/>
+				<format name="webdavGET" uri="cocoon://modules/xhtml/davget.xml"/>
+				<!-- "xslt-clean" format is used by webDAV (and other editors?) to "clean" 
+					xml content before it is validated/saved -->
+				<format name="xslt-clean" uri="fallback://lenya/modules/homepage/xslt/clean-homepage.xsl"/>
+			</component-instance>
+
+		</resource-types>
+		<template-instantiators>
+			<component-instance class="org.apache.lenya.defaultpub.cms.publication.templating.Instantiator" logger="lenya.publication.templating" name="default">
+				<parameter name="shareAccreditables" value="false"/>
+			</component-instance>
+		</template-instantiators>
+		<component class="org.apache.lenya.cms.cocoon.components.context.ContextUtility" logger="lenya.cocoon.components" role="org.apache.lenya.cms.cocoon.components.context.ContextUtility"/>
+		<document-builders>
+			<component-instance class="org.apache.lenya.cms.publication.DefaultDocumentBuilder" logger="lenya.publication" name="default"/>
+		</document-builders>
+		<component class="org.apache.lenya.cms.publication.DocumentFactoryBuilderImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.publication.DocumentFactoryBuilder"/>
+		<component class="org.apache.lenya.cms.metadata.MetaDataRegistryImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.metadata.MetaDataRegistry"/>
+		<component class="org.apache.lenya.cms.repository.SharedItemStoreImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.repository.SharedItemStore"/>
+		<site-managers>
+			<!-- <component-instance class="org.apache.lenya.cms.site.tree2.TreeSiteManager" 
+				logger="lenya.site" name="tree"/> -->
+		</site-managers>
+		<component class="org.apache.lenya.cms.repository.AxisUUIDGenerator" logger="lenya.cocoon.components" role="org.apache.lenya.cms.repository.UUIDGenerator"/>
+		<component class="org.apache.lenya.cms.module.ModuleManagerImpl" role="org.apache.lenya.cms.module.ModuleManager">
+			<modules copy="true">
+				<module shortcut="navigation" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/navigation"/>
+				<module shortcut="prettyprinting" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/prettyprinting"/>
+				<module shortcut="contactform" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/contactform"/>
+				<module shortcut="notification" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/notification"/>
+				<module shortcut="languageselector" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/languageselector"/>
+				<module shortcut="neutron" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/neutron"/>
+				<module shortcut="svg" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/svg"/>
+				<module shortcut="menubar" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/menubar"/>
+				<module shortcut="fckeditor" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/fckeditor"/>
+				<module shortcut="webdav" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/webdav"/>
+				<module shortcut="profiling" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/profiling"/>
+				<module shortcut="tinymce" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/tinymce"/>
+				<module shortcut="opendocument" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/opendocument"/>
+				<module shortcut="lenyadoc" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/lenyadoc"/>
+				<module shortcut="usecasedocument" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/usecasedocument"/>
+				<module shortcut="sitetree" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/sitetree"/>
+				<module shortcut="lucene" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/lucene"/>
+				<module shortcut="kupu" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/kupu"/>
+				<module shortcut="news" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/news"/>
+				<module shortcut="export" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/export"/>
+				<module shortcut="collection" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/collection"/>
+				<module shortcut="linkcheck" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/linkcheck"/>
+				<module shortcut="cforms" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/cforms"/>
+				<module shortcut="development" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/development"/>
+				<module shortcut="sourcerepository" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/sourcerepository"/>
+				<module shortcut="resource" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/resource"/>
+				<module shortcut="links" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/links"/>
+				<module shortcut="bxe" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/bxe"/>
+				<module shortcut="xhtml" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/xhtml"/>
+				<module shortcut="editors" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/editors"/>
+				<module shortcut="workflow" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/workflow"/>
+				<module shortcut="monitoring" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/monitoring"/>
+				<module shortcut="cache" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/cache"/>
+				<module shortcut="usecase" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/usecase"/>
+				<module shortcut="observation" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/observation"/>
+				<module shortcut="gui" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/gui"/>
+				<module shortcut="ac" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/ac"/>
+				<module shortcut="acusecases" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/acusecases"/>
+				<module shortcut="linking" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/linking"/>
+				<module shortcut="i18n" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/i18n"/>
+				<module shortcut="templating" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/templating"/>
+				<module shortcut="administration" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/administration"/>
+				<module shortcut="properties" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/properties"/>
+				<module shortcut="janitor" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/janitor"/>
+				<module shortcut="sitemanagement" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/sitemanagement"/>
+				<module shortcut="ldap" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/ldap"/>
+				<module shortcut="metadata" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/metadata"/>
+				<module shortcut="homepage" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/pubs/default/modules/homepage"/>
+			</modules>
+		</component>
+
+
+		<!-- Lenya can rewrite the links to cater to special proxy setups. Make 
+			sure to update the proxy configuration in publication.xml as well. For information 
+			about these settings, read http://lenya.apache.org/docs/2_0_x/tutorials/proxy.html 
+			The example setting below describes a test setup that corresponds to the 
+			example in src/pubs/default/config/publication.xml. -->
+		<component class="org.apache.lenya.cms.linking.impl.GlobalProxiesImpl" logger="lenya.proxy" role="org.apache.lenya.cms.linking.GlobalProxies">
+			<!-- <proxy ssl="false" url="http://www.example.com/lenya"/> <proxy ssl="true" 
+				url="https://www.example.com/lenya"/> -->
+		</component>
+
+
+
+		<component class="org.apache.lenya.cms.linking.ContentLinkManager" logger="" role="org.apache.lenya.cms.linking.LinkManager"/>
+
+
+
+		<component class="org.apache.lenya.cms.linking.LinkResolverImpl" logger="" role="org.apache.lenya.cms.linking.LinkResolver"/>
+
+
+		<component class="org.apache.excalibur.store.impl.MRUMemoryStore" logger="lenya.source.navigation.store" role="org.apache.lenya.modules.navigation.SiteMetaDataTransformerStore">
+			<parameter name="maxobjects" value="10000"/>
+		</component>
+
+		<component class="org.apache.lenya.ac.cache.SourceCacheImpl" logger="lenya.ac.cache" role="org.apache.lenya.ac.cache.SourceCache"/>
+
+		<access-controller-resolvers>
+			<component-instance class="org.apache.lenya.cms.ac.PublicationAccessControllerResolver" logger="lenya.ac.accesscontrollerresolver.publication" name="publication">
+			</component-instance>
+			<component-instance class="org.apache.lenya.ac.impl.ConfigurableAccessControllerResolver" logger="lenya.ac.accesscontrollerresolver.global" name="global">
+				<access-controller type="global"/>
+			</component-instance>
+			<component-instance class="org.apache.lenya.ac.impl.ComposableAccessControllerResolver" logger="lenya.ac.accesscontrollerresolver.composable" name="composable">
+				<resolver type="publication"/>
+				<!-- <resolver type="global"/> -->
+			</component-instance>
+		</access-controller-resolvers>
+
+		<component class="org.apache.lenya.ac.file.FileAccreditableManagerFactory" logger="lenya.ac.accreditablemanager" role="org.apache.lenya.ac.AccreditableManagerFactory"/>
+
+		<component class="org.apache.lenya.ac.impl.UserAuthenticator" logger="lenya.ac.authenticator" role="org.apache.lenya.ac.Authenticator"/>
+
+		<!-- Enable this authenticator and disable the UserAuthenticator for anonymous 
+			authentication (useful for client certs, for instance) <component logger="lenya.ac.authenticator" 
+			class="org.apache.lenya.ac.impl.AnonymousAuthenticator" role="org.apache.lenya.ac.Authenticator"/> -->
+
+
+		<authorizers>
+			<component-instance class="org.apache.lenya.cms.ac.usecase.impl.UsecaseAuthorizerImpl" logger="lenya.ac.authorizer.usecase" name="usecase"/>
+		
+    <component-instance class="org.apache.lenya.cms.ac.usecase.impl.UsecaseAuthorizerImpl" logger="lenya.ac.authorizer.usecase" name="usecase"/>
+  </authorizers>
+
+		<component class="org.apache.lenya.ac.impl.BypassableAccessController" logger="lenya.ac.accesscontroller.bypassable" role="org.apache.lenya.ac.AccessController/bypassable">
+
+			<public-extensions>css,jpg,gif,png,rng,xsl</public-extensions>
+
+			<!-- bad performance, use only for complex patterns <public>.*[.]css|.*[.]jpg|.*[.]gif|.*[.]png|.*[.]rng|.*[.]xsl</public> -->
+
+		</component>
+
+		<policy-managers>
+			<component-instance class="org.apache.lenya.cms.ac.DocumentPolicyManagerWrapper" logger="lenya.ac.policymanager.document" name="document"/>
+			<component-instance class="org.apache.lenya.ac.file.FilePolicyManager" logger="lenya.ac.policymanager.file" name="file"/>
+			<component-instance class="org.apache.lenya.cms.ac.SitemapPolicyManager" logger="lenya.ac.policymanager.sitemap" name="sitemap"/>
+		</policy-managers>
+
+
+		<gui-manager>
+			<tab-group name="admin">
+				<tab label="Users" name="users" usecase="admin.users"/>
+				<tab label="Groups" name="groups" usecase="admin.groups"/>
+				<tab label="IP Ranges" name="ipRanges" usecase="admin.ipRanges"/>
+				<tab label="Usecases" name="usecases" usecase="admin.usecases"/>
+				<tab label="Delete Trash" name="trash" usecase="admin.emptyTrash"/>
+				<tab label="Server Status" name="serverStatus" usecase="admin.serverStatus"/>
+				<tab label="Sessions" name="sessions" usecase="admin.sessions"/>
+				<tab label="Publication" name="pubConf" usecase="admin.showPubConf"/>
+				<tab label="Overview" name="siteOverview" usecase="admin.siteOverview"/>
+				<tab label="Reports" name="reports" usecase="admin.reports"/>
+				<tab label="Live CheckIn" name="forceLiveCheckIn" usecase="admin.liveCheckIn"/>
+
+				<tab label="Inbox" name="inbox" usecase="notification.inbox"/>
+			
+    <tab label="Inbox" name="inbox" usecase="notification.inbox"/>
+  </tab-group>
+
+			<tab-group name="site">
+				<tab label="Overview" name="overview" usecase="tab.overview"/>
+				<tab label="Meta" name="meta" usecase="tab.meta"/>
+				<tab label="Assets" name="assets" usecase="tab.assets"/>
+				<tab label="Workflow" name="workflow" usecase="tab.workflow"/>
+				<tab label="Revisions" name="revisions" usecase="tab.revisions"/>
+				<tab label="AC Auth" name="acAuthoring" usecase="tab.acAuthoring">
+					<parameter name="acArea" value="authoring"/>
+				</tab>
+				<tab label="AC Trash" name="acTrash" usecase="tab.acTrash">
+					<parameter name="acArea" value="trash"/>
+				</tab>
+				<tab label="AC Archive" name="acArchive" usecase="tab.acArchive">
+					<parameter name="acArea" value="archive"/>
+				</tab>
+				<tab label="AC Live" name="acLive" usecase="tab.acLive"/>
+				<tab label="Scheduler" name="scheduler" usecase="tab.scheduler"/>
+			</tab-group>
+		</gui-manager>
+
+		<component class="org.apache.lenya.cms.usecase.impl.TestUsecaseInvoker" logger="lenya.usecase.invoker" role="org.apache.lenya.cms.usecase.impl.TestUsecaseInvoker"/>
+
+		<component class="org.apache.lenya.cms.usecase.scheduling.impl.UsecaseCronJob" logger="cron.usecase" role="org.apache.cocoon.components.cron.CronJob/usecase"/>
+
+
+		<component class="org.apache.lenya.cms.usecase.impl.UsecaseInvokerImpl" logger="lenya.usecase" role="org.apache.lenya.cms.usecase.UsecaseInvoker"/>
+
+		<component class="org.apache.lenya.cms.usecase.impl.UsecaseResolverImpl" logger="lenya.usecase" role="org.apache.lenya.cms.usecase.UsecaseResolver"/>
+
+		<usecases>
+		
+
+  <component-instance class="org.apache.lenya.cms.lucene.IndexDocument" logger="lenya.usecases.lucene-org.apache.lenya.cms.lucene.IndexDocument" name="lucene.index">
+  </component-instance>
+
+
+
+  <component-instance class="org.apache.lenya.cms.lucene.IndexSite" logger="lenya.usecases.lucene-org.apache.lenya.cms.lucene.IndexSite" name="lucene.indexSite">
+    <view uri="modules/lucene/usecases/indexSite.jx"/>
+  </component-instance>
+
+
+
+    <component-instance class="org.apache.lenya.cms.usecase.DummyUsecase" logger="lenya.lucene" name="lucene.search">
+      <view uri="modules/lucene/usecases/lucene/search.jx"/>
+      <exit usecase="lucene.search"/>
+    </component-instance>
+
+
+
+    <component-instance class="org.apache.lenya.cms.usecase.DummyUsecase" logger="lenya.lucene" name="lucene.externalOpensearch">
+      <view uri="modules/lucene/usecases/lucene/externalOpensearch.jx"/>
+      <exit usecase="lucene.externalOpensearch"/>
+    </component-instance>
+
+
+
+    <component-instance class="org.apache.lenya.cms.usecase.DummyUsecase" logger="lenya.lucene" name="lucene.opensearch">
+      <view uri="modules/lucene/usecases/lucene/opensearch.jx"/>
+      <exit usecase="lucene.opensearch"/>
+    </component-instance>
+    
+
+  
+  <component-instance class="org.apache.lenya.inbox.usecases.DeleteMessage" logger="lenya.notification" name="notification.deleteMessage">
+    <exit usecase="notification.inbox"/>
+  </component-instance>
+  
+
+
+    <component-instance class="org.apache.lenya.inbox.usecases.Inbox" logger="lenya.notification" name="notification.inbox">
+      <view createContinuation="false" menu="true" uri="modules/notification/usecases/inbox.jx">
+        <tab group="admin" name="inbox"/>
+      </view>
+      <exit usecase="notification.inbox"/>
+    </component-instance>
+
+
+
+    <component-instance class="org.apache.lenya.inbox.usecases.SendMessage" logger="lenya.notification" name="notification.sendMessage">
+      <view menu="true" uri="modules/notification/usecases/sendMessage.jx">
+        <tab group="admin" name="inbox"/>
+      </view>
+      <exit usecase="notification.inbox"/>
+    </component-instance>
+
+
+    <component-instance class="org.apache.lenya.cms.publication.usecases.CreatePublicationFromTemplate" logger="lenya.publication" name="templating.createPublicationFromTemplate">
+      <view uri="modules/templating/usecases/createPublicationFromTemplate.jx"/>
+    </component-instance>
+  </usecases>
+
+		<component class="org.apache.lenya.cms.usecase.scheduling.impl.UsecaseSchedulerImpl" logger="lenya.usecase" role="org.apache.lenya.cms.usecase.scheduling.UsecaseScheduler"/>
+
+
+		<component class="org.apache.lenya.inbox.xml.XmlSourceInboxManager" logger="lenya.inbox" role="org.apache.lenya.inbox.InboxManager"/>
+
+
+
+		<component class="org.apache.lenya.notification.NotificationListener" logger="lenya.notification" role="org.apache.lenya.notification.NotificationListener"/>
+
+
+
+		<component class="org.apache.lenya.inbox.InboxNotifier" logger="lenya.notification" role="org.apache.lenya.notification.Notifier"/>
+
+		<!-- Use the following configuration to send e-mail notifications -->
+		<!-- <component logger="lenya.notification" role="org.apache.lenya.notification.Notifier" 
+			class="org.apache.lenya.notification.EmailNotifier"> <smtp host="localhost"/> 
+			<!- use this for authentication <smtp host="localhost" username="john" password="swordfish" 
+			/> -> </component> -->
+
+
+
+		<component class="org.apache.lenya.modules.svg.ProtocolHandler" logger="lenya.modules.svg" role="org.apache.lenya.modules.svg.SiteProtocolHandler">
+			<parameter name="protocol" value="site"/>
+		</component>
+
+		<component class="org.apache.lenya.modules.svg.ProtocolHandler" logger="lenya.modules.svg" role="org.apache.lenya.modules.svg.LenyaDocumentProtocolHandler">
+			<parameter name="protocol" value="lenya-document"/>
+		</component>
+
+
+		<!-- <component class="org.apache.lenya.cms.site.tree2.SiteTreeRevisionVerifier" 
+			logger="content-janitor" role="org.apache.lenya.cms.site.tree2.SiteTreeRevisionVerifier"/> 
+			<component class="org.apache.lenya.cms.site.tree2.SaxTreeBuilder" logger="lenya.site" 
+			role="org.apache.lenya.cms.site.tree2.TreeBuilder"/> -->
+
+
+		<component class="org.apache.cocoon.components.serializers.XMLSerializer" logger="lenya.site" role="org.apache.lenya.cms.site.tree2.TreeWriterSerializer">
+			<encoding>UTF-8</encoding>
+		</component>
+
+
+		<!-- <component class="org.apache.lenya.cms.site.tree2.SaxTreeWriter" logger="lenya.site" 
+			role="org.apache.lenya.cms.site.tree2.TreeWriter"/> -->
+
+
+		<analyzer_manager logger="core.search.analyzer_manager">
+			<analyzer class="org.apache.lucene.analysis.standard.StandardAnalyzer" id="standard"/>
+			<analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Danish_da.xml" id="stopword_da"/>
+			<analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Dutch_nl.xml" id="stopword_nl"/>
+			<analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/English_en.xml" id="stopword_en"/>
+			<analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Finnish_fi.xml" id="stopword_fi"/>
+			<analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/French_fr.xml" id="stopword_fr"/>
+			<analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/German_de.xml" id="stopword_de"/>
+			<analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Italian_it.xml" id="stopword_it"/>
+			<analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Norwegian_no.xml" id="stopword_no"/>
+			<analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Polish_pl.xml" id="stopword_pl"/>
+			<analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Portuguese_pt.xml" id="stopword_pt"/>
+			<!-- <analyzer id="stopword_ru" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" 
+				configfile="context://WEB-INF/analyzer/stopword/Russian_ru.xml" checkupdate="true"/> -->
+			<analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Spanish_es.xml" id="stopword_es"/>
+			<analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Swedish_sv.xml" id="stopword_sv"/>
+			<analyzer checkupdate="false" class="org.apache.cocoon.components.search.analyzer.ConfigurablePerFieldAnalyzer" configfile="context://WEB-INF/analyzer/perfieldconf.xml" id="analyzer_research"/>
+		</analyzer_manager>
+
+
+
+		<!-- default indexer component -->
+		<default_indexer logger="core.search.default_indexer">
+			<!-- number of lucene documents in the buffer -->
+			<buffersize>200</buffersize>
+		</default_indexer>
+
+
+		<!-- if-prop="patch.webapp" -->
+
+		<component class="org.apache.lenya.cms.lucene.IndexUpdaterImpl" logger="lucene.indexupdater" role="org.apache.lenya.cms.lucene.IndexUpdater"/>
+
+
+
+		<index_manager logger="core.search.index_manager">
+
+			<indexer role="org.apache.cocoon.components.search.components.Indexer/default"/>
+
+		</index_manager>
+
+
+
+		<component class="org.apache.lenya.modules.lucene.impl.MetaDataFieldRegistryImpl" role="org.apache.lenya.modules.lucene.MetaDataFieldRegistry"/>
+
+
+
+		<!-- parallel indexer component -->
+		<parallel_indexer logger="core.search.parallel_indexer">
+			<!-- number of thread (normaly = number of CPUs) -->
+			<numthread>2</numthread>
+		</parallel_indexer>
+
+		<!-- <component class="org.apache.lenya.cms.repository.SourceNodeFactory" 
+			logger="lenya.nodefactory.source" role="org.apache.lenya.cms.repository.NodeFactory"/> -->
+		<component class="org.apache.lenya.cms.observation.ObservationManager" logger="lenya.observation.registry" role="org.apache.lenya.cms.observation.ObservationRegistry"/>
+		<!-- <component class="org.apache.lenya.cms.observation.RepositoryLogger" 
+			logger="lenya.observation.repositorylogger" role="org.apache.lenya.cms.observation.RepositoryLogger"/> -->
+		<component class="org.apache.lenya.cms.publication.templating.PublicationTemplateManagerImpl" logger="lenya.publication.templatemanager" role="org.apache.lenya.cms.publication.templating.PublicationTemplateManager"/>
+
+		<!-- <component class="org.apache.lenya.cms.janitor.ContentJanitor" logger="content-janitor" 
+			role="org.apache.lenya.cms.janitor.ContentJanitor"/> -->
+
+		<component class="org.apache.lenya.cms.metadata.MetaDataCache" logger="lenya.metadata.cache" role="org.apache.lenya.cms.metadata.MetaDataCache"/>
+		<component class="org.apache.excalibur.store.impl.MRUMemoryStore" logger="lenya.metadata.cache" role="org.apache.lenya.cms.metadata.MetaDataCacheStore">
+			<parameter name="maxobjects" value="10000"/>
+		</component>
+	 
+    <component class="org.apache.lenya.ac.cache.SourceCacheImpl" logger="lenya.ac.cache" role="org.apache.lenya.ac.cache.SourceCache"/>
+  
+
+  <!-- Lenya can rewrite the links to cater to special proxy setups.
+    Make sure to update the proxy configuration in publication.xml as well.
+    For information about these settings, read
+    http://lenya.apache.org/docs/2_0_x/tutorials/proxy.html
+
+    The example setting below describes a test setup that corresponds to the example 
+    in src/pubs/default/config/publication.xml.
+  -->
+  <component class="org.apache.lenya.cms.linking.impl.GlobalProxiesImpl" logger="lenya.proxy" role="org.apache.lenya.cms.linking.GlobalProxies">
+<!--
+    <proxy ssl="false" url="http://www.example.com/lenya"/>
+    <proxy ssl="true" url="https://www.example.com/lenya"/>
+-->
+  </component>
+  
+
+
+  <component class="org.apache.lenya.cms.linking.LinkResolverImpl" logger="" role="org.apache.lenya.cms.linking.LinkResolver"/>
+  
+
+
+  <component class="org.apache.lenya.cms.linking.ContentLinkManager" logger="" role="org.apache.lenya.cms.linking.LinkManager"/>
+  
+
+  <!-- if-prop="patch.webapp" -->
+  
+  <component class="org.apache.lenya.cms.lucene.IndexUpdaterImpl" logger="lucene.indexupdater" role="org.apache.lenya.cms.lucene.IndexUpdater"/>
+	
+
+
+	<index_manager logger="core.search.index_manager">
+		
+		<indexer role="org.apache.cocoon.components.search.components.Indexer/default"/>
+		
+	</index_manager>
+
+
+
+  <component class="org.apache.lenya.modules.lucene.impl.MetaDataFieldRegistryImpl" role="org.apache.lenya.modules.lucene.MetaDataFieldRegistry"/>
+
+
+
+<!-- parallel indexer component -->		
+	<parallel_indexer logger="core.search.parallel_indexer">
+		<!-- number of thread (normaly = number of CPUs) -->
+		<numthread>2</numthread>
+	</parallel_indexer>
+	
+
+
+	<analyzer_manager logger="core.search.analyzer_manager">
+		<analyzer class="org.apache.lucene.analysis.standard.StandardAnalyzer" id="standard"/>
+	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Arabic_ar.xml" id="stopword_ar"/>
+	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Danish_da.xml" id="stopword_da"/>
+	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Dutch_nl.xml" id="stopword_nl"/>
+	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/English_en.xml" id="stopword_en"/>
+	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Finnish_fi.xml" id="stopword_fi"/>
+	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/French_fr.xml" id="stopword_fr"/>
+	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/German_de.xml" id="stopword_de"/>
+	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Italian_it.xml" id="stopword_it"/>
+	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Norwegian_no.xml" id="stopword_no"/>
+	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Polish_pl.xml" id="stopword_pl"/>
+	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Portuguese_pt.xml" id="stopword_pt"/>
+	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Russian_ru.xml" id="stopword_ru"/>
+	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Spanish_es.xml" id="stopword_es"/>
+	  <analyzer checkupdate="true" class="org.apache.cocoon.components.search.analyzer.ConfigurableStopwordAnalyzer" configfile="context://WEB-INF/analyzer/stopword/Swedish_sv.xml" id="stopword_sv"/>
+	  <analyzer checkupdate="false" class="org.apache.cocoon.components.search.analyzer.ConfigurablePerFieldAnalyzer" configfile="context://WEB-INF/analyzer/perfieldconf.xml" id="analyzer_research"/>
+	</analyzer_manager>
+	
+
+
+<!-- default indexer component -->	
+	<default_indexer logger="core.search.default_indexer">
+		<!-- number of lucene documents in the buffer -->
+		<buffersize>200</buffersize>
+	</default_indexer>
+	
+
+
+  <component class="org.apache.lenya.inbox.xml.XmlSourceInboxManager" logger="lenya.inbox" role="org.apache.lenya.inbox.InboxManager"/>
+  
+
+
+  <component class="org.apache.lenya.notification.NotificationListener" logger="lenya.notification" role="org.apache.lenya.notification.NotificationListener"/>
+  
+
+
+  <component class="org.apache.lenya.inbox.InboxNotifier" logger="lenya.notification" role="org.apache.lenya.notification.Notifier"/>
+
+  <!-- Use the following configuration to send e-mail notifications -->
+  <!--
+  <component logger="lenya.notification"
+    role="org.apache.lenya.notification.Notifier"
+    class="org.apache.lenya.notification.EmailNotifier">
+    
+    <smtp host="localhost"/>
+    
+    <!- use this for authentication
+    <smtp host="localhost" username="john" password="swordfish" />
+    ->
+    
+  </component>
+  -->
+  
+
+    <template-instantiators/>
+  
+    <meta-data/>
+  
+    <resource-types/>
+  
+    <site-managers/>
+  
+    <component class="org.apache.lenya.cms.repository.SharedItemStoreImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.repository.SharedItemStore"/>
+  
+    <component class="org.apache.lenya.cms.cocoon.components.context.ContextUtility" logger="lenya.cocoon.components" role="org.apache.lenya.cms.cocoon.components.context.ContextUtility"/>
+  
+    <component class="org.apache.lenya.cms.publication.DocumentFactoryBuilderImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.publication.DocumentFactoryBuilder"/>
+  
+    <component class="org.apache.lenya.cms.metadata.MetaDataRegistryImpl" logger="lenya.cocoon.components" role="org.apache.lenya.cms.metadata.MetaDataRegistry"/>
+  
+    <component class="org.apache.lenya.cms.repository.AxisUUIDGenerator" logger="lenya.cocoon.components" role="org.apache.lenya.cms.repository.UUIDGenerator"/>
+  
+    <document-builders>
+      <component-instance class="org.apache.lenya.cms.publication.DefaultDocumentBuilder" logger="lenya.publication" name="default"/>
+    </document-builders>
+  
+
+  <component class="org.apache.lenya.modules.svg.ProtocolHandler" logger="lenya.modules.svg" role="org.apache.lenya.modules.svg.SiteProtocolHandler">
+    <parameter name="protocol" value="site"/>
+  </component>
+
+  <component class="org.apache.lenya.modules.svg.ProtocolHandler" logger="lenya.modules.svg" role="org.apache.lenya.modules.svg.LenyaDocumentProtocolHandler">
+    <parameter name="protocol" value="lenya-document"/>
+  </component>
+  
+
+    <component class="org.apache.lenya.cms.publication.templating.PublicationTemplateManagerImpl" logger="lenya.publication.templatemanager" role="org.apache.lenya.cms.publication.templating.PublicationTemplateManager"/>
+  
+    <component class="org.apache.lenya.cms.usecase.impl.TestUsecaseInvoker" logger="lenya.usecase.invoker" role="org.apache.lenya.cms.usecase.impl.TestUsecaseInvoker"/>
+  
+    <gui-manager/>
+  
+    <usecases/>
+  
+    <component class="org.apache.lenya.cms.usecase.scheduling.impl.UsecaseCronJob" logger="cron.usecase" role="org.apache.cocoon.components.cron.CronJob/usecase"/>
+    
+  
+    <component class="org.apache.lenya.cms.usecase.impl.UsecaseResolverImpl" logger="lenya.usecase" role="org.apache.lenya.cms.usecase.UsecaseResolver"/>
+  
+    <component class="org.apache.lenya.cms.usecase.impl.UsecaseInvokerImpl" logger="lenya.usecase" role="org.apache.lenya.cms.usecase.UsecaseInvoker"/>
+  
+    <component class="org.apache.lenya.cms.usecase.scheduling.impl.UsecaseSchedulerImpl" logger="lenya.usecase" role="org.apache.lenya.cms.usecase.scheduling.UsecaseScheduler"/>
+  
+    <component class="org.apache.lenya.cms.observation.RepositoryLogger" logger="lenya.observation.repositorylogger" role="org.apache.lenya.cms.observation.RepositoryLogger"/>
+  
+    <component class="org.apache.lenya.cms.observation.ObservationManager" logger="lenya.observation.registry" role="org.apache.lenya.cms.observation.ObservationRegistry"/>
+  
+  <authorizers/>
+
+  <component class="org.apache.lenya.ac.impl.BypassableAccessController" logger="lenya.ac.accesscontroller.bypassable" role="org.apache.lenya.ac.AccessController/bypassable">
+    
+    <public-extensions>css,jpg,gif,png,rng,xsl</public-extensions>
+    
+    <!-- bad performance, use only for complex patterns
+      <public>.*[.]css|.*[.]jpg|.*[.]gif|.*[.]png|.*[.]rng|.*[.]xsl</public>
+    -->
+    
+  </component>
+
+  <component class="org.apache.lenya.ac.impl.UserAuthenticator" logger="lenya.ac.authenticator" role="org.apache.lenya.ac.Authenticator"/>
+    
+  <!--
+    Enable this authenticator and disable the UserAuthenticator for anonymous authentication (useful for client certs, for instance)
+    
+    <component logger="lenya.ac.authenticator"
+      class="org.apache.lenya.ac.impl.AnonymousAuthenticator"
+      role="org.apache.lenya.ac.Authenticator"/>      
+  -->
+  
+
+  <component class="org.apache.lenya.ac.file.FileAccreditableManagerFactory" logger="lenya.ac.accreditablemanager" role="org.apache.lenya.ac.AccreditableManagerFactory"/>
+
+  <policy-managers>
+    <component-instance class="org.apache.lenya.cms.ac.DocumentPolicyManagerWrapper" logger="lenya.ac.policymanager.document" name="document"/>
+    <component-instance class="org.apache.lenya.ac.file.FilePolicyManager" logger="lenya.ac.policymanager.file" name="file"/>
+    <component-instance class="org.apache.lenya.cms.ac.SitemapPolicyManager" logger="lenya.ac.policymanager.sitemap" name="sitemap"/>
+  </policy-managers>
+  
+
+  <access-controller-resolvers>
+    <component-instance class="org.apache.lenya.cms.ac.PublicationAccessControllerResolver" logger="lenya.ac.accesscontrollerresolver.publication" name="publication">
+    </component-instance>
+    <component-instance class="org.apache.lenya.ac.impl.ConfigurableAccessControllerResolver" logger="lenya.ac.accesscontrollerresolver.global" name="global">
+      <access-controller type="global"/>
+    </component-instance>
+    <component-instance class="org.apache.lenya.ac.impl.ComposableAccessControllerResolver" logger="lenya.ac.accesscontrollerresolver.composable" name="composable">
+      <resolver type="publication"/>
+      <!--      <resolver type="global"/>-->
+    </component-instance>
+  </access-controller-resolvers>
+
+  <authorizers/>
+
+  <component class="org.apache.lenya.ac.impl.BypassableAccessController" logger="lenya.ac.accesscontroller.bypassable" role="org.apache.lenya.ac.AccessController/bypassable">
+    
+    <public-extensions>css,jpg,gif,png,rng,xsl</public-extensions>
+    
+    <!-- bad performance, use only for complex patterns
+      <public>.*[.]css|.*[.]jpg|.*[.]gif|.*[.]png|.*[.]rng|.*[.]xsl</public>
+    -->
+    
+  </component>
+
+  <component class="org.apache.lenya.ac.impl.UserAuthenticator" logger="lenya.ac.authenticator" role="org.apache.lenya.ac.Authenticator"/>
+    
+  <!--
+    Enable this authenticator and disable the UserAuthenticator for anonymous authentication (useful for client certs, for instance)
+    
+    <component logger="lenya.ac.authenticator"
+      class="org.apache.lenya.ac.impl.AnonymousAuthenticator"
+      role="org.apache.lenya.ac.Authenticator"/>      
+  -->
+  
+
+  <component class="org.apache.lenya.ac.file.FileAccreditableManagerFactory" logger="lenya.ac.accreditablemanager" role="org.apache.lenya.ac.AccreditableManagerFactory"/>
+
+  <policy-managers>
+    <component-instance class="org.apache.lenya.cms.ac.DocumentPolicyManagerWrapper" logger="lenya.ac.policymanager.document" name="document"/>
+    <component-instance class="org.apache.lenya.ac.file.FilePolicyManager" logger="lenya.ac.policymanager.file" name="file"/>
+    <component-instance class="org.apache.lenya.cms.ac.SitemapPolicyManager" logger="lenya.ac.policymanager.sitemap" name="sitemap"/>
+  </policy-managers>
+  
+
+  <access-controller-resolvers>
+    <component-instance class="org.apache.lenya.cms.ac.PublicationAccessControllerResolver" logger="lenya.ac.accesscontrollerresolver.publication" name="publication">
+    </component-instance>
+    <component-instance class="org.apache.lenya.ac.impl.ConfigurableAccessControllerResolver" logger="lenya.ac.accesscontrollerresolver.global" name="global">
+      <access-controller type="global"/>
+    </component-instance>
+    <component-instance class="org.apache.lenya.ac.impl.ComposableAccessControllerResolver" logger="lenya.ac.accesscontrollerresolver.composable" name="composable">
+      <resolver type="publication"/>
+      <!--      <resolver type="global"/>-->
+    </component-instance>
+  </access-controller-resolvers>
+</components>
+
+</cocoon>

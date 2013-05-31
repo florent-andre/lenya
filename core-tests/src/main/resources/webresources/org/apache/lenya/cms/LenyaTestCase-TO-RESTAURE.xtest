@@ -83,15 +83,7 @@
 	</roles>
 
 	<components>
-	
-	<!-- TODO : see how to extract it from here -->
-	<authorizers>
-			<component-instance
-				class="org.apache.lenya.cms.ac.usecase.impl.UsecaseAuthorizerImpl"
-				logger="lenya.ac.authorizer.usecase" name="usecase" />
-		</authorizers>
-	
-	
+
 		<!-- Initialisation configurations from src/resources/test/xconf-template.xml -->
 		<source-factories>
 			<component-instance

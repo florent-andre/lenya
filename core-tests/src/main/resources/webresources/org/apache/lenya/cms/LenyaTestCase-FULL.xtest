@@ -232,7 +232,8 @@
 
   <component-instance class="org.apache.lenya.cms.site.tree2.TreeSiteManager" logger="lenya.site" name="tree"/>
   
-</site-managers><component class="org.apache.lenya.cms.repository.AxisUUIDGenerator" logger="lenya.cocoon.components" role="org.apache.lenya.cms.repository.UUIDGenerator"/>
+</site-managers>
+<component class="org.apache.lenya.cms.repository.AxisUUIDGenerator" logger="lenya.cocoon.components" role="org.apache.lenya.cms.repository.UUIDGenerator"/>
 <component class="org.apache.lenya.cms.module.ModuleManagerImpl" role="org.apache.lenya.cms.module.ModuleManager">
 <modules copy="true">
 <module shortcut="navigation" src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/navigation"/>
