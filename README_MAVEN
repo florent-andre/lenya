@@ -8,3 +8,7 @@ mvn clean install
 * For import in eclipse :
  just open Eclipse and import existing maven project
 
+== Migrate to maven : 
+
+cd $LENYA/maven_migration/
+./migrate.sh

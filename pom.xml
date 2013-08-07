@@ -37,7 +37,9 @@
     <module>modules-core/linking</module>
     <!-- ac : OK : BUT : need to restore test as they all depends on org/apache/lenya/ac/impl/AbstractAccessControlTest.java witch depends on LenyaTestCase -->
     <module>modules-core/ac</module>
-    <!-- <module>modules-core/usecase</module> -->
+    <module>modules-core/usecase</module>
+    <!-- REMARQUE : acusecase déjà migré dans la nouvelle structure mais pas 
+         de tests de compilation fait encore -->
     <!-- acusecases : OK : BUT : need to restore lenyatestcase dependent tests -->
     <!-- <module>modules-core/acusecases</module> -->
     <!-- ldap : OK : BUT : TEST -->
