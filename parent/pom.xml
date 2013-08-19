@@ -394,175 +394,182 @@
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>ajax-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>batik-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>cocoon-testcase</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>forms-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>linkrewriter-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>profiler-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>session-fw-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>xsp-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>asciiart-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>captcha-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>databases-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>hsqldb-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>lucene-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>proxy-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>template-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>auth-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>chaperon-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>deli-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>html-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>mail-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>querybean-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>validation-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>axis-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>cocoon</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>fop-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>imageop-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>naming-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>serializers-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.cocoon</groupId>
 	<artifactId>xsltal-block</artifactId>
-	<version>2.1.12-dev</version>
+	<version>${cocoon.version}</version>
+      </dependency>
+
+
+      <dependency>
+	<groupId>org.apache.cocoon</groupId>
+	<artifactId>cron-block</artifactId>
+	<version>${cocoon.version}</version>
       </dependency>
 
       <!-- external dependencies -->
