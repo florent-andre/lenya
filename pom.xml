@@ -41,7 +41,7 @@
     <!-- REMARQUE : acusecase déjà migré dans la nouvelle structure mais pas 
          de tests de compilation fait encore -->
     <!-- acusecases : OK : BUT : need to restore lenyatestcase dependent tests -->
-    <!-- <module>modules-core/acusecases</module> -->
+    <module>modules-core/acusecases</module>
     <!-- ldap : OK : BUT : TEST -->
     <!-- <module>modules-core/ldap</module> -->
     <!-- <module>modules-core/monitoring</module> -->
