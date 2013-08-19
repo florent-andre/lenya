@@ -9,7 +9,7 @@
     <relativePath>../../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>core.module.acusecase</artifactId>
+  <artifactId>core.module.usecase</artifactId>
   <packaging>jar</packaging>
   <name>Lenya core : Usecase framework API</name>
   <description>Usecase framework API</description>
@@ -31,7 +31,7 @@
       <groupId>org.apache.lenya</groupId>
       <artifactId>core.module.linking</artifactId>
     </dependency>
-
+    
     <!-- end lenya deps -->
 
     <dependency>
@@ -49,11 +49,33 @@
       <artifactId>cocoon</artifactId>
     </dependency>
 
+	 <dependency>
+	<groupId>org.apache.cocoon</groupId>
+	<artifactId>cron-block</artifactId>
+      </dependency>
+	
+	
     <dependency>
       <groupId>jcifs</groupId>
       <artifactId>jcifs-mock</artifactId>
     </dependency>
     
+    <!-- should be transitive dependencies from cocoon -->
+    <dependency>
+	<groupId>cocoon-deps</groupId>
+	<artifactId>excalibur-component</artifactId>
+      </dependency>
+    
+    <dependency>
+	<groupId>excalibur-logger</groupId>
+	<artifactId>excalibur-logger</artifactId>
+      </dependency>
+    
+     <dependency>
+	<groupId>excalibur-instrument</groupId>
+	<artifactId>excalibur-instrument-api</artifactId>
+      </dependency>
+      
     <!-- Tests -->
     <dependency>
       <groupId>org.apache.lenya</groupId>
