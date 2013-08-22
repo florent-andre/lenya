@@ -39,9 +39,7 @@
     <module>modules-core/ac</module>
     <module>modules-core/usecase</module>
     <!-- acusecases : OK : BUT : need to restore lenyatestcase dependent tests -->
-    A FAIRE : remettre en compilation le abstract test ici : 
-    /core-impl/TESTS/JAVA/org/apache/lenya/cms/usecase/AbstractUsecaseTest.java
-    pour que les tests de ce module compilent. 
+    A FAIRE : résoudre le problème de résolution de component 
     <module>modules-core/acusecases</module>
     <!-- ldap : OK : BUT : TEST -->
     <!-- <module>modules-core/ldap</module> -->

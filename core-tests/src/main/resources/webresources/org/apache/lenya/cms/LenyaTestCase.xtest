@@ -81,6 +81,8 @@
 			name="org.apache.lenya.cms.publication.DocumentBuilderSelector"
 			shorthand="document-builders" />
 			
+		<role default-class="org.apache.lenya.cms.usecase.impl.UsecaseSelector" name="org.apache.lenya.cms.usecase.UsecaseSelector" shorthand="usecases"/>
+		
 	</roles>
 
 	<components>
