@@ -9,14 +9,16 @@
 	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
 	OF ANY KIND, either express or implied. See the License for the specific 
 	language governing permissions and limitations under the License. -->
-<cocoon>
+<cocoon user-roles="/WEB-INF/classes/org/apache/lenya/lenya.roles">
 
 	<!-- Initialisation configurations from src/resources/test/template-xtest.xml -->
 
 	<annotation>
 		Test Cases
 	</annotation>
-
+	
+	
+<!-- 
 	<roles>
 
 		<role name="org.apache.excalibur.source.SourceFactorySelector"
@@ -42,10 +44,10 @@
 			default-class="org.apache.excalibur.xmlizer.DefaultXMLizer" />
 		<role name="org.apache.excalibur.xml.sax.SAXParser" shorthand="xml-parser"
 			default-class="org.apache.excalibur.xml.impl.JaxpParser" />
-		
+ -->		
 		<!-- ************************************************************ -->
 		<!-- TODO : remove them from this files when xrole patch is okay and this one are transformed into xpatch -->
-		<role default-class="org.apache.cocoon.components.ExtendedComponentSelector"
+<!--  	<role default-class="org.apache.cocoon.components.ExtendedComponentSelector"
 			name="org.apache.lenya.ac.AccessControllerResolverSelector"
 			shorthand="access-controller-resolvers">
 			<hint class="org.apache.lenya.ac.ComposableAccessControllerResolver"
@@ -84,7 +86,7 @@
 		<role default-class="org.apache.lenya.cms.usecase.impl.UsecaseSelector" name="org.apache.lenya.cms.usecase.UsecaseSelector" shorthand="usecases"/>
 		
 	</roles>
-
+-->	
 	<components>
 	
 	<!-- ************************************************************ -->

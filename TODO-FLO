@@ -6,6 +6,11 @@
 * Passage sur la branche 2.0.X
 ** continuer la migration des modules (les prendre dans le src et les remonter en maven)
 
+
+======> Vérifier le xpatch des roles sur le vrai fichier de roles, puisque maintenant le loading des roles se fait bien.
+
+
+
 !!!!!!! ajout du xpathModifier pour prendre en compte les différences entre le xconf de test et le vrai cocoon.xconf !!!!!
 ===> actuellement pour faire marcher le module ac
 /core-tests/src/main/resources/webresources/org/apache/lenya/cms/LenyaTestCase-PRESQUE-MIN-WORK.xtest
@@ -63,6 +68,21 @@ restauration des tests :
 
 * mettre ces roles en xpatchable histoire d'avoir les roles automatiquement avec le module 
 ** et permettre la création des tests et des publications de manière autonome et clean.
+
+== Gestion des lenya Roles pour les tests : 
+
+* Le code d'initialisation du coocon et des roles dans le test se base sur : 
+** src/test/org/apache/cocoon/core/container/ContainerTestCase.java 
+
+* Mais dans la prod, c'est en fait un attribut de cocoon : 
+<cocoon user-roles="/WEB-INF/classes/org/apache/lenya/lenya.roles">
+
+(le patch est ici : /core-tests/src/main/resources/webresources/lenya/webapp/lenya/config/cocoon-xconf/misc/lenya-roles.xconf)
+
+==> il faudrait trouver où se trouve la configuration des lenya roles sur la "prod" et utiliser le même pour le test.
+==> il suffira de surcharger une des fonctions de "ContainerTestCase"
+
+
 
 == Goal : maven migration ==
 

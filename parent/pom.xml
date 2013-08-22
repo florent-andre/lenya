@@ -266,11 +266,11 @@
 	<version>${lenya.version}</version>
       </dependency>
 
-      <dependency>
-	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.lucene</artifactId>
-	<version>${lenya.version}</version>
-      </dependency>
+<!--       <dependency> -->
+<!-- 	<groupId>org.apache.lenya</groupId> -->
+<!-- 	<artifactId>module.lucene</artifactId> -->
+<!-- 	<version>${lenya.version}</version> -->
+<!--       </dependency> -->
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>

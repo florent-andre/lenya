@@ -20,10 +20,10 @@
 			<artifactId>core-api</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.lenya</groupId>
-			<artifactId>pubs.default</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.lenya</groupId> -->
+<!-- 			<artifactId>pubs.default</artifactId> -->
+<!-- 		</dependency> -->
 
 		<!-- Transitive dependency for cocoon-component -->
 		<dependency>
