@@ -9,10 +9,10 @@
     <relativePath>../../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>core.module.${MODULEFQN}</artifactId>
+  <artifactId>core.module.ldap</artifactId>
   <packaging>jar</packaging>
-  <name>${PROJECTNAME}</name>
-  <description>${PROJECTDESCRIPTION}</description>
+  <name>LDAP</name>
+  <description>LDAP user implementation. Also see src/pubs/default/config/ac/passwd/ldap.properties.sample</description>
   <url>http://lenya.apache.org</url>
 
   <dependencies>
@@ -32,6 +32,10 @@
       <artifactId>core.module.linking</artifactId>
     </dependency>
 
+<dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.ac</artifactId>
+    </dependency>
     <!-- end lenya deps -->
 
     <dependency>
@@ -67,6 +71,12 @@
       <scope>test</scope>
     </dependency>
     
+<dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.ac</artifactId>
+      <classifier>tests</classifier>
+      <scope>test</scope>
+    </dependency>
     
     <!-- Others dependencies -->
     <dependency>
@@ -86,6 +96,14 @@
   <!-- built a test jar for sharing the abstract tests -->
   <build>
     <plugins>
+    	<!-- Skip tests for this particular plugin -->
+    	<plugin>
+    		<groupId>org.apache.maven.plugins</groupId>
+    		<artifactId>maven-surefire-plugin</artifactId>
+    		<configuration>
+    			<skipTests>true</skipTests>
+    		</configuration>
+    	</plugin>
       <plugin>
 	<groupId>org.apache.lenya</groupId>
 	<artifactId>maven-xpatch</artifactId>
