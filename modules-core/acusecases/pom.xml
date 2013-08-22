@@ -72,6 +72,20 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.ac</artifactId>
+      <classifier>tests</classifier>
+      <scope>test</scope>
+    </dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.usecase</artifactId>
+			<classifier>tests</classifier>
+			<scope>test</scope>
+		</dependency>
+		
 <!-- 		<dependency> -->
 <!-- 			<groupId>org.apache.lenya</groupId> -->
 <!-- 			<artifactId>core.module.usecase</artifactId> -->

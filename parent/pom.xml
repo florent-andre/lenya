@@ -92,6 +92,26 @@
 	<version>${lenya.version}</version>
       </dependency>
 
+	<dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.ac</artifactId>
+      <classifier>tests</classifier>
+      <version>${lenya.version}</version>
+    </dependency>
+    
+    <dependency>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>core.module.usecase</artifactId>
+	<version>${lenya.version}</version>
+      </dependency>
+      
+      <dependency>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>core.module.usecase</artifactId>
+	<classifier>tests</classifier>
+	<version>${lenya.version}</version>
+      </dependency>
+
       <dependency>
 	<groupId>org.apache.lenya</groupId>
 	<artifactId>core.module.acusecases</artifactId>
@@ -162,11 +182,7 @@
 	<artifactId>core.module.templating</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
-      <dependency>
-	<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.usecase</artifactId>
-	<version>${lenya.version}</version>
-      </dependency>
+      
       <dependency>
 	<groupId>org.apache.lenya</groupId>
 	<artifactId>core.module.workflow</artifactId>
