@@ -1,0 +1,74 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.apache.lenya</groupId>
+    <artifactId>parent</artifactId>
+    <version>2.6-SNAPSHOT</version>
+    <relativePath>../../parent/pom.xml</relativePath>
+  </parent>
+  
+  <artifactId>core.module.monitoring</artifactId>
+  <packaging>jar</packaging>
+  <name>Lenya : Monitoring</name>
+  <description>Tools to monitor a Lenya application.</description>
+  <url>http://lenya.apache.org</url>
+
+  <dependencies>
+ <!-- Lenya deps -->
+                <dependency>
+                        <groupId>org.apache.lenya</groupId>
+                        <artifactId>core-api</artifactId>
+                </dependency>
+
+                <!-- end lenya deps -->
+
+                <dependency>
+                        <groupId>javax.servlet</groupId>
+                        <artifactId>servlet-api</artifactId>
+                        <scope>provided</scope>
+                </dependency>
+
+                <dependency>
+                        <groupId>log4j</groupId>
+                        <artifactId>log4j</artifactId>
+                </dependency>
+
+    
+  </dependencies>
+
+  <!-- built a test jar for sharing the abstract tests -->
+  <build>
+    <plugins>
+<!--       <plugin> -->
+<!-- 	<groupId>org.apache.lenya</groupId> -->
+<!-- 	<artifactId>maven-xpatch</artifactId> -->
+<!-- 	<version>1.0-SNAPSHOT</version> -->
+<!-- 	<executions> -->
+<!-- 	  <execution> -->
+<!-- 	    <id>default-resources</id> -->
+<!-- 	    <phase>process-test-resources</phase> -->
+<!-- 	    <goals> -->
+<!-- 	      <goal>testwebresources</goal> -->
+<!-- 	      <goal>testxpatch</goal> -->
+<!-- 	    </goals> -->
+<!-- 	  </execution> -->
+<!-- 	</executions> -->
+<!--       </plugin> -->
+
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-jar-plugin</artifactId>
+	<version>2.2</version>
+	<executions>
+	  <execution>
+	    <goals>
+	      <goal>test-jar</goal>
+	    </goals>
+	  </execution>
+	</executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
