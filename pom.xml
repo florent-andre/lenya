@@ -41,9 +41,11 @@
     <module>modules-core/acusecases</module>
     <!-- ldap : OK : BUT : test are skiped in pom cause configurations errors -->
     <module>modules-core/ldap</module>
+    
+    <module>modules-core/monitoring</module>
+    
+    <module>modules-core/administration</module>
     restart here ...
-    <!-- <module>modules-core/monitoring</module> -->
-    <!-- <module>modules-core/administration</module> -->
     <!-- <module>modules-core/gui</module> -->
     <!-- <module>modules-core/i18n</module> -->
     <!-- <module>modules-core/janitor</module> -->
