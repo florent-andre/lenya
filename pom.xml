@@ -47,7 +47,7 @@
     <module>modules-core/administration</module>
     restart here ......
     <module>modules-core/gui</module>
-    <!-- <module>modules-core/i18n</module> -->
+    <module>modules-core/i18n</module>
     <!-- <module>modules-core/janitor</module> -->
     <!-- <module>modules-core/properties</module> -->
     <!-- <module>modules-core/templating</module> -->
