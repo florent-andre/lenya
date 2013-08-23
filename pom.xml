@@ -52,9 +52,11 @@
     	/core.module.properties/src/main/resources/webresources/lenya/modules/properties/java/lib/org.apache.forrest.plugin.output.inputModule-r431162.jar
      -->
     <module>modules-core/properties</module>
-    <!-- <module>modules-core/templating</module> -->
+    
+    <module>modules-core/templating</module>
     <!-- notification : OK : BUT : TEST : !!Not dans module-core BUT required dependency for workflow !! ?? TODO : move this to module-core ??  -->
-    <!-- <module>modules/notification</module> -->
+    restart here ...... finir de restaurer les test
+    <module>modules/notification</module>
     <!-- workflow : OK : BUT : TEST -->
     <!-- <module>modules-core/workflow</module> -->
     <!-- <module>modules-core/metadata</module> -->
