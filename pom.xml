@@ -45,11 +45,13 @@
     <module>modules-core/monitoring</module>
     
     <module>modules-core/administration</module>
-    restart here ......
     <module>modules-core/gui</module>
     <module>modules-core/i18n</module>
-    <!-- <module>modules-core/janitor</module> -->
-    <!-- <module>modules-core/properties</module> -->
+    <module>modules-core/janitor</module>
+    <!--  ok but be carrefull this may be missing one lib in maven dependencies
+    	/core.module.properties/src/main/resources/webresources/lenya/modules/properties/java/lib/org.apache.forrest.plugin.output.inputModule-r431162.jar
+     -->
+    <module>modules-core/properties</module>
     <!-- <module>modules-core/templating</module> -->
     <!-- notification : OK : BUT : TEST : !!Not dans module-core BUT required dependency for workflow !! ?? TODO : move this to module-core ??  -->
     <!-- <module>modules/notification</module> -->
