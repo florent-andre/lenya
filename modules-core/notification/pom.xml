@@ -46,6 +46,16 @@
       <groupId>org.apache.lenya</groupId>
       <artifactId>core.module.linking</artifactId>
     </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.sitetree</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.sourcerepository</artifactId>
+    </dependency>
 
     <!-- end lenya deps -->
 

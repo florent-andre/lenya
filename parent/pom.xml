@@ -193,6 +193,19 @@
 	<artifactId>core.module.homepage</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
+      
+      <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.sourcerepository</artifactId>
+      <version>${lenya.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.sitetree</artifactId>
+      <version>${lenya.version}</version>
+    </dependency>
+    
       <!-- lenya modules dependencies -->
       <dependency>
 	<groupId>org.apache.lenya</groupId>
@@ -364,7 +377,7 @@
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.xhtml</artifactId>
+	<artifactId>core.module.xhtml</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 

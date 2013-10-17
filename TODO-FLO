@@ -1,4 +1,9 @@
 
+== Documentation == 
+
+* In order to get a publication with content, use function initPublicationTestContent in core.module.notification/src/test/java/org/apache/lenya/notification/NotificationTest.java
+** TODO : move this function to a more generic abstract class
+
 == This is a maven migration from the 2_0_X branch ==
 
 == Restart here ==

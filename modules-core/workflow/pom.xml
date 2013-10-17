@@ -1,0 +1,159 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.apache.lenya</groupId>
+    <artifactId>parent</artifactId>
+    <version>2.6-SNAPSHOT</version>
+    <relativePath>../../parent/pom.xml</relativePath>
+  </parent>
+
+  <artifactId>core.module.workflow</artifactId>
+  <packaging>jar</packaging>
+  <name>workflow</name>
+  <description>Workflow implementation</description>
+  <url>http://lenya.apache.org</url>
+
+  <dependencies>
+    <!-- Lenya deps -->
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core-api</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.cache</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.linking</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.usecase</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.notification</artifactId>
+    </dependency>
+
+    <!-- end lenya deps -->
+
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.avalon.framework</groupId>
+      <artifactId>avalon-framework-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.cocoon</groupId>
+      <artifactId>cocoon</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>jcifs</groupId>
+      <artifactId>jcifs-mock</artifactId>
+    </dependency>
+    
+    <!-- Tests -->
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core-tests</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.observation</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.ac</artifactId>
+      <classifier>tests</classifier>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.sitetree</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.sourcerepository</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.metadata</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.homepage</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- Others dependencies -->
+    <dependency>
+      <groupId>axis</groupId>
+      <artifactId>axis</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>lenyaDeps</groupId>
+      <artifactId>commons-discovery</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+  </dependencies>
+
+  <!-- built a test jar for sharing the abstract tests -->
+  <build>
+    <plugins>
+      <plugin>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>maven-xpatch</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<executions>
+	  <execution>
+	    <id>default-resources</id>
+	    <phase>process-test-resources</phase>
+	    <goals>
+	      <goal>testwebresources</goal>
+	      <goal>testxpatch</goal>
+	    </goals>
+	  </execution>
+	</executions>
+      </plugin>
+
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-jar-plugin</artifactId>
+	<version>2.2</version>
+	<executions>
+	  <execution>
+	    <goals>
+	      <goal>test-jar</goal>
+	    </goals>
+	  </execution>
+	</executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

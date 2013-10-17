@@ -54,12 +54,46 @@
     <module>modules-core/properties</module>
     
     <module>modules-core/templating</module>
+    
+    <!-- Check it as it's defined as the Lenya Repository API (Draft) -->
+    <module>modules-core/sourcerepository</module>
+    <!-- TODO : restore test in : -->
+    <!-- /core.module.sitetree/src/test/java/org/apache/lenya/cms/site/tree/ConcurrentModificationTest.java -->
+    <module>modules-core/sitetree</module>
+    
+    <!-- Module that originally reside in pubs/default/modules/homepage -->
+    <module>modules-core/homepage</module>
+    
+    <module>modules-core/notification</module>
+    
+    <module>modules-core/metadata</module>
+    
+    <!-- workflow : OK : BUT : TEST CANOO-->
+    <module>modules-core/workflow</module>
+    
+    <module>modules-core/xhtml</module>
+    
+    <!-- export module : provide the hability to import test data into publication during test -->
+    ** restart here **
+    ajouter le module "link" en dépendance.
+    <module>modules-core/export</module>
+    
+    
+    
     <!-- notification : OK : BUT : TEST : !!Not dans module-core BUT required dependency for workflow !! ?? TODO : move this to module-core ??  -->
-    restart here ...... finir de restaurer les test
-    <module>modules/notification</module>
-    <!-- workflow : OK : BUT : TEST -->
-    <!-- <module>modules-core/workflow</module> -->
-    <!-- <module>modules-core/metadata</module> -->
+    restart here ...... 
+	il s'agit de permettre au tests de créer leur propre publication a partir des données de content par défault présentes dans la publication
+	ces données sont transformée en vraie publication grâce à l'import du module export
+	puis par la fonction : initPublicationTestContent cf notificationTest.java
+    <!-- Attention : change webresource module name to match the new module name -->
+    <module>modules-core/emailnotification</module>
+    
+    ** continue here
+    <!-- TODO : update the webressource module name to match the new module name -->
+    <module>modules-core/metadatausecase</module>
+    
+    
+    
     <!-- observation : OK : BUT : TEST -->
     <!-- <module>modules-core/observation</module> -->
     <!-- sitemanagement : OK : BUT : TEST -->
@@ -92,13 +126,12 @@
     <!-- <module>modules/prettyprinting</module> -->
     <!-- <module>modules/profiling</module> -->
     <!-- <module>modules/resource</module> -->
-    <!-- <module>modules/sitetree</module> -->
-    <!-- <module>modules/sourcerepository</module> -->
+    
+    
     <!-- <module>modules/svg</module> -->
     <!-- <module>modules/tinymce</module> -->
     <!-- <module>modules/usecasedocument</module> -->
     <!-- <module>modules/webdav</module> -->
-    <!-- <module>modules/xhtml</module>	 -->
     
     <!-- And finally.. THE Webapp !! :: TODO : be carefull, maybe some changes beetween the 2.1.X source an the 2.0.X version-->
     <!-- <module>webapp-maven</module> -->

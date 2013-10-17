@@ -5,7 +5,7 @@
 OLD_MODULE_FOLDER="../src/modules/"
 #-core/"
 NEW_MODULE_FOLDER="../modules-core/"
-MODULE_NAME="notification" #no trailing slash in module_name
+MODULE_NAME="xhtml" #no trailing slash in module_name
 
 # end variables to set
 OLD=$OLD_MODULE_FOLDER$MODULE_NAME
