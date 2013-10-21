@@ -60,9 +60,21 @@
 			<scope>test</scope>
 		</dependency>
 		
+						<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.usecase</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 				<dependency>
 			<groupId>org.apache.lenya</groupId>
 			<artifactId>core.module.observation</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+			<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.templating</artifactId>
 			<scope>test</scope>
 		</dependency>
 		

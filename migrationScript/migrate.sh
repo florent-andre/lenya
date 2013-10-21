@@ -2,10 +2,10 @@
 
 # variables to manually set.
 # Don't forget the trailing / in *_MODULE_FOLDER variables
-OLD_MODULE_FOLDER="../src/modules/"
+OLD_MODULE_FOLDER="../src/modules-core/"
 #-core/"
 NEW_MODULE_FOLDER="../modules-core/"
-MODULE_NAME="collection" #no trailing slash in module_name
+MODULE_NAME="observation" #no trailing slash in module_name
 
 # end variables to set
 OLD=$OLD_MODULE_FOLDER$MODULE_NAME

@@ -9,10 +9,8 @@
     <relativePath>parent</relativePath>
   </parent>
   
-  <groupId>org.apache.lenya</groupId>
   <artifactId>core-reactor</artifactId>
   <packaging>pom</packaging>
-  <version>2.6-SNAPSHOT</version>
   <name>Lenya core reactor</name>
   <url>http://lenya.apache.org</url>
   
@@ -35,9 +33,16 @@
     <module>modules-core/cache</module>
     <!-- linking : OK : BUT : restore TEST-CASE in test folder : this tests depends on AbstractAccessControlTest (loop dependency), but may only depends on LenyaTestCase -->
     <module>modules-core/linking</module>
+    
+    <!-- observation : OK : BUT : TEST -->
+    <module>modules-core/observation</module>
+    
     <!-- ac : OK : BUT : need to restore test as they all depends on org/apache/lenya/ac/impl/AbstractAccessControlTest.java witch depends on LenyaTestCase -->
     <module>modules-core/ac</module>
     <module>modules-core/usecase</module>
+    
+    <module>core-tests-usecase</module>
+    
     <module>modules-core/acusecases</module>
     <!-- ldap : OK : BUT : test are skiped in pom cause configurations errors -->
     <module>modules-core/ldap</module>
@@ -92,24 +97,18 @@
     <!-- export module : provide the hability to import test data into publication during test -->
     <module>modules-core/export</module>
     
+    <module>core-tests-publication</module>
     
-<!--     restart here ......  -->
-<!-- 	il s'agit de permettre au tests de créer leur propre publication a partir des données de content par défault présentes dans la publication -->
-<!-- 	ces données sont transformée en vraie publication grâce à l'import du module export -->
-<!-- 	puis par la fonction : initPublicationTestContent cf notificationTest.java -->
     <!-- Attention : change webresource module name to match the new module name -->
+    <!-- TODO : extract the code to create a test publication to something more reusable 
+    		(see initPublicationTestContent in NotificationTest.java) -->
     <module>modules-core/emailnotification</module>
     
-<!--     ** continue here -->
     <!-- TODO : update the webressource module name to match the new module name -->
-<!--     <module>modules-core/metadatausecase</module> -->
+    <module>modules-core/metadatausecase</module>
     
     
     
-    <!-- observation : OK : BUT : TEST -->
-    <!-- <module>modules-core/observation</module> -->
-
-    <!-- <module>modules-core/homepage</module> -->
     
     <!--publication related stuff -->
     <!-- <module>pubs/default</module> -->

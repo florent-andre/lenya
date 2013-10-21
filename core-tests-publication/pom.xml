@@ -1,0 +1,89 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.apache.lenya</groupId>
+		<artifactId>parent</artifactId>
+		<version>2.6-SNAPSHOT</version>
+		<relativePath>../parent/pom.xml</relativePath>
+	</parent>
+
+	<artifactId>core-tests-publication</artifactId>
+	<packaging>jar</packaging>
+	<name>Lenya core base classes and resources for tests with a publication builded for the test</name>
+	<url>http://lenya.apache.org</url>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core-tests</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.ac</artifactId>
+			<classifier>tests</classifier>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.export</artifactId>
+		</dependency>
+
+		<!-- Export related test modules dependencies -->
+		<!-- TODO : see if we can "embeded them all in a dependency or something -->
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.homepage</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.metadata</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.xhtml</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.links</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.opendocument</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.administration</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.cforms</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.usecasedocument</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.news</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>cocoon-deps</groupId>
+			<artifactId>cocoon-serializers-charsets</artifactId>
+		</dependency>
+
+	</dependencies>
+
+</project>

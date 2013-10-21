@@ -19,12 +19,7 @@
 			<groupId>org.apache.lenya</groupId>
 			<artifactId>core-api</artifactId>
 		</dependency>
-
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.apache.lenya</groupId> -->
-<!-- 			<artifactId>pubs.default</artifactId> -->
-<!-- 		</dependency> -->
-
+		
 		<!-- Transitive dependency for cocoon-component -->
 		<dependency>
 			<groupId>excalibur-component</groupId>
@@ -64,15 +59,15 @@
 			<artifactId>core-impl</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.lenya</groupId>
-			<artifactId>module.svg</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.lenya</groupId> -->
+<!-- 			<artifactId>module.svg</artifactId> -->
+<!-- 		</dependency> -->
 
-		<dependency>
-			<groupId>org.apache.lenya</groupId>
-			<artifactId>core.module.templating</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.lenya</groupId> -->
+<!-- 			<artifactId>core.module.templating</artifactId> -->
+<!-- 		</dependency> -->
 
 		<dependency>
 			<groupId>concurrent</groupId>
@@ -82,10 +77,10 @@
 
 		<!-- Others dependencies -->
 		<dependency>
-				<groupId>axis</groupId>
-				<artifactId>axis</artifactId>
+			<groupId>axis</groupId>
+			<artifactId>axis</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>lenyaDeps</groupId>
 			<artifactId>commons-discovery</artifactId>

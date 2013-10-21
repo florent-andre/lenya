@@ -9,7 +9,7 @@
 		<relativePath>../../parent/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>core.module.acusecase</artifactId>
+	<artifactId>core.module.acusecases</artifactId>
 	<packaging>jar</packaging>
 	<name>Lenya core : Access control usecases</name>
 	<description>Access control usecases</description>
@@ -66,9 +66,21 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core-tests-usecase</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
 				<dependency>
 			<groupId>org.apache.lenya</groupId>
 			<artifactId>core.module.observation</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.lenya</groupId>
+			<artifactId>core.module.templating</artifactId>
 			<scope>test</scope>
 		</dependency>
 		
@@ -78,14 +90,7 @@
       <classifier>tests</classifier>
       <scope>test</scope>
     </dependency>
-		
-		<dependency>
-			<groupId>org.apache.lenya</groupId>
-			<artifactId>core.module.usecase</artifactId>
-			<classifier>tests</classifier>
-			<scope>test</scope>
-		</dependency>
-		
+				
 <!-- 		<dependency> -->
 <!-- 			<groupId>org.apache.lenya</groupId> -->
 <!-- 			<artifactId>core.module.usecase</artifactId> -->

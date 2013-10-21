@@ -86,6 +86,18 @@
     
     <dependency>
       <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.ac</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.templating</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
       <artifactId>core.module.sitetree</artifactId>
       <scope>test</scope>
     </dependency>

@@ -6,13 +6,13 @@
     <groupId>org.apache.lenya</groupId>
     <artifactId>parent</artifactId>
     <version>2.6-SNAPSHOT</version>
-    <relativePath>../../parent/pom.xml</relativePath>
+    <relativePath>../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>core.module.metadatausecase</artifactId>
+  <artifactId>core-tests-usecase</artifactId>
   <packaging>jar</packaging>
-  <name>Usecase for Meta Data modification</name>
-  <description>Meta data modification</description>
+  <name>Lenya core : Abstract class for test based on usecases</name>
+  <description>Usecase framework API</description>
   <url>http://lenya.apache.org</url>
 
   <dependencies>
@@ -31,7 +31,7 @@
       <groupId>org.apache.lenya</groupId>
       <artifactId>core.module.linking</artifactId>
     </dependency>
-
+    
     <dependency>
       <groupId>org.apache.lenya</groupId>
       <artifactId>core.module.usecase</artifactId>
@@ -39,9 +39,9 @@
     
     <dependency>
       <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.workflow</artifactId>
+      <artifactId>core.module.ac</artifactId>
     </dependency>
-
+    
     <!-- end lenya deps -->
 
     <dependency>
@@ -59,36 +59,60 @@
       <artifactId>cocoon</artifactId>
     </dependency>
 
+	 <dependency>
+	<groupId>org.apache.cocoon</groupId>
+	<artifactId>cron-block</artifactId>
+      </dependency>
+	
+	
     <dependency>
       <groupId>jcifs</groupId>
       <artifactId>jcifs-mock</artifactId>
     </dependency>
     
+    <!-- should be transitive dependencies from cocoon -->
+    <dependency>
+	<groupId>cocoon-deps</groupId>
+	<artifactId>excalibur-component</artifactId>
+      </dependency>
+    
+    <dependency>
+	<groupId>excalibur-logger</groupId>
+	<artifactId>excalibur-logger</artifactId>
+      </dependency>
+    
+     <dependency>
+	<groupId>excalibur-instrument</groupId>
+	<artifactId>excalibur-instrument-api</artifactId>
+      </dependency>
+      
     <!-- Tests -->
     <dependency>
       <groupId>org.apache.lenya</groupId>
       <artifactId>core-tests</artifactId>
-      <scope>test</scope>
     </dependency>
+    
+<!--     <dependency> -->
+<!--       <groupId>org.apache.lenya</groupId> -->
+<!--       <artifactId>core.module.observation</artifactId> -->
+<!--       <scope>test</scope> -->
+<!--     </dependency> -->
     
     <dependency>
       <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.observation</artifactId>
-      <scope>test</scope>
+      <artifactId>core.module.ac</artifactId>
+      <classifier>tests</classifier>
     </dependency>
-    
     
     <!-- Others dependencies -->
     <dependency>
       <groupId>axis</groupId>
       <artifactId>axis</artifactId>
-      <scope>test</scope>
     </dependency>
     
     <dependency>
       <groupId>lenyaDeps</groupId>
       <artifactId>commons-discovery</artifactId>
-      <scope>test</scope>
     </dependency>
     
   </dependencies>
@@ -112,18 +136,6 @@
 	</executions>
       </plugin>
 
-      <plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-jar-plugin</artifactId>
-	<version>2.2</version>
-	<executions>
-	  <execution>
-	    <goals>
-	      <goal>test-jar</goal>
-	    </goals>
-	  </execution>
-	</executions>
-      </plugin>
     </plugins>
   </build>
 </project>

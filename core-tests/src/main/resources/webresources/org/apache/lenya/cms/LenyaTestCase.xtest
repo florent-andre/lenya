@@ -92,9 +92,9 @@
 	<!-- ************************************************************ -->
 	<!-- TODO : see how to extract it from here -->
 	<authorizers>
-			<component-instance
-				class="org.apache.lenya.cms.ac.usecase.impl.UsecaseAuthorizerImpl"
-				logger="lenya.ac.authorizer.usecase" name="usecase" />
+<!-- 			<component-instance -->
+<!-- 				class="org.apache.lenya.cms.ac.usecase.impl.UsecaseAuthorizerImpl" -->
+<!-- 				logger="lenya.ac.authorizer.usecase" name="usecase" /> -->
 		</authorizers>
 	
 	

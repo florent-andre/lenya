@@ -9,10 +9,10 @@
     <relativePath>../../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>core.module.metadatausecase</artifactId>
+  <artifactId>core.module.observation</artifactId>
   <packaging>jar</packaging>
-  <name>Usecase for Meta Data modification</name>
-  <description>Meta data modification</description>
+  <name>Observation implementation</name>
+  <description>Observation implementation</description>
   <url>http://lenya.apache.org</url>
 
   <dependencies>
@@ -30,16 +30,6 @@
     <dependency>
       <groupId>org.apache.lenya</groupId>
       <artifactId>core.module.linking</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.usecase</artifactId>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.workflow</artifactId>
     </dependency>
 
     <!-- end lenya deps -->
@@ -71,12 +61,31 @@
       <scope>test</scope>
     </dependency>
     
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.observation</artifactId>
-      <scope>test</scope>
-    </dependency>
+<!--     <dependency> -->
+<!--       <groupId>org.apache.lenya</groupId> -->
+<!--       <artifactId>core-tests-publication</artifactId> -->
+<!--       <scope>test</scope> -->
+<!--     </dependency> -->
     
+    
+<!--     <dependency> -->
+<!--       <groupId>org.apache.lenya</groupId> -->
+<!--       <artifactId>core.module.ac</artifactId> -->
+<!--       <scope>test</scope> -->
+<!--     </dependency> -->
+    
+<!--     <dependency> -->
+<!--       <groupId>org.apache.lenya</groupId> -->
+<!--       <artifactId>core.module.ac</artifactId> -->
+<!--       <classifier>tests</classifier> -->
+<!--       <scope>test</scope> -->
+<!--     </dependency> -->
+    
+<!--     <dependency> -->
+<!--       <groupId>org.apache.lenya</groupId> -->
+<!--       <artifactId>core.module.sitetree</artifactId> -->
+<!--       <scope>test</scope> -->
+<!--     </dependency> -->
     
     <!-- Others dependencies -->
     <dependency>

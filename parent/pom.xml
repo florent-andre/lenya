@@ -85,6 +85,19 @@
 	<artifactId>core-tests</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
+      
+      <dependency>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>core-tests-publication</artifactId>
+	<version>${lenya.version}</version>
+      </dependency>
+      
+       <dependency>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>core-tests-usecase</artifactId>
+	<version>${lenya.version}</version>
+      </dependency>
+      
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
