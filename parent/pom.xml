@@ -206,22 +206,52 @@
       <version>${lenya.version}</version>
     </dependency>
     
+    <dependency>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>core.module.links</artifactId>
+	<version>${lenya.version}</version>
+      </dependency>
+    
+    <dependency>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>core.module.opendocument</artifactId>
+	<version>${lenya.version}</version>
+      </dependency>
+    
+    <dependency>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>core.module.cforms</artifactId>
+	<version>${lenya.version}</version>
+      </dependency>
+      
+      <dependency>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>core.module.export</artifactId>
+	<version>${lenya.version}</version>
+      </dependency>
+      
+      <dependency>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>core.module.usecasedocument</artifactId>
+	<version>${lenya.version}</version>
+      </dependency>
+      
+      <dependency>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>core.module.collection</artifactId>
+	<version>${lenya.version}</version>
+      </dependency>
+      
+      <dependency>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>core.module.news</artifactId>
+	<version>${lenya.version}</version>
+      </dependency>
+      
       <!-- lenya modules dependencies -->
       <dependency>
 	<groupId>org.apache.lenya</groupId>
 	<artifactId>module.bxe</artifactId>
-	<version>${lenya.version}</version>
-      </dependency>
-
-      <dependency>
-	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.cforms</artifactId>
-	<version>${lenya.version}</version>
-      </dependency>
-
-      <dependency>
-	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.collection</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 
@@ -243,11 +273,7 @@
 	<version>${lenya.version}</version>
       </dependency>
 
-      <dependency>
-	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.export</artifactId>
-	<version>${lenya.version}</version>
-      </dependency>
+      
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
@@ -270,12 +296,6 @@
       <dependency>
 	<groupId>org.apache.lenya</groupId>
 	<artifactId>module.linkcheck</artifactId>
-	<version>${lenya.version}</version>
-      </dependency>
-
-      <dependency>
-	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.links</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 
@@ -305,22 +325,10 @@
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.news</artifactId>
-	<version>${lenya.version}</version>
-      </dependency>
-
-      <dependency>
-	<groupId>org.apache.lenya</groupId>
 	<artifactId>core.module.notification</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
-
-      <dependency>
-	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.opendocument</artifactId>
-	<version>${lenya.version}</version>
-      </dependency>
-
+      
       <dependency>
 	<groupId>org.apache.lenya</groupId>
 	<artifactId>module.prettyprinting</artifactId>
@@ -347,12 +355,6 @@
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.sourcerepository</artifactId>
-	<version>${lenya.version}</version>
-      </dependency>
-
-      <dependency>
-	<groupId>org.apache.lenya</groupId>
 	<artifactId>module.svg</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
@@ -360,12 +362,6 @@
       <dependency>
 	<groupId>org.apache.lenya</groupId>
 	<artifactId>module.tinymce</artifactId>
-	<version>${lenya.version}</version>
-      </dependency>
-
-      <dependency>
-	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.usecasedocument</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 

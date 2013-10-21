@@ -41,19 +41,27 @@ import org.apache.lenya.cms.repository.Session;
 import org.apache.lenya.cms.repository.SessionImpl;
 
 /**
- * To change the template for this generated type comment go to Window>Preferences>Java>Code
- * Generation>Code and Comments
+ * 
  */
 public class AbstractAccessControlTest extends LenyaTestCase {
 
-    protected static final String TEST_PUB_ID = "test";
+    //protected static final String TEST_PUB_ID = "test";
     private ServiceSelector accessControllerResolverSelector;
     private AccessControllerResolver accessControllerResolver;
     private DefaultAccessController accessController;
 
+    /**
+     * overide this function when you want to use another test publications
+     * @return the test publication name
+     */
+    protected String getTestPublicationId(){
+    	System.out.println("CALL AC !!!!!");
+    	return "test";
+    }
+    
     protected org.apache.lenya.cms.repository.Session login(String userId)
             throws AccessControlException {
-        return login(userId, TEST_PUB_ID);
+        return login(userId, getTestPublicationId());
     }
 
     protected Session login(String userId, String pubId) throws AccessControlException {
@@ -97,7 +105,7 @@ public class AbstractAccessControlTest extends LenyaTestCase {
     }
 
     protected DefaultAccessController getAccessController() {
-        return getAccessController(getSession(), TEST_PUB_ID);
+        return getAccessController(getSession(), getTestPublicationId());
     }
 
     protected DefaultAccessController getAccessController(Session session, String pubId) {

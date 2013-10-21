@@ -64,7 +64,6 @@ public class WebResourceMojo extends AbstractMojo {
     	
     	//end make this parameters configurable
     	
-    	@SuppressWarnings("unchecked")
     	Set<Artifact> dal = mavenProject.getDependencyArtifacts();
     	
     	for(Artifact da : dal){

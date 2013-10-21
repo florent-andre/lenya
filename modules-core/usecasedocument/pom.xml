@@ -9,10 +9,10 @@
     <relativePath>../../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>core.module.export</artifactId>
+  <artifactId>core.module.usecasedocument</artifactId>
   <packaging>jar</packaging>
-  <name>Export and import</name>
-  <description>Export and import documents into Lenya publication</description>
+  <name>Usecase Resource Type</name>
+  <description>Resource type which allows to execute usecases in the context of a document.</description>
   <url>http://lenya.apache.org</url>
 
   <dependencies>
@@ -32,16 +32,15 @@
       <artifactId>core.module.linking</artifactId>
     </dependency>
 
-    <dependency>
+	<dependency>
       <groupId>org.apache.lenya</groupId>
       <artifactId>core.module.usecase</artifactId>
     </dependency>
-
+    
     <dependency>
       <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.sitetree</artifactId>
+      <artifactId>core.module.sitemanagement</artifactId>
     </dependency>
-    
     <!-- end lenya deps -->
 
     <dependency>
@@ -77,77 +76,8 @@
       <scope>test</scope>
     </dependency>
     
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.ac</artifactId>
-      <classifier>tests</classifier>
-      <scope>test</scope>
-    </dependency>
-
-
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.sourcerepository</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-
-	<dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.homepage</artifactId>
-      <scope>test</scope>
-    </dependency>
     
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.metadata</artifactId>
-      <scope>test</scope>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.xhtml</artifactId>
-      <scope>test</scope>
-    </dependency>
-    
-    	<dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.links</artifactId>
-      <scope>test</scope>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.opendocument</artifactId>
-      <scope>test</scope>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.administration</artifactId>
-      <scope>test</scope>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.cforms</artifactId>
-      <scope>test</scope>
-    </dependency>
-    
-        <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.usecasedocument</artifactId>
-      <scope>test</scope>
-    </dependency>
-    
-    <dependency>
-      <groupId>org.apache.lenya</groupId>
-      <artifactId>core.module.news</artifactId>
-      <scope>test</scope>
-    </dependency>
-    
-    
-   	<!-- Others dependencies -->
+    <!-- Others dependencies -->
     <dependency>
       <groupId>axis</groupId>
       <artifactId>axis</artifactId>
@@ -160,11 +90,6 @@
       <scope>test</scope>
     </dependency>
     
-    <dependency>
-	<groupId>cocoon-deps</groupId>
-	<artifactId>cocoon-serializers-charsets</artifactId>
-      </dependency>
-      
   </dependencies>
 
   <!-- built a test jar for sharing the abstract tests -->

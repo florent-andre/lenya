@@ -73,31 +73,41 @@
     
     <module>modules-core/xhtml</module>
     
+    <module>modules-core/links</module>
+    
+    <!-- @TODO : java test have to be restaured, see comments in module's pom for details --> 
+    <module>modules-core/sitemanagement</module>
+    
+    <module>modules-core/opendocument</module>
+    
+    <module>modules-core/cforms</module>
+    
+    <module>modules-core/usecasedocument</module>
+    
+    <module>modules-core/collection</module>
+    
+    
+    <module>modules-core/news</module>
+    
     <!-- export module : provide the hability to import test data into publication during test -->
-    ** restart here **
-    ajouter le module "link" en dépendance.
     <module>modules-core/export</module>
     
     
-    
-    <!-- notification : OK : BUT : TEST : !!Not dans module-core BUT required dependency for workflow !! ?? TODO : move this to module-core ??  -->
-    restart here ...... 
-	il s'agit de permettre au tests de créer leur propre publication a partir des données de content par défault présentes dans la publication
-	ces données sont transformée en vraie publication grâce à l'import du module export
-	puis par la fonction : initPublicationTestContent cf notificationTest.java
+<!--     restart here ......  -->
+<!-- 	il s'agit de permettre au tests de créer leur propre publication a partir des données de content par défault présentes dans la publication -->
+<!-- 	ces données sont transformée en vraie publication grâce à l'import du module export -->
+<!-- 	puis par la fonction : initPublicationTestContent cf notificationTest.java -->
     <!-- Attention : change webresource module name to match the new module name -->
-    <module>modules-core/emailnotification</module>
+<!--     <module>modules-core/emailnotification</module> -->
     
-    ** continue here
+<!--     ** continue here -->
     <!-- TODO : update the webressource module name to match the new module name -->
-    <module>modules-core/metadatausecase</module>
+<!--     <module>modules-core/metadatausecase</module> -->
     
     
     
     <!-- observation : OK : BUT : TEST -->
     <!-- <module>modules-core/observation</module> -->
-    <!-- sitemanagement : OK : BUT : TEST -->
-    <!-- <module>modules-core/sitemanagement</module> -->
 
     <!-- <module>modules-core/homepage</module> -->
     
@@ -106,8 +116,7 @@
     
     <!-- "optionnal" modules (some are not really optionnals) -->
     <!-- <module>modules/bxe</module> -->
-    <!-- <module>modules/cforms</module> -->
-    <!-- <module>modules/collection</module> -->
+    
     <!-- <module>modules/contactform</module> -->
     <!-- <module>modules/development</module> -->
     <!-- <module>modules/editors</module> -->
@@ -116,13 +125,11 @@
     <!-- <module>modules/languageselector</module> -->
     <!-- <module>modules/lenyadoc</module> -->
     <!-- <module>modules/linkcheck</module> -->
-    <!-- <module>modules/links</module> -->
     <!-- <module>modules/lucene</module> -->
     <!-- <module>modules/menubar</module> -->
     <!-- <module>modules/navigation</module> -->
     <!-- <module>modules/neutron</module> -->
-    <!-- <module>modules/news</module> -->
-    <!-- <module>modules/opendocument</module> -->
+    
     <!-- <module>modules/prettyprinting</module> -->
     <!-- <module>modules/profiling</module> -->
     <!-- <module>modules/resource</module> -->
@@ -130,7 +137,6 @@
     
     <!-- <module>modules/svg</module> -->
     <!-- <module>modules/tinymce</module> -->
-    <!-- <module>modules/usecasedocument</module> -->
     <!-- <module>modules/webdav</module> -->
     
     <!-- And finally.. THE Webapp !! :: TODO : be carefull, maybe some changes beetween the 2.1.X source an the 2.0.X version-->
