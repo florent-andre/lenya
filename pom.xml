@@ -98,7 +98,7 @@
 <!-- 	ces données sont transformée en vraie publication grâce à l'import du module export -->
 <!-- 	puis par la fonction : initPublicationTestContent cf notificationTest.java -->
     <!-- Attention : change webresource module name to match the new module name -->
-<!--     <module>modules-core/emailnotification</module> -->
+    <module>modules-core/emailnotification</module>
     
 <!--     ** continue here -->
     <!-- TODO : update the webressource module name to match the new module name -->

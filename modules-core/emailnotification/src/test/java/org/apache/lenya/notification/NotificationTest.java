@@ -17,12 +17,16 @@
  */
 package org.apache.lenya.notification;
 
+import java.io.File;
+
 import org.apache.lenya.ac.Identifiable;
 import org.apache.lenya.ac.User;
+import org.apache.lenya.cms.export.Importer;
 import org.apache.lenya.cms.observation.RepositoryEvent;
 import org.apache.lenya.cms.observation.RepositoryEventFactory;
 import org.apache.lenya.cms.publication.Area;
 import org.apache.lenya.cms.publication.Publication;
+import org.apache.lenya.cms.publication.PublicationException;
 import org.apache.lenya.cms.repository.Session;
 import org.apache.lenya.inbox.Inbox;
 
@@ -33,7 +37,7 @@ public class NotificationTest extends AbstractNotificationTest {
 
     protected static final String SUBJECT = "hello";
 
-    public void initPublicationTestContent(){
+    public void initPublicationTestContent() throws Exception{
     	Session session = login("lenya");
 
         Publication pub = getPublication(session, "test");
@@ -57,6 +61,8 @@ public class NotificationTest extends AbstractNotificationTest {
      * @throws Exception
      */
     public void testNotification() throws Exception {
+    	
+    	initPublicationTestContent();
 
         login("lenya");
 

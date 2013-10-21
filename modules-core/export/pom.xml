@@ -146,6 +146,11 @@
       <scope>test</scope>
     </dependency>
     
+    <dependency>
+	<groupId>cocoon-deps</groupId>
+	<artifactId>cocoon-serializers-charsets</artifactId>
+	<scope>test</scope>
+      </dependency>
     
    	<!-- Others dependencies -->
     <dependency>
@@ -160,10 +165,7 @@
       <scope>test</scope>
     </dependency>
     
-    <dependency>
-	<groupId>cocoon-deps</groupId>
-	<artifactId>cocoon-serializers-charsets</artifactId>
-      </dependency>
+    
       
   </dependencies>
 

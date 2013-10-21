@@ -56,6 +56,11 @@
       <groupId>org.apache.lenya</groupId>
       <artifactId>core.module.sourcerepository</artifactId>
     </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.notification</artifactId>
+    </dependency>
 
     <!-- end lenya deps -->
 
@@ -92,6 +97,74 @@
       <scope>test</scope>
     </dependency>
     
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.export</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- Export related test modules dependencies -->
+    <!-- TODO : see if we can "embeded them all in a dependency or something -->
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.homepage</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.metadata</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.xhtml</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    	<dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.links</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.opendocument</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.administration</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.cforms</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+        <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.usecasedocument</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.news</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+	<groupId>cocoon-deps</groupId>
+	<artifactId>cocoon-serializers-charsets</artifactId>
+	<scope>test</scope>
+      </dependency>
+    <!-- End export related dependencies -->
     
     <!-- Others dependencies -->
     
