@@ -12,3 +12,35 @@ mvn clean install
 
 cd $LENYA/maven_migration/
 ./migrate.sh
+
+
+== Test your code : 
+
+* If you need ac related test add this to your pom : 
+<dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.ac</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+     <dependency>
+      <groupId>org.apache.lenya</groupId>
+      <artifactId>core.module.ac</artifactId>
+      <classifier>tests</classifier>
+      <scope>test</scope>
+    </dependency>
+
+* if you need a working publication for your tests, add this to your pom :
+<artifactId>core-tests-publication</artifactId>
+
+Make your test extend AbstractTestWithPublicationTest
+
+and call initPublicationTestContent before your tests
+
+{{for creating a mock publication, see also this : 
+protected void createMockPublication(String pubId, String area, String proxyUrl)
+in :
+/core.module.linking/src/test/java/org/apache/lenya/cms/cocoon/transformation/ProxyTransformerTest.java
+
+}}
+

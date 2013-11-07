@@ -24,19 +24,6 @@
 
 		<!-- end lenya deps -->
 
-		<!-- Tests -->
-		<dependency>
-			<groupId>org.apache.cocoon</groupId>
-			<artifactId>serializers-block</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.cocoon</groupId>
-			<artifactId>cocoon-testcase</artifactId>
-			<scope>test</scope>
-		</dependency>
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

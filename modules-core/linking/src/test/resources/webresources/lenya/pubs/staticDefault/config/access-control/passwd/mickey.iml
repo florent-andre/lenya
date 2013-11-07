@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><identity id="mickey" class="org.apache.lenya.ac.file.FileUser"><name>Mickey Mouse</name><description/><email>mickey@mouse.com</email><default-menu-locale/><default-document-locale/><password type="md5">df4b892324bbb648f27734b55c206b4b</password><groups><group>editorGroup</group><group>adminGroup</group></groups></identity>

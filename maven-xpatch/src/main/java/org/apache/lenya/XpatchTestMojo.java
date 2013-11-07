@@ -95,24 +95,36 @@ public class XpatchTestMojo extends AbstractXpatchMojo {
 
 		// TODO : make it configurable : only the test resources or the normal
 		// resources, or both
-
+		boolean patchFromResources = true;
+		boolean patchFromTestResources = true;
 		Collection<File> resourceFilesList = new ArrayList<File>();
-		List<Resource> resources = mavenProject.getBuild().getResources();
+		List<Resource> resources = new ArrayList<Resource>();
+		if(patchFromResources){
+			resources.addAll(mavenProject.getBuild().getResources());
+		}
+		if(patchFromTestResources){
+			resources.addAll(mavenProject.getBuild().getTestResources());
+		}
+		
 		for (Resource resource : resources) {
 
 			if (resource != null) {
-				File resourceFolder = new File(resource.getDirectory());
-				Collection<File> resourcesFiles = FileUtils.listFiles(
-						resourceFolder, TrueFileFilter.INSTANCE,
-						TrueFileFilter.INSTANCE);
-				for (File f : resourcesFiles) {
-					// TODO : use the Apache lib for managing file don't care
-					// where they come...
-					String relativUri = f.getAbsolutePath().replace(
-							resourceFolder.getPath() + "/", "");
-					if (resourcesFilter.isToKeep(relativUri)) {
-						resourceFilesList.add(f);
+				try{
+					File resourceFolder = new File(resource.getDirectory());
+					Collection<File> resourcesFiles = FileUtils.listFiles(
+							resourceFolder, TrueFileFilter.INSTANCE,
+							TrueFileFilter.INSTANCE);
+					for (File f : resourcesFiles) {
+						// TODO : use the Apache lib for managing file don't care
+						// where they come...
+						String relativUri = f.getAbsolutePath().replace(
+								resourceFolder.getPath() + "/", "");
+						if (resourcesFilter.isToKeep(relativUri)) {
+							resourceFilesList.add(f);
+						}
 					}
+				}catch(IllegalArgumentException e){
+					getLog().warn("This resource is not a folder : " + resource.toString());
 				}
 
 			}

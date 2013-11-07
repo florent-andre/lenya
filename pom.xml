@@ -31,7 +31,9 @@
     <!--restore anteater and webtest -->
     <module>core-impl</module>    
     <module>modules-core/cache</module>
-    <!-- linking : OK : BUT : restore TEST-CASE in test folder : this tests depends on AbstractAccessControlTest (loop dependency), but may only depends on LenyaTestCase -->
+    <!-- linking : OK : BUT :
+		restore this test : /core.module.linking/src/test/java/org/apache/lenya/cms/cocoon/transformation/ProxyTransformerTest.java    
+     -->
     <module>modules-core/linking</module>
     
     <!-- observation : OK : BUT : TEST -->
@@ -109,29 +111,33 @@
     
     
     
+    <module>modules-core/lucene</module>
     
     <!--publication related stuff -->
-    <!-- <module>pubs/default</module> -->
+    <module>pubs/default</module>
     
     <!-- "optionnal" modules (some are not really optionnals) -->
-    <!-- <module>modules/bxe</module> -->
+    <module>modules/bxe</module>
     
-    <!-- <module>modules/contactform</module> -->
-    <!-- <module>modules/development</module> -->
-    <!-- <module>modules/editors</module> -->
+    <module>modules/contactform</module>
+    <module>modules/development</module>
+    
+    <module>modules/resource</module>
+    
+    <module>modules/editors</module>
     <!-- <module>modules/export</module> -->
     <!-- <module>modules/jquery</module> -->
     <!-- <module>modules/languageselector</module> -->
     <!-- <module>modules/lenyadoc</module> -->
     <!-- <module>modules/linkcheck</module> -->
-    <!-- <module>modules/lucene</module> -->
+    
     <!-- <module>modules/menubar</module> -->
     <!-- <module>modules/navigation</module> -->
     <!-- <module>modules/neutron</module> -->
     
     <!-- <module>modules/prettyprinting</module> -->
     <!-- <module>modules/profiling</module> -->
-    <!-- <module>modules/resource</module> -->
+    
     
     
     <!-- <module>modules/svg</module> -->

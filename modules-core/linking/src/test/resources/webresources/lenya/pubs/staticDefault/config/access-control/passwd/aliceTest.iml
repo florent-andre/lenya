@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8"?><identity id="aliceTest" class="org.apache.lenya.ac.file.FileUser"><name>Alice in Wonderland</name><description/><email>alice@test.com</email><default-menu-locale/><default-document-locale/><password type="md5">5ebe2294ecd0e0f08eab7690d2a6ee69</password><groups><group>editorGroup</group><group>adminGroup</group></groups></identity>

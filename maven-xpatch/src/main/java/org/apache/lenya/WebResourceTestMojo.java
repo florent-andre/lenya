@@ -73,18 +73,13 @@ public class WebResourceTestMojo extends AbstractWebResourceMojo {
     	}
     	
     	//and then also copy the test resources of the current project
-    	
-    	System.out.println("test copy des ressources");
     	if(testRessources != null){
-    		System.out.println("c'est pas nullllllllllllllllllllllll");
+    		
     		for(Resource r : testRessources){
-    			System.out.println(r.getDirectory());
-    			System.out.println(r.getTargetPath());
     			
     			//TODO : improve this part to make it more generic and configurable
     			File baseResource = new File(r.getDirectory());
     			File directoryToCopy = new File(baseResource,resourcesFolder);
-    			//File lenyaDirectory = new File(directoryToCopy,"lenya");
     			
     			File targetFolder = new File(baseFile,"lenya/webapp");
     			
