@@ -135,11 +135,7 @@
 	<artifactId>core.module.administration</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
-      <dependency>
-	<groupId>org.apache.lenya</groupId>
-	<artifactId>core.module.cache</artifactId>
-	<version>${lenya.version}</version>
-      </dependency>
+      
       <dependency>
 	<groupId>org.apache.lenya</groupId>
 	<artifactId>core.module.gui</artifactId>
@@ -267,6 +263,12 @@
 	<artifactId>module.bxe</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
+      
+      <dependency>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>module.resource</artifactId>
+	<version>${lenya.version}</version>
+      </dependency>
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
@@ -286,29 +288,21 @@
 	<version>${lenya.version}</version>
       </dependency>
 
-      
-
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.jquery</artifactId>
+	<artifactId>core.module.languageselector</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.languageselector</artifactId>
+	<artifactId>core.module.lenyadoc</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.lenyadoc</artifactId>
-	<version>${lenya.version}</version>
-      </dependency>
-
-      <dependency>
-	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.linkcheck</artifactId>
+	<artifactId>core.module.linkcheck</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 
@@ -320,19 +314,19 @@
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.menubar</artifactId>
+	<artifactId>core.module.menubar</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.navigation</artifactId>
+	<artifactId>core.module.navigation</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.neutron</artifactId>
+	<artifactId>core.module.neutron</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 
@@ -344,43 +338,49 @@
       
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.prettyprinting</artifactId>
+	<artifactId>core.module.prettyprinting</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.profiling</artifactId>
+	<artifactId>core.module.profiling</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.resource</artifactId>
+	<artifactId>core.module.svg</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.sitetree</artifactId>
+	<artifactId>core.module.tinymce</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.svg</artifactId>
+	<artifactId>core.module.webdav</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 
-      <dependency>
+<dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.tinymce</artifactId>
+	<artifactId>core.module.kupu</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
-
+      
       <dependency>
 	<groupId>org.apache.lenya</groupId>
-	<artifactId>module.webdav</artifactId>
+	<artifactId>core.module.fckeditor</artifactId>
+	<version>${lenya.version}</version>
+      </dependency>
+      
+      <dependency>
+	<groupId>org.apache.lenya</groupId>
+	<artifactId>core.module.cache</artifactId>
 	<version>${lenya.version}</version>
       </dependency>
 

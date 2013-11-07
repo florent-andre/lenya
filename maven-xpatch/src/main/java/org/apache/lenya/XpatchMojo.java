@@ -48,16 +48,13 @@ import javax.xml.transform.stream.StreamResult;
 /**
  * Goal which touches a timestamp file.
  *
- * @goal touch
- * @goal war-resources
+ * @goal xpatch
  * 
  * @phase process-sources
  * 
  * @requiresDependencyResolution compile
  */
-public class XpatchMojo extends AbstractMojo {
-	
-	//TODO : use defined abstract class and xpatchTestMojo implementation
+public class XpatchMojo extends AbstractXpatchMojo {
 	
 	//TODO : see to use java5 annotations : 
     //http://maven.apache.org/plugin-tools/maven-plugin-plugin/examples/using-annotations.html
@@ -73,10 +70,11 @@ public class XpatchMojo extends AbstractMojo {
     private org.apache.maven.project.MavenProject mavenProject;
     
     public void execute() throws MojoExecutionException {
+    	super.execute();
     	
     	//TODO : make this parameters configurable
     	//folder that contains patches
-    	String patchFolder = "META-INF/patches";
+    	//String patchFolder = "META-INF/patches";
     	//TODO : create a map {patchRegex, fileToPatch }
     	String fileNameRegexOne = ".xweb";
     	//String baseFile = mavenProject.getBuild().getOutputDirectory() + "/webresources/WEB-INF"; 
@@ -87,86 +85,29 @@ public class XpatchMojo extends AbstractMojo {
     	File fileToPatchTwo = new File(baseFile,"/cocoon.xconf");
     	//end make this parameters configurable
     	
-    	@SuppressWarnings("unchecked")
-    	Set<Artifact> dal = mavenProject.getDependencyArtifacts();
+//    	@SuppressWarnings("unchecked")
+//    	Set<Artifact> dal = mavenProject.getDependencyArtifacts();
     	
-    	for(Artifact da : dal){
-    		//TODO : a filter procedure for artifact
-    		File f = da.getFile();
-    		//sometimes file is null
-    		if(f != null){
-    			try{
-                	final InputStream is = new FileInputStream(f);
-    				ArchiveInputStream in = new ArchiveStreamFactory().createArchiveInputStream("jar", is);
-    				JarArchiveEntry entry = (JarArchiveEntry)in.getNextEntry();
-    				
-                	//get all files that are in the configured folder
-    				while(entry != null){
-    					if(entry.getName().startsWith(patchFolder)){
-                			
-    						File fileToPatch = null;
-    						if(entry.getName().endsWith(fileNameRegexOne)){
-    							fileToPatch = fileToPatchOne;
-                			}
-    						if(entry.getName().endsWith(fileNameRegexTwo)){
-    							fileToPatch = fileToPatchTwo;
-                			}
-    						
-    						
-    						if(fileToPatch != null){
-    							String fName = new File(entry.getName()).getName();
-                				
-                				//extract file from jar
-                				File resultFile = File.createTempFile("jarpatch", fName);
-                				OutputStream out = new FileOutputStream(resultFile);
-                				IOUtils.copy(in, out);
-                				out.close();
-                				
-                				//get dom representation of the document
-                				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-                		    	DocumentBuilder db = dbf.newDocumentBuilder();
-                		    	Document docToPatch = db.parse(fileToPatch);
-                				
-                				//TODO : put patch create on the top level
-                				Xpatch xp = new Xpatch();
-                				xp.patch(docToPatch, resultFile,mavenProject.getProperties());
-                				
-                				//save the patched document
-                				//TODO : extract this to do at the end
-                				TransformerFactory transformerFactory = TransformerFactory.newInstance();
-                			    Transformer transformer = transformerFactory.newTransformer();
-                			    DOMSource source = new DOMSource(docToPatch);
-                			    StreamResult streamResult =  new StreamResult(fileToPatch);
-                			    transformer.transform(source, streamResult);
-    						}
-    						
-                		}
-                		
-                		entry = (JarArchiveEntry)in.getNextEntry();
-                	}
-                	
-    				//now close the archive input stream
-    				in.close();
-                	
-                	
-	                }catch ( IOException e ){
-	                    throw new MojoExecutionException( "Error accessing file "+da.toString(), e );
-	                } catch (ParserConfigurationException e) {
-	                	throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-	    			} catch (DOMException e) {
-	    				throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-	    			} catch (TransformerException e) {
-	    				throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-	    			} catch (SAXException e) {
-	    				throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-	    			} catch (ArchiveException e) {
-	    				throw new MojoExecutionException( "Error during reading the jar archive", e );
-	    			}
-    			
-    		}
-            //then use jar file for exploring
-            
-    	}
+    	// TODO : make it configurable
+		boolean getTransitives = true;
+
+		Set<Artifact> dal;
+		if (getTransitives) {
+			dal = mavenProject.getArtifacts();
+		} else {
+			dal = mavenProject.getDependencyArtifacts();
+		}
+		
+		getLog().debug("====== Start dep Artifacts =====");
+		// TODO : a filter procedure for artifact
+		for (Artifact da : dal) {
+			getLog().info("Xpatch : processing Artifact : " + da.toString());
+			runXpatch(da, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo,
+					fileToPatchTwo, mavenProject.getProperties(),null);
+		}
+		
+		getLog().warn("No 'in project' file processing, see XpatchTestMojo for implementing it if requiered");
+		
     	
     }
     

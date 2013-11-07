@@ -80,6 +80,10 @@
 	<artifactId>xmldb-common</artifactId>
       </dependency>
 
+	<dependency>
+	<groupId>lenyaDeps</groupId>
+	<artifactId>xmldb-xupdate</artifactId>
+      </dependency>
     <!-- Tests -->
     <dependency>
       <groupId>org.apache.lenya</groupId>
