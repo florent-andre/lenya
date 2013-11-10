@@ -72,6 +72,8 @@ public class XpatchMojo extends AbstractXpatchMojo {
     public void execute() throws MojoExecutionException {
     	super.execute();
     	
+    	getLog().info("===== Start Xpatch processing");
+    	
     	//TODO : make this parameters configurable
     	//folder that contains patches
     	//String patchFolder = "META-INF/patches";
@@ -85,9 +87,6 @@ public class XpatchMojo extends AbstractXpatchMojo {
     	File fileToPatchTwo = new File(baseFile,"/cocoon.xconf");
     	//end make this parameters configurable
     	
-//    	@SuppressWarnings("unchecked")
-//    	Set<Artifact> dal = mavenProject.getDependencyArtifacts();
-    	
     	// TODO : make it configurable
 		boolean getTransitives = true;
 
@@ -98,13 +97,7 @@ public class XpatchMojo extends AbstractXpatchMojo {
 			dal = mavenProject.getDependencyArtifacts();
 		}
 		
-		getLog().debug("====== Start dep Artifacts =====");
-		// TODO : a filter procedure for artifact
-		for (Artifact da : dal) {
-			getLog().info("Xpatch : processing Artifact : " + da.toString());
-			runXpatch(da, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo,
-					fileToPatchTwo, mavenProject.getProperties(),null);
-		}
+		runXpatch(dal, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo,fileToPatchTwo, mavenProject.getProperties(),null);
 		
 		getLog().warn("No 'in project' file processing, see XpatchTestMojo for implementing it if requiered");
 		

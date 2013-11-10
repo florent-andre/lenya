@@ -21,8 +21,10 @@ import org.apache.commons.compress.archivers.ArchiveInputStream;
 import org.apache.commons.compress.archivers.ArchiveStreamFactory;
 import org.apache.commons.compress.archivers.jar.JarArchiveEntry;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.comparator.PathFileComparator;
 import org.apache.lenya.filter.ResourcesFilter;
 import org.apache.lenya.xpatch.Xpatch;
+import org.apache.lenya.xpatch.XpatchException;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -41,10 +43,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -67,25 +72,36 @@ public abstract class AbstractXpatchMojo extends AbstractMojo {
     	resourcesFilter = new ResourcesFilter(patchFolder);
 	}
 	
-	protected void runXpatch(Artifact dependency,
+	protected void runXpatch(Set<Artifact> dependencies,
     		String fileNameRegexOne, File fileToPatchOne,
     		String fileNameRegexTwo, File fileToPatchTwo,
     		Properties properties,
     		XpathModifier xpathModifier
     	) throws MojoExecutionException {
     	
-		if(dependency.getFile() != null){
+		
+		getLog().info("Start building XpathTree");
+		
+		PatchTree patchtree = new PatchTree();
+		
+		for(Artifact dependency : dependencies){
 			
-			List<File> patchFiles = new ArrayList<File>();	
-			try{
-	        	final InputStream is = new FileInputStream(dependency.getFile());
-				ArchiveInputStream in = new ArchiveStreamFactory().createArchiveInputStream("jar", is);
-				JarArchiveEntry entry = (JarArchiveEntry)in.getNextEntry();
+			if(dependency.getFile() != null){
 				
-	        	//get all files that are in the configured folder
-				while(entry != null){
-					if(resourcesFilter.isToKeep(entry.getName())){
-						
+				PatchNode patchNode = new PatchNode(dependency);
+				
+				
+				
+					
+				try{
+		        	final InputStream is = new FileInputStream(dependency.getFile());
+					ArchiveInputStream in = new ArchiveStreamFactory().createArchiveInputStream("jar", is);
+					JarArchiveEntry entry = (JarArchiveEntry)in.getNextEntry();
+					
+		        	//get all files that are in the configured folder
+					while(entry != null){
+						if(resourcesFilter.isToKeep(entry.getName())){
+							
 							File fName = new File(entry.getName());
 	        				//extract file from jar
 	        				File resultFile = File.createTempFile(dependency.getArtifactId() + "-", "-"+fName.getName());
@@ -94,190 +110,167 @@ public abstract class AbstractXpatchMojo extends AbstractMojo {
 	        				IOUtils.copy(in, out);
 	        				out.close();
 	        				
-	        				patchFiles.add(resultFile);
+	        				PatchFile pf = new PatchFile(fName,resultFile);
+	        				
+	        				//patchFiles.add(resultFile);
+	        				//patchFiles.add(pf);
+	        				patchNode.getPatches().add(pf);
+	        				
 						}
-					
-		       		entry = (JarArchiveEntry)in.getNextEntry();
-		       		
-	        		}
-				//now close the archive input stream
-				in.close();
-	        	
-	            }catch ( IOException e ){
-	                throw new MojoExecutionException( "Error accessing file "+dependency.toString(), e );
-//	            } catch (ParserConfigurationException e) {
-//	            	throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-				} catch (DOMException e) {
-					throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-//				} catch (TransformerException e) {
-//					throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-//				} catch (SAXException e) {
-//					throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-				} catch (ArchiveException e) {
-					throw new MojoExecutionException( "Error during reading the jar archive", e );
-				}
-			
-			runXpatch(patchFiles, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo, fileToPatchTwo, properties,xpathModifier);
+						
+			       		entry = (JarArchiveEntry)in.getNextEntry();
+			       		
+		        	}
+					//now close the archive input stream
+					in.close();
+		        	
+		            }catch ( IOException e ){
+		                throw new MojoExecutionException( "Error accessing file "+dependency.toString(), e );
+					} catch (DOMException e) {
+						throw new MojoExecutionException( "Error during parsing of the document to patch", e );
+					} catch (ArchiveException e) {
+						throw new MojoExecutionException( "Error during reading the jar archive", e );
+					}
+				
+				patchtree.getRootNodes().add(patchNode);
+//				runXpatch(patchFiles, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo, fileToPatchTwo, properties,xpathModifier);
+				
+			}
 			
 		}
-    	
+		
+		getLog().info("Start apply XpathTree");
+		runXpatch(patchtree, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo, fileToPatchTwo, properties,xpathModifier);
 
     }
 
 	
-protected void runXpatch(Collection<File> f,
+	protected void runXpatch(PatchTree f,
 		String fileNameRegexOne, File fileToPatchOne,
 		String fileNameRegexTwo, File fileToPatchTwo,
 		Properties properties,
 		XpathModifier xpathModifier
-	) throws MojoExecutionException {
-	
-	
-	try{
+			) throws MojoExecutionException {
 		
-	//log.info("Start patching from list for files");
-	for(File patch : f){
-		File fileToPatch = null;
-		if(patch.getName().endsWith(fileNameRegexOne)){
-			fileToPatch = fileToPatchOne;
-		}
-		if(patch.getName().endsWith(fileNameRegexTwo)){
-			fileToPatch = fileToPatchTwo;
+		//configure the Dom document builder
+		
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+    	DocumentBuilder db;
+		try {
+			db = dbf.newDocumentBuilder();
+		} catch (ParserConfigurationException e1) {
+			throw new MojoExecutionException("Problem during Dom builder",e1);
 		}
 		
+		int round = 0;
+		boolean appliedInThisRound = true; // for going in the while the first time;
 		
-		if(fileToPatch != null){
+		while(appliedInThisRound){
+			appliedInThisRound = false;
+			round += 1;
 			
-			//get dom representation of the document
-			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-	    	DocumentBuilder db = dbf.newDocumentBuilder();
-	    	Document docToPatch = db.parse(fileToPatch);
-	    	
-			//TODO : put patch create on the top level
-			Xpatch xp = new Xpatch();
-			xp.setXpathModifier(xpathModifier);
-			boolean result = xp.patch(docToPatch, patch,properties);
-			if(result){
-				getLog().info("--> " +patch.getAbsolutePath()+ " : OK");
-			}else{
-				getLog().info("--> " +patch.getAbsolutePath()+ " : not applied");
+			//now process the tree : 
+			for(PatchNode pn : f.getRootNodes()){
+				
+				for(PatchFile pf : pn.getPatches()){
+					
+					//search for patch not already applied
+					if(!pf.isApplied()){
+						
+						File patch = pf.getPatchFile();
+						File fileToPatch = null;
+						
+						if(patch.getName().endsWith(fileNameRegexOne)){
+							fileToPatch = fileToPatchOne;
+						}
+						
+						if(patch.getName().endsWith(fileNameRegexTwo)){
+							fileToPatch = fileToPatchTwo;
+						}
+						
+						
+						if(fileToPatch != null){
+							
+							//get dom representation of the document
+					    	Document docToPatch;
+							try {
+								
+								//first, patch the document
+								
+								docToPatch = db.parse(fileToPatch);
+								
+								//TODO : put patch create on the top level
+								Xpatch xp = new Xpatch();
+								xp.setXpathModifier(xpathModifier);
+								boolean result;
+								
+								result = xp.patch(docToPatch, patch,properties);
+								
+								if(result){
+									getLog().debug("--> " +patch.getAbsolutePath()+ " : OK");
+									pf.setApplied(true);
+									pf.setRound(round);
+									appliedInThisRound = true;
+								}else{
+									pf.setRound(round);
+									getLog().debug("--> " +patch.getAbsolutePath()+ " : not applied");
+								}
+								
+								//second, save the document
+								//TODO : see a structure to only save the document after all the patches are done.
+								//save the patched document
+								//TODO : extract this to do at the end
+								TransformerFactory transformerFactory = TransformerFactory.newInstance();
+							    Transformer transformer = transformerFactory.newTransformer();
+							    DOMSource source = new DOMSource(docToPatch);
+							    StreamResult streamResult =  new StreamResult(fileToPatch);
+							    transformer.transform(source, streamResult);
+							    
+							} catch (SAXException e) {
+								getLog().error("Error during processing this patch file",e);
+							} catch (IOException e) {
+								getLog().error("Error during processing this patch file",e);
+							} catch (XpatchException e) {
+								getLog().error("Error during processing this patch file",e);
+							} catch (TransformerConfigurationException e) {
+								getLog().error("Error during processing this patch file",e);
+							} catch (TransformerException e) {
+								getLog().error("Error during processing this patch file",e);
+							}
+							
+						}
+
+						
+						
+					}//patch is already apply, do noting
+					
+				}
+				
+				
 			}
 			
-			
-			//save the patched document
-			//TODO : extract this to do at the end
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-		    Transformer transformer = transformerFactory.newTransformer();
-		    DOMSource source = new DOMSource(docToPatch);
-		    StreamResult streamResult =  new StreamResult(fileToPatch);
-		    transformer.transform(source, streamResult);
-		    //getLog().info("Patched document is now saved");
 		}
 		
+		//now Print the result of the patch
+		printPatchResult(f);
+
 	}
-	
-	  	
-        }catch ( IOException e ){
-            throw new MojoExecutionException( "Error accessing file "+f.toString(), e );
-        } catch (ParserConfigurationException e) {
-        	throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-		} catch (DOMException e) {
-			throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-		} catch (TransformerException e) {
-			throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-		} catch (SAXException e) {
-			throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-//		} catch (ArchiveException e) {
-//			throw new MojoExecutionException( "Error during reading the jar archive", e );
+
+	private void printPatchResult(PatchTree patchTree) {
+		
+		for(PatchNode pn : patchTree.rootNodes){
+			getLog().info("======== " + pn.getArtifact());
+			
+			for(PatchFile pf : pn.getPatches()){
+				
+				String stringFormat = "round : %s   apply : %s    PatchName : %s";
+				
+				getLog().info(String.format(stringFormat, pf.getRound(),pf.isApplied(),pf.getOriginalJarFile()));
+				
+			}
 		}
-
-}
-
-
-
-//    protected void runXpatch(File f, String patchFolder,
-//    		String fileNameRegexOne, File fileToPatchOne,
-//    		String fileNameRegexTwo, File fileToPatchTwo,
-//    		Properties properties
-//    	) throws MojoExecutionException {
-//    	
-//    	    	
-//		try{
-//        	final InputStream is = new FileInputStream(f);
-//			ArchiveInputStream in = new ArchiveStreamFactory().createArchiveInputStream("jar", is);
-//			JarArchiveEntry entry = (JarArchiveEntry)in.getNextEntry();
-//			
-//        	//get all files that are in the configured folder
-//			while(entry != null){
-//				if(entry.getName().startsWith(patchFolder)){
-//        			
-//					File fileToPatch = null;
-//					if(entry.getName().endsWith(fileNameRegexOne)){
-//						fileToPatch = fileToPatchOne;
-//        			}
-//					if(entry.getName().endsWith(fileNameRegexTwo)){
-//						fileToPatch = fileToPatchTwo;
-//        			}
-//					
-//					
-//					if(fileToPatch != null){
-//						File fName = new File(entry.getName());
-//        				getLog().info("Apply patch file : " + fName.toString() + " **");
-//        				//extract file from jar
-//        				File resultFile = File.createTempFile("jarpatch", fName.getName());
-//        				OutputStream out = new FileOutputStream(resultFile);
-//        				IOUtils.copy(in, out);
-//        				out.close();
-//        				
-//        				//get dom representation of the document
-//        				DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-//        		    	DocumentBuilder db = dbf.newDocumentBuilder();
-//        		    	Document docToPatch = db.parse(fileToPatch);
-//        		    	
-//        				//TODO : put patch create on the top level
-//        				Xpatch xp = new Xpatch();
-//        				boolean result = xp.patch(docToPatch, resultFile,properties);
-//        				if(result){
-//        					getLog().info("--> Patching is okay");
-//        				}else{
-//        					getLog().warn("--> Patch don't occur");
-//        				}
-//        				
-//        				
-//        				//save the patched document
-//        				//TODO : extract this to do at the end
-//        				TransformerFactory transformerFactory = TransformerFactory.newInstance();
-//        			    Transformer transformer = transformerFactory.newTransformer();
-//        			    DOMSource source = new DOMSource(docToPatch);
-//        			    StreamResult streamResult =  new StreamResult(fileToPatch);
-//        			    transformer.transform(source, streamResult);
-//        			    getLog().info("Patched document is now saved");
-//					}
-//					
-//        		}
-//        		
-//        		entry = (JarArchiveEntry)in.getNextEntry();
-//        	}
-//        	
-//			//now close the archive input stream
-//			in.close();
-//        	
-//        	
-//            }catch ( IOException e ){
-//                throw new MojoExecutionException( "Error accessing file "+f.toString(), e );
-//            } catch (ParserConfigurationException e) {
-//            	throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-//			} catch (DOMException e) {
-//				throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-//			} catch (TransformerException e) {
-//				throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-//			} catch (SAXException e) {
-//				throw new MojoExecutionException( "Error during parsing of the document to patch", e );
-//			} catch (ArchiveException e) {
-//				throw new MojoExecutionException( "Error during reading the jar archive", e );
-//			}
-//
-//    }
-    
+		
+		
+	}  
     
 }

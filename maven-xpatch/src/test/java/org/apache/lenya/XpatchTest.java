@@ -10,6 +10,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.apache.lenya.xpatch.Xpatch;
+import org.apache.lenya.xpatch.XpatchException;
 import org.apache.xpath.XPathAPI;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -41,7 +42,7 @@ public class XpatchTest {
 	}
 	
 	@Test
-	public void testpatchWeb() throws TransformerException, DOMException, IOException, SAXException, ParserConfigurationException{
+	public void testpatchWeb() throws TransformerException, DOMException, IOException, SAXException, ParserConfigurationException, XpatchException{
 		Xpatch xp = new Xpatch();
 		
 		File ftopatch = new File (this.getClass().getResource("/xpatch/web.xml").getFile());
@@ -66,7 +67,7 @@ public class XpatchTest {
 	}
 	
 	@Test
-	public void testpatchCocoon() throws TransformerException, DOMException, IOException, SAXException, ParserConfigurationException{
+	public void testpatchCocoon() throws TransformerException, DOMException, IOException, SAXException, ParserConfigurationException, XpatchException{
 		Xpatch xp = new Xpatch();
 		
 		File ftopatch = new File (this.getClass().getResource("/xpatch/cocoon.xconf").getFile());

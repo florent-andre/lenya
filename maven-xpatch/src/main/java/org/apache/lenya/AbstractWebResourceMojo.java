@@ -46,16 +46,20 @@ public abstract class AbstractWebResourceMojo extends AbstractMojo {
 			ArchiveInputStream in = new ArchiveStreamFactory().createArchiveInputStream("jar", is);
 			JarArchiveEntry entry = (JarArchiveEntry)in.getNextEntry();
 			
+			getLog().info("process file");
+			
         	//get all files that are in the configured folder
 			while(entry != null){
 				if(entry.getName().startsWith(originFolder) && !excluded(entry.getName(),originFolder)){
 					//TODO : how to deal with override ?
 					// ==> make a test case with another dependency that have same folder and same file
-					String entryPart = entry.getName().replaceFirst(originFolder, "");
-    				File fName2 = new File(target,entryPart);
+					//String entryPart = entry.getName().replaceFirst(originFolder, "");
+    				//File fName2 = new File(target,entryPart);
+					File fName2 = new File(target,entry.getName());
     				//extract file from jar
     				//File resultFile = File.createTempFile("jarpatch", fName);
 					//File resultFile = new File(fName2);
+    				getLog().info("copy from : " + entry.getName() + " to : "+ fName2.getAbsolutePath());
 					if(entry.isDirectory()) fName2.mkdirs();
 					else{
 						OutputStream out = new FileOutputStream(fName2);

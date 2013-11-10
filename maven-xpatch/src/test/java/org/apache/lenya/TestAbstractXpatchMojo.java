@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -58,7 +60,8 @@ public class TestAbstractXpatchMojo extends AbstractXpatchMojo {
     	String fileNameRegexTwo = ".DISABLED";
     	File fileToPatchTwo = new File(".");
     	
-		runXpatch(archive, fileNameRegexOne, fileToPatchOne, fileNameRegexTwo, fileToPatchTwo, null,null);
+    	
+		runXpatch(Collections.singleton(archive), fileNameRegexOne, fileToPatchOne, fileNameRegexTwo, fileToPatchTwo, null,null);
 		
 		Document patched = XpatchTest.getDomDocument(cocoonXconf);
 		

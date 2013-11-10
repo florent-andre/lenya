@@ -53,9 +53,13 @@ public class WebResourceMojo extends AbstractWebResourceMojo {
     	
     	Set<Artifact> dal = mavenProject.getDependencyArtifacts();
     	
+    	getLog().info("Start processing WebResourceMojo");
+    	
     	for(Artifact da : dal){
     		//TODO : a filter procedure for artifact
     		File f = da.getFile();
+    		
+    		getLog().info("processing : " + da);
     		
     		//sometimes file from artifact is null... see why 
     		if(f != null){
