@@ -1,4 +1,14 @@
 
+== RESTART HERE ==
+
+
+* Faire marcher avec le sitemap qui est dans le webapp (sitemap de la compil finale, utiliser le -ORIGIN)
+
+* mettre en place le patch du sitemap dans le xpatch
+
+* voir pour enlever le modules en statique dans /core-impl/src/main/resources/META-INF/patches/config/cocoon-xconf/ModuleManager/moduleManager.xconf
+
+
 == Documentation == 
 
 * In order to get a publication with content, use function initPublicationTestContent in core.module.notification/src/test/java/org/apache/lenya/notification/NotificationTest.java
