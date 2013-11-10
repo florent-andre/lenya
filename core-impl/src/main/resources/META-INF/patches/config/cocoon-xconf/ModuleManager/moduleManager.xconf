@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+<xconf xpath="/cocoon" unless="/cocoon/component[@role = 'org.apache.lenya.cms.module.ModuleManager']">
+  <component class="org.apache.lenya.cms.module.ModuleManagerImpl"
+			role="org.apache.lenya.cms.module.ModuleManager">
+<!-- 			<modules copy="false"></modules> -->
+			<!-- TODO : see if required and if yes, how to generate it -->
+			<modules copy="true">
+				<module shortcut="navigation"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/navigation" />
+				<module shortcut="prettyprinting"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/prettyprinting" />
+				<module shortcut="contactform"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/contactform" />
+				<module shortcut="notification"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/notification" />
+				<module shortcut="languageselector"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/languageselector" />
+				<module shortcut="neutron"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/neutron" />
+				<module shortcut="svg"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/svg" />
+				<module shortcut="menubar"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/menubar" />
+				<module shortcut="fckeditor"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/fckeditor" />
+				<module shortcut="webdav"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/webdav" />
+				<module shortcut="profiling"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/profiling" />
+				<module shortcut="tinymce"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/tinymce" />
+				<module shortcut="opendocument"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/opendocument" />
+				<module shortcut="lenyadoc"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/lenyadoc" />
+				<module shortcut="usecasedocument"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/usecasedocument" />
+				<module shortcut="sitetree"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/sitetree" />
+				<module shortcut="lucene"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/lucene" />
+				<module shortcut="kupu"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/kupu" />
+				<module shortcut="news"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/news" />
+				<module shortcut="export"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/export" />
+				<module shortcut="collection"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/collection" />
+				<module shortcut="linkcheck"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/linkcheck" />
+				<module shortcut="cforms"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/cforms" />
+				<module shortcut="development"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/development" />
+				<module shortcut="sourcerepository"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/sourcerepository" />
+				<module shortcut="resource"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/resource" />
+				<module shortcut="links"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/links" />
+				<module shortcut="bxe"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/bxe" />
+				<module shortcut="xhtml"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/xhtml" />
+				<module shortcut="editors"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules/editors" />
+				<module shortcut="workflow"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/workflow" />
+				<module shortcut="monitoring"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/monitoring" />
+				<module shortcut="cache"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/cache" />
+				<module shortcut="usecase"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/usecase" />
+				<module shortcut="observation"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/observation" />
+				<module shortcut="gui"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/gui" />
+				<module shortcut="ac"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/ac" />
+				<module shortcut="acusecases"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/acusecases" />
+				<module shortcut="linking"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/linking" />
+				<module shortcut="i18n"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/i18n" />
+				<module shortcut="templating"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/templating" />
+				<module shortcut="administration"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/administration" />
+				<module shortcut="properties"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/properties" />
+				<module shortcut="janitor"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/janitor" />
+				<module shortcut="sitemanagement"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/sitemanagement" />
+				<module shortcut="ldap"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/ldap" />
+				<module shortcut="metadata"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/modules-core/metadata" />
+				<module shortcut="homepage"
+					src="/home/florent/devel/dev-lenya/lenyaSources/BRANCH_2_0_X/src/pubs/default/modules/homepage" />
+			</modules>
+			</component>
+</xconf>
